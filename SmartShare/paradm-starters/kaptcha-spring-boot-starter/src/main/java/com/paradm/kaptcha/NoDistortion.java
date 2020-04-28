@@ -1,7 +1,7 @@
 /*
  * @(#)NoDistortion.java
  */
-package com.paradm.captcha;
+package com.paradm.kaptcha;
 
 import com.google.code.kaptcha.GimpyEngine;
 
@@ -9,8 +9,9 @@ import java.awt.image.BufferedImage;
 
 /**
  * NoDistortion.java
- * 
- * @author Jackyshen
+ *
+ * @author Jacky.shen
+ * @create data 2020/4/27
  */
 public class NoDistortion implements GimpyEngine {
 
