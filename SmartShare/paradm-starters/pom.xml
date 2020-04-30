@@ -39,7 +39,6 @@
   </repositories>
 
   <modules>
-    <module>captcha-spring-boot-starter</module>
     <module>kaptcha-spring-boot-starter</module>
   </modules>
 
