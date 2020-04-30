@@ -1,7 +1,7 @@
 /*
  * @(#)NoDistortion.java
  */
-package com.paradm.kaptcha;
+package com.paradm.kaptcha.impl;
 
 import com.google.code.kaptcha.GimpyEngine;
 
