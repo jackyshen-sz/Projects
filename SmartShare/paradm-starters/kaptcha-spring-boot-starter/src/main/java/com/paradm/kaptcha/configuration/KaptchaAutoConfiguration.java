@@ -2,6 +2,7 @@ package com.paradm.kaptcha.configuration;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
+import com.paradm.kaptcha.utils.KaptchaUtil;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -24,8 +25,8 @@ public class KaptchaAutoConfiguration {
   @ConditionalOnMissingBean
   @ConditionalOnProperty(prefix = KaptchaProperties.KAPTCHA_PREFIX, value = "enabled", havingValue = "true")
   public DefaultKaptcha kaptcha(KaptchaProperties kaptchaProperties) {
-    Config config = new Config(kaptchaProperties.getKaptchaProperties());
     DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
+    Config config = new Config(KaptchaUtil.getProperties(kaptchaProperties.getProperties()));
     defaultKaptcha.setConfig(config);
     return defaultKaptcha;
   }
