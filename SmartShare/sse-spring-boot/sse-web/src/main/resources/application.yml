@@ -7,19 +7,19 @@ spring:
   messages:
     basename: i18n/messages
   kaptcha:
+    enabled: true
     properties:
       border: "no"
-      border-color: 105,179,90
+      border-color: "105,179,90"
       char-string: "0123456789"
-      char-length: 4
-      char-space: 2
-      font-color: 98,98,98
-      font-size: 14
-      font-names: Arial
-      noise-impl: com.google.code.kaptcha.impl.NoNoise
-      obscurificator: com.paradm.kaptcha.impl.NoDistortion
-      background-from: 238,238,238
-      background-to: 238,238,238
-      image-width: 36
-      image-height: 15
-      session-key: code
+      char-length: "4"
+      char-space: "2"
+      font-color: "98,98,98"
+      font-size: "14"
+      font-names: "Arial"
+      noise-impl: "com.google.code.kaptcha.impl.NoNoise"
+      obscurificator: "com.paradm.kaptcha.impl.NoDistortion"
+      background-from: "238,238,238"
+      background-to: "238,238,238"
+      image-width: "36"
+      image-height: "15"
