@@ -1,15 +1,15 @@
 package com.paradm.kaptcha.configuration;
 
-import com.google.code.kaptcha.impl.DefaultKaptcha;
-import com.google.code.kaptcha.util.Config;
+import com.google.code.kaptcha.servlet.KaptchaServlet;
 import com.paradm.kaptcha.utils.KaptchaUtil;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.StringUtils;
 
 /**
  * @author Jacky.shen
@@ -18,16 +18,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConditionalOnWebApplication
 @EnableConfigurationProperties(KaptchaProperties.class)
-@ComponentScan({"com.paradm.kaptcha.controller"})
 public class KaptchaAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
   @ConditionalOnProperty(prefix = KaptchaProperties.KAPTCHA_PREFIX, value = "enabled", havingValue = "true")
-  public DefaultKaptcha kaptcha(KaptchaProperties kaptchaProperties) {
-    DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
-    Config config = new Config(KaptchaUtil.getProperties(kaptchaProperties.getProperties()));
-    defaultKaptcha.setConfig(config);
-    return defaultKaptcha;
+  public ServletRegistrationBean<KaptchaServlet> kaptchaServlet(KaptchaProperties kaptchaProperties) {
+    ServletRegistrationBean<KaptchaServlet> registrationBean = new ServletRegistrationBean<>();
+    registrationBean.setServlet(new KaptchaServlet());
+    registrationBean.setUrlMappings(StringUtils.commaDelimitedListToSet(kaptchaProperties.getUrlMappings()));
+
+    registrationBean.setInitParameters(KaptchaUtil.getParameters(kaptchaProperties.getProperties()));
+    return registrationBean;
   }
 }
