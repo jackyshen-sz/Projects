@@ -27,13 +27,24 @@
     <dependencies>
       <dependency>
         <groupId>com.paradm</groupId>
+        <artifactId>kaptcha-spring-boot-starter</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.paradm</groupId>
         <artifactId>sse-parent</artifactId>
         <version>1.0.0.sse-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>com.paradm</groupId>
-        <artifactId>kaptcha-spring-boot-starter</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <artifactId>sse-framework</artifactId>
+        <version>1.0.0.sse-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>jquery</artifactId>
+        <version>3.5.1</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

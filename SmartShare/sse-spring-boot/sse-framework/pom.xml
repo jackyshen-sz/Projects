@@ -9,7 +9,7 @@
     <version>1.0.0.sse-SNAPSHOT</version>
     <relativePath>../sse-parent/pom.xml</relativePath>
   </parent>
-  <artifactId>sse-web</artifactId>
+  <artifactId>sse-framework</artifactId>
 
   <dependencies>
     <dependency>

@@ -1,4 +1,4 @@
-package com.paradm.sse.configuration;
+package com.paradm.sse.framework.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

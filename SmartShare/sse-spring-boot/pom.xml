@@ -17,7 +17,8 @@
 
   <modules>
     <module>sse-parent</module>
-    <module>sse-web</module>
+    <module>sse-business</module>
+    <module>sse-framework</module>
   </modules>
 
   <developers>

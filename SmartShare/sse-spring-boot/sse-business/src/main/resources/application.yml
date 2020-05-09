@@ -1,9 +1,9 @@
 server:
-  port: 8888
+  port: 8080
 
 spring:
   application:
-    name: sse-web
+    name: sse-business
   messages:
     basename: i18n/messages
   kaptcha:
