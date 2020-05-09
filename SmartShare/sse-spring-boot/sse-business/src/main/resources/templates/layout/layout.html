@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--    <meta name="_csrf" th:content="${_csrf.token}"/>-->
+<!--    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
+    <title th:text="${title}">Title</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}">
+
+    <link rel="stylesheet" th:href="@{/theme/css/main.css}" />
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+    <script th:inline="javascript">
+      var contextPath = /*[[@{/}]]*/;
+      var globalMessages = {
+        deleteComfirm	: [[#{common.message.comfirm_delete}]],
+        logoutComfirm : [[#{common.message.confirm_logout}]]
+      };
+      var globalTitle = {
+        deleteTitle : [[#{common.title.delete_warning}]],
+        logoutTitle : [[#{common.label.logout}]]
+      };
+      var globalButton = {
+        okBtn : [[#{common.label.ok}]],
+        cancelBtn : [[#{common.label.cancel}]],
+        deleteBtn : [[#{common.label.delete}]],
+        closeBtn : [[#{common.label.close}]],
+        saveBtn : [[#{common.label.save}]],
+        createBtn : [[#{common.label.create}]],
+        uploadBtn : [[#{common.label.upload}]],
+        searchBtn : [[#{common.label.search}]],
+        addBtn : [[#{common.label.add}]],
+        backBtn : [[#{common.label.back}]],
+        nextBtn : [[#{common.label.next}]],
+        startBtn : [[#{common.label.start}]],
+        submitBtn : [[#{common.label.submit}]],
+        browseBtn : [[#{common.label.browse}]],
+        finishBtn : [[#{common.label.finish}]],
+        postBtn : [[#{common.label.post}]],
+        replyBtn : [[#{common.label.reply}]],
+      };
+    </script>
+  </head>
+  <body>
+    <div id="wrap" class="container">
+      <header>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Brand</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="active">
+                  <a href="#" th:href="@{/}">首页</a>
+                </li>
+                <li><a href="#" th:href="@{/test}">测试</a></li>
+                <li><a href="#" th:href="@{/article}">技术文章</a></li>
+              </ul>
+              <form class="navbar-form navbar-right">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="请输入文章名">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div id="main_content" th:include="::main_content"></div>
+      <footer id="footer" class="row">
+        <div class="footer-container">
+          <span class="SS_footer_text">Copyright &copy; ParaDM Co. Ltd. All Rights Reserved</span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

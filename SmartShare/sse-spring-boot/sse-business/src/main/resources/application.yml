@@ -1,9 +1,13 @@
 server:
-  port: 8080
+  port: 8088
 
 spring:
   application:
     name: sse-business
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: resources/**
   messages:
     basename: i18n/messages
   kaptcha:
@@ -31,3 +35,12 @@ spring:
       image:
         width: 36
         height: 15
+  thymeleaf:
+    cache: false
+    check-template: true
+    check-template-location: true
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+    servlet:
+      content-type: text/html
