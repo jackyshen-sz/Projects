@@ -56,14 +56,14 @@ public class KaptchaProperties {
     private String sessionKey = Constants.KAPTCHA_SESSION_KEY;
     private String sessionDateKey = Constants.KAPTCHA_SESSION_DATE;
 
-    private Border border;
-    private Noise noise;
-    private Obscurificator obscurificator;
-    private Producer producer;
-    private TextProducer textProducer;
-    private Word word;
-    private Background background;
-    private Image image;
+    private Border border = new Border();
+    private Noise noise = new Noise();
+    private Obscurificator obscurificator = new Obscurificator();
+    private Producer producer = new Producer();
+    private TextProducer textProducer = new TextProducer();
+    private Word word = new Word();
+    private Background background = new Background();
+    private Image image = new Image();
   }
 
   @Data
