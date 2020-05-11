@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--	<meta name="_csrf" th:content="${_csrf.token}"/>  -->
+<!--	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
+	<title th:text="${title}"></title>
+
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{'/theme/pref' + ${pref} + '/css/main.css'}" />
+
+	<script th:inline="javascript">
+	  var contextPath = /*[[@{/}]]*/;
+		var globalMessages = {
+			deleteComfirm	: [[#{common.message.comfirm_delete}]],
+			logoutComfirm : [[#{common.message.confirm_logout}]]
+		};
+		var globalTitle = {
+			deleteTitle : [[#{common.title.delete_warning}]],
+			logoutTitle : [[#{common.label.logout}]]
+		};
+		var globalButton = {
+			okBtn : [[#{common.label.ok}]],
+			cancelBtn : [[#{common.label.cancel}]],
+			deleteBtn : [[#{common.label.delete}]],
+			closeBtn : [[#{common.label.close}]],
+			saveBtn : [[#{common.label.save}]],
+			createBtn : [[#{common.label.create}]],
+			uploadBtn : [[#{common.label.upload}]],
+			searchBtn : [[#{common.label.search}]],
+			addBtn : [[#{common.label.add}]],
+			backBtn : [[#{common.label.back}]],
+			nextBtn : [[#{common.label.next}]],
+			startBtn : [[#{common.label.start}]],
+			submitBtn : [[#{common.label.submit}]],
+			browseBtn : [[#{common.label.browse}]],
+			finishBtn : [[#{common.label.finish}]],
+			postBtn : [[#{common.label.post}]],
+			replyBtn : [[#{common.label.reply}]],
+		};
+	</script>
+</head>
+</html>
