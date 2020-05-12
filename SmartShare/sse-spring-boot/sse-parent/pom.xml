@@ -17,6 +17,7 @@
     <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
+    <druid.starter.version>1.1.22</druid.starter.version>
 
     <!-- maven plugin version -->
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -39,6 +40,32 @@
         <groupId>com.paradm</groupId>
         <artifactId>sse-framework</artifactId>
         <version>1.0.0.sse-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.paradm</groupId>
+        <artifactId>sse-services</artifactId>
+        <version>1.0.0.sse-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.paradm</groupId>
+        <artifactId>sse-persist</artifactId>
+        <version>1.0.0.sse-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.paradm</groupId>
+        <artifactId>sse-domain</artifactId>
+        <version>1.0.0.sse-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.paradm</groupId>
+        <artifactId>sse-common</artifactId>
+        <version>1.0.0.sse-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid-spring-boot-starter</artifactId>
+        <version>${druid.starter.version}</version>
       </dependency>
 
       <dependency>
@@ -82,7 +109,9 @@
           <execution>
             <id>attach-sources</id>
             <phase>package</phase>
-            <goals><goal>jar</goal></goals>
+            <goals>
+              <goal>jar</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>

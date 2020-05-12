@@ -13,7 +13,7 @@ public class TestController {
 
   @GetMapping("hello")
   public String hello(Model model) {
-//    model.addAttribute("pref", "1");
+    //    model.addAttribute("pref", "1");
     return "index";
   }
 }

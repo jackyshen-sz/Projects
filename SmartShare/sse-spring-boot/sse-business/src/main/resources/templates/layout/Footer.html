@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<div th:fragment="footer">
-		<div class="footer-container">
-			<span class="SS_footer_text">
-				Copyright &copy; ParaDM Co. Ltd. All Rights Reserved
-			</span>
-		</div>
-	</div>
+  <div th:fragment="footer">
+    <div class="footer-container">
+      <span class="SS_footer_text">
+        <span class="text-muted ss-footer-word">
+          &copy;<span th:text="#{system.label.footer.version}"></span>
+          <span class="hidden-footer footer-message">
+            &nbsp;|&nbsp;
+            <a href="javascript:void(0)" th:text="#{system.label.footer.privacy_statement}"></a>
+          </span>
+          <span class="hidden-footer footer-message">
+            &nbsp;|&nbsp;
+            <a href="javascript:void(0)" th:text="#{system.label.footer.term_conditions}"></a>
+          </span>
+          <span class="footer-message">
+            &nbsp;|&nbsp;
+            <a href="javascript:void(0)" th:text="#{system.label.footer.help_center}"></a>
+          </span>
+          <span class="footer-message">
+            &nbsp;|&nbsp;
+            <a href="javascript:void(0)" th:text="#{system.label.footer.support}"></a>
+          </span>
+        </span>
+      </span>
+    </div>
+    <script th:inline="javascript">
+
+    </script>
+  </div>
 </html>

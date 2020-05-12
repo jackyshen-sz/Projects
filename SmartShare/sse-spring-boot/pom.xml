@@ -19,6 +19,10 @@
     <module>sse-parent</module>
     <module>sse-business</module>
     <module>sse-framework</module>
+    <module>sse-services</module>
+    <module>sse-persist</module>
+    <module>sse-domain</module>
+    <module>sse-common</module>
   </modules>
 
   <developers>

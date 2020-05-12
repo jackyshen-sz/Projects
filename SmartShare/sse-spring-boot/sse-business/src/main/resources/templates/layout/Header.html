@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <div th:fragment="header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-default fixed-top navbar-expand-md navbar-light bg-light">
       <a class="navbar-brand" onclick="removeCompanyCookie();removePersonalCookie();" th:href="@{/home}">
         <img th:src="@{'/theme/pref' + ${pref} + '/img/SmartShare_logo.svg'}" width="150px" height="35px">
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-content"
+              aria-controls="navbar-collapse-content" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navbar-collapse-content">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

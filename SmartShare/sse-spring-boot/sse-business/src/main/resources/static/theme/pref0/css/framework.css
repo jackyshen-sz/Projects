@@ -1,0 +1,60 @@
+.navbar-default {
+  border-bottom: 3px solid #158BC8;
+}
+
+#footer {
+  z-index: 1001;
+  background-color: #cccccc;
+  position: fixed;
+  bottom: 0;
+  height: 30px;
+  width: 100%;
+  padding: 0;
+  text-align: center;
+}
+
+#footer .footer-container {
+  padding: 4px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.SS_footer_text {
+  color: #7d7d7d;
+  font-family: Arial, "微軟正黑體", "微軟雅黑體";
+  font-size: 11px;
+  font-weight: normal;
+  text-align: center;
+}
+
+.ss-footer-word {
+  font-family: Arial, "微軟正黑體", "微軟雅黑體";
+  font-weight: normal;
+  font-size: 11px;
+  color: #808285;
+}
+
+@media (max-width: 768px) {
+  .hidden-footer {
+    display: none;
+  }
+}
+
+.footer-message a:link {
+  color: #747474;
+  text-decoration: underline;
+}
+
+.footer-message a:visited {
+  color: #747474;
+  text-decoration: underline;
+}
+
+.footer-message a:hover {
+  color: #23527c;
+}
+
+.footer-message a:active {
+  color: white;
+}

@@ -1,9 +1,8 @@
-server:
-  port: 8088
-
 spring:
   application:
     name: sse-business
+  profiles:
+    active: dev
   devtools:
     restart:
       enabled: true

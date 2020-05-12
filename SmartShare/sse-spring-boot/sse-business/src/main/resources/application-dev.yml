@@ -1,0 +1,40 @@
+server:
+  port: 8088
+
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      url: jdbc:sqlserver://mssql.paradm.com:1433;databaseName=OnPremise
+      username: sa
+      password: P@ssw0rd
+      #配置 初始化大小、最小、最大
+      initial-size: 2
+      min-idle: 1
+      max-active: 20
+      #配置获取连接等待超时的时间
+      max-wait: 60000
+      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      #配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      #打开PSCache，并且指定每个连接上PSCache的大小
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      #配置监控统计拦截的filters
+      filters: stat,wall,config
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    database: sql_server
+    database-platform: com.paradm.sse.framework.dialect.ParadmSQLServerDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.format_sql: true
