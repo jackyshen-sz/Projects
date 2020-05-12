@@ -1,6 +1,5 @@
 package com.paradm.sse.common.utils;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
 import java.util.Collection;
@@ -9,7 +8,6 @@ import java.util.Collection;
  * @author Jacky.shen
  * @create data 2020/5/12
  */
-@Slf4j
 public class Utility {
 
   public static boolean isEmpty(Object val) {

@@ -19,7 +19,7 @@ spring:
       time-between-eviction-runs-millis: 60000
       #配置一个连接在池中最小生存的时间，单位是毫秒
       min-evictable-idle-time-millis: 300000
-      validation-query: SELECT 1 FROM DUAL
+      validation-query: SELECT 1
       test-while-idle: true
       test-on-borrow: false
       test-on-return: false
@@ -35,6 +35,6 @@ spring:
     database: sql_server
     database-platform: com.paradm.sse.framework.dialect.ParadmSQLServerDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
       hibernate.format_sql: true
