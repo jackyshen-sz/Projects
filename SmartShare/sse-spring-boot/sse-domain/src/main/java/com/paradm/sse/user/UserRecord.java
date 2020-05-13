@@ -72,7 +72,7 @@ public class UserRecord extends BaseEntity implements Serializable {
 
   @Column(name = "STATUS")
   @Enumerated(EnumType.ORDINAL)
-  private Status status;
+  private UserStatus status;
 
   @Column(name = "USER_DEF_1")
   private String userDef1;

@@ -1,34 +1,29 @@
 server:
   port: 8088
 
-
 spring:
   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     druid:
-      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
       url: jdbc:sqlserver://mssql.paradm.com:1433;databaseName=OnPremise
       username: sa
-      password: P@ssw0rd
-      #配置 初始化大小、最小、最大
-      initial-size: 2
-      min-idle: 1
-      max-active: 20
-      #配置获取连接等待超时的时间
-      max-wait: 60000
-      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
-      time-between-eviction-runs-millis: 60000
-      #配置一个连接在池中最小生存的时间，单位是毫秒
-      min-evictable-idle-time-millis: 300000
-      validation-query: SELECT 1
-      test-while-idle: true
-      test-on-borrow: false
-      test-on-return: false
-      #打开PSCache，并且指定每个连接上PSCache的大小
-      pool-prepared-statements: false
-      max-pool-prepared-statement-per-connection-size: 20
-      #配置监控统计拦截的filters
-      filters: stat,wall,config
-      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      password: Bj4dhva3HctuR4D2jzhSRVsHt7Rf1V9pHUufqnpb5++NgS3Tx1j1fv7uT4e+efKJn3v3D9oVLq70BzXnNxwXQg==
+      filters: config,stat,wall
+      connection-properties: config.file=classpath:druid-pool.properties;druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      webStatFilter:
+        enabled: true
+        # 添加过滤规则
+        url-pattern: /*
+        # 忽略过滤格式
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      statViewServlet:
+        enabled: true
+        loginUsername: druid
+        loginPassword: druid123
+        # 设置白名单，不填则允许所有访问
+        allow:
+        url-pattern: /druid/*
   jpa:
     generate-ddl: false
     show-sql: true
@@ -38,3 +33,4 @@ spring:
       ddl-auto: none
     properties:
       hibernate.format_sql: true
+
