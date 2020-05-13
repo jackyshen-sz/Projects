@@ -16,9 +16,14 @@
   <properties>
     <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <smartshare.version>1.0.0.sse-SNAPSHOT</smartshare.version>
     <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
+    <kaptcha.starter.version>1.0.0-SNAPSHOT</kaptcha.starter.version>
     <druid.starter.version>1.1.22</druid.starter.version>
 
+    <!-- webjars -->
+    <jquery.version>3.5.1</jquery.version>
+    <bootstrap.version>4.4.1</bootstrap.version>
     <!-- maven plugin version -->
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <maven-source-plugin.version>3.1.0</maven-source-plugin.version>
@@ -28,38 +33,39 @@
     <dependencies>
       <dependency>
         <groupId>com.paradm</groupId>
-        <artifactId>kaptcha-spring-boot-starter</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>com.paradm</groupId>
         <artifactId>sse-parent</artifactId>
-        <version>1.0.0.sse-SNAPSHOT</version>
+        <version>${smartshare.version}</version>
       </dependency>
       <dependency>
         <groupId>com.paradm</groupId>
         <artifactId>sse-framework</artifactId>
-        <version>1.0.0.sse-SNAPSHOT</version>
+        <version>${smartshare.version}</version>
       </dependency>
       <dependency>
         <groupId>com.paradm</groupId>
         <artifactId>sse-services</artifactId>
-        <version>1.0.0.sse-SNAPSHOT</version>
+        <version>${smartshare.version}</version>
       </dependency>
       <dependency>
         <groupId>com.paradm</groupId>
         <artifactId>sse-persist</artifactId>
-        <version>1.0.0.sse-SNAPSHOT</version>
+        <version>${smartshare.version}</version>
       </dependency>
       <dependency>
         <groupId>com.paradm</groupId>
         <artifactId>sse-domain</artifactId>
-        <version>1.0.0.sse-SNAPSHOT</version>
+        <version>${smartshare.version}</version>
       </dependency>
       <dependency>
         <groupId>com.paradm</groupId>
         <artifactId>sse-common</artifactId>
-        <version>1.0.0.sse-SNAPSHOT</version>
+        <version>${smartshare.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.paradm</groupId>
+        <artifactId>kaptcha-spring-boot-starter</artifactId>
+        <version>${kaptcha.starter.version}</version>
       </dependency>
 
       <dependency>
@@ -71,12 +77,12 @@
       <dependency>
         <groupId>org.webjars</groupId>
         <artifactId>jquery</artifactId>
-        <version>3.5.1</version>
+        <version>${jquery.version}</version>
       </dependency>
       <dependency>
         <groupId>org.webjars</groupId>
         <artifactId>bootstrap</artifactId>
-        <version>4.4.1</version>
+        <version>${bootstrap.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -86,6 +92,11 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
     </dependency>
   </dependencies>
 
