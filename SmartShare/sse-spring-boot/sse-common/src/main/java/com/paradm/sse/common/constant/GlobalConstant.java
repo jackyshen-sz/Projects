@@ -23,4 +23,8 @@ public interface GlobalConstant {
       return this.name;
     }
   }
+
+  enum LoginMethod {
+    WEB, COOKIE, MFD, FTP, SYNC, MOBILE, OUTLOOK, PARA_SCAN;
+  }
 }

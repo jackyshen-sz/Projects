@@ -25,4 +25,23 @@ public class Utility {
   public static <T> boolean isEmpty(Collection<T> c) {
     return (null == c || c.size() == 0);
   }
+
+  public static String[] splitString(String src, String div) {
+    return StringUtils.tokenizeToStringArray(src, div);
+  }
+
+  public final static boolean parseBoolean(String inStr) {
+    if (isEmpty(inStr)) {
+      return false;
+    }
+    switch (inStr.toLowerCase()) {
+      case "1":
+      case "y":
+      case "yes":
+      case "t":
+      case "true":
+        return true;
+    }
+    return false;
+  }
 }
