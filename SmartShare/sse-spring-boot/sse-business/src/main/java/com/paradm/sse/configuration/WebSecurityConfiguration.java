@@ -7,6 +7,7 @@ import com.paradm.sse.security.web.authentication.KaptchaAuthenticationDetailsSo
 import com.paradm.sse.security.web.authentication.KaptchaAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -15,8 +16,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.sql.DataSource;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * @author Jacky.shen
@@ -46,7 +52,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-        .csrf()
+        .cors().configurationSource(configurationSource())
+        .and().csrf()
           .ignoringAntMatchers(Utility.splitString(cusProp.getSecurity().getCsrfIgnoreUrl(), GlobalConstant.Symbol.COMMA.toString()))
         .and().authorizeRequests()
           .antMatchers(Utility.splitString(cusProp.getSecurity().getPermitAll(), GlobalConstant.Symbol.COMMA.toString())).permitAll()
@@ -73,6 +80,19 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Override
   public void configure(WebSecurity web) throws Exception {
     super.configure(web);
+  }
+
+  @Bean
+  public UrlBasedCorsConfigurationSource configurationSource() {
+    UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+    Map<String, CorsConfiguration> corsConfigurations = new LinkedHashMap<>();
+    CorsConfiguration corsConfiguration = new CorsConfiguration();
+    corsConfiguration.setAllowedOrigins(Arrays.asList(CorsConfiguration.ALL));
+    corsConfiguration.setAllowedMethods(Arrays.asList(HttpMethod.GET.name(), HttpMethod.POST.name()));
+    corsConfiguration.setAllowedHeaders(Arrays.asList(CorsConfiguration.ALL));
+    corsConfigurations.put("/api/**", corsConfiguration);
+    urlBasedCorsConfigurationSource.setCorsConfigurations(corsConfigurations);
+    return urlBasedCorsConfigurationSource;
   }
 
   @Bean
