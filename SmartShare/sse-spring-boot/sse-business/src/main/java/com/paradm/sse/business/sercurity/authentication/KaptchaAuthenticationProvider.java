@@ -1,4 +1,4 @@
-package com.paradm.sse.security.web.authentication;
+package com.paradm.sse.business.sercurity.authentication;
 
 import com.paradm.sse.common.utils.Utility;
 import org.springframework.security.authentication.AuthenticationProvider;

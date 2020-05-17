@@ -1,4 +1,4 @@
-package com.paradm.sse.security.web.authentication.handler;
+package com.paradm.sse.business.sercurity.authentication.handler;
 
 import com.paradm.sse.common.constant.GlobalConstant;
 import com.paradm.sse.common.constant.ModelConstant;

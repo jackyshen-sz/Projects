@@ -1,4 +1,4 @@
-package com.paradm.sse.security.web.authentication;
+package com.paradm.sse.business.sercurity.authentication;
 
 import org.springframework.security.authentication.AuthenticationDetailsSource;
 import org.springframework.stereotype.Component;

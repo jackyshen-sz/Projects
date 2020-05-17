@@ -1,4 +1,4 @@
-package com.paradm.sse.framework.entity;
+package com.paradm.sse.domain.framework.entity;
 
 import com.paradm.sse.common.enums.RecordStatus;
 import lombok.Data;

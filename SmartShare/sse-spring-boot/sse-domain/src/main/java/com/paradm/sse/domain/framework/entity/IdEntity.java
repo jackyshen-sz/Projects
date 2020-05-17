@@ -1,4 +1,4 @@
-package com.paradm.sse.framework.entity;
+package com.paradm.sse.domain.framework.entity;
 
 import lombok.Data;
 

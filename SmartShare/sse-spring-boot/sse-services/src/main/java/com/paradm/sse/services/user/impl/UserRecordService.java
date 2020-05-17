@@ -1,6 +1,6 @@
-package com.paradm.sse.user.impl;
+package com.paradm.sse.services.user.impl;
 
-import com.paradm.sse.user.IUserRecordService;
+import com.paradm.sse.services.user.IUserRecordService;
 import org.springframework.stereotype.Service;
 
 /**

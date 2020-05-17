@@ -1,7 +1,7 @@
-package com.paradm.sse.user.impl;
+package com.paradm.sse.services.user.impl;
 
-import com.paradm.sse.user.IUserRecordService;
-import com.paradm.sse.user.IUserService;
+import com.paradm.sse.services.user.IUserRecordService;
+import com.paradm.sse.services.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

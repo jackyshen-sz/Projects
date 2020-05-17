@@ -1,10 +1,10 @@
-package com.paradm.sse.configuration;
+package com.paradm.sse.business.configuration;
 
 import com.paradm.sse.common.constant.GlobalConstant;
 import com.paradm.sse.common.constant.SecurityConstant;
 import com.paradm.sse.common.utils.Utility;
-import com.paradm.sse.security.web.authentication.KaptchaAuthenticationDetailsSource;
-import com.paradm.sse.security.web.authentication.KaptchaAuthenticationProvider;
+import com.paradm.sse.business.sercurity.authentication.KaptchaAuthenticationDetailsSource;
+import com.paradm.sse.business.sercurity.authentication.KaptchaAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;

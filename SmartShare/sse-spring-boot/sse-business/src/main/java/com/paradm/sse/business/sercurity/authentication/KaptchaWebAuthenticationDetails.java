@@ -1,4 +1,4 @@
-package com.paradm.sse.security.web.authentication;
+package com.paradm.sse.business.sercurity.authentication;
 
 import com.google.code.kaptcha.Constants;
 import com.paradm.sse.common.constant.SecurityConstant;

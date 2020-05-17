@@ -1,4 +1,4 @@
-package com.paradm.sse.user;
+package com.paradm.sse.services.user;
 
 /**
  * @author Jacky.shen

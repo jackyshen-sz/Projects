@@ -1,5 +1,6 @@
-package com.paradm.sse.user;
+package com.paradm.sse.persist.user;
 
+import com.paradm.sse.domain.user.entity.UserRecord;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;

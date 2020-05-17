@@ -1,4 +1,4 @@
-package com.paradm.sse.configuration;
+package com.paradm.sse.business.configuration;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

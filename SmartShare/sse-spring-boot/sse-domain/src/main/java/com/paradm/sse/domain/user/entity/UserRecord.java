@@ -1,7 +1,7 @@
-package com.paradm.sse.user;
+package com.paradm.sse.domain.user.entity;
 
 import com.paradm.sse.common.enums.*;
-import com.paradm.sse.framework.entity.BaseEntity;
+import com.paradm.sse.domain.framework.entity.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.*;
