@@ -6,6 +6,10 @@ package com.paradm.sse.common.constant;
  */
 public interface GlobalConstant {
 
+  String APPLICATION_NAME = "SMARTSHARE-ENTERPRISE";
+
+  String VERSION = "1.0.0.0";
+
   String FUNCTION_CODE_KEY = "FUNCTION_CODE";
 
   enum Symbol {

@@ -2,6 +2,12 @@ server:
   port: 8088
 
 spring:
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: resources/**
+  messages:
+    basename: i18n/messages
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
@@ -35,7 +41,7 @@ spring:
       hibernate.format_sql: true
   customize:
     security:
-      csrf-ignore-url: /api/**
+      csrf-ignore-url: /api/**,/druid/**
       permit-all: /theme/**,/js/**,/webjars/**,/kaptcha/**,/druid/**,/api/**
       browser:
         login-page: /login

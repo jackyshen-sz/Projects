@@ -1,5 +1,6 @@
 package com.paradm.sse.common.utils;
 
+import com.paradm.sse.common.enums.YesNoFlag;
 import org.springframework.util.StringUtils;
 
 import java.util.Collection;
@@ -30,7 +31,15 @@ public class Utility {
     return StringUtils.tokenizeToStringArray(src, div);
   }
 
-  public final static boolean parseBoolean(String inStr) {
+  public static Integer parseInteger(String inStr) {
+    try {
+      return (Integer.valueOf(inStr));
+    } catch (Exception e) {
+      return (null);
+    }
+  }
+
+  public static boolean parseBoolean(String inStr) {
     if (isEmpty(inStr)) {
       return false;
     }
@@ -43,5 +52,17 @@ public class Utility {
         return true;
     }
     return false;
+  }
+
+  public static boolean parseBoolean(YesNoFlag flag) {
+    if (Utility.isEmpty(flag)) {
+      return false;
+    }
+    switch (flag) {
+      case YES:
+        return true;
+      default:
+        return false;
+    }
   }
 }

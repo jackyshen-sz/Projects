@@ -3,12 +3,6 @@ spring:
     name: sse-business
   profiles:
     active: dev
-  devtools:
-    restart:
-      enabled: true
-      additional-paths: resources/**
-  messages:
-    basename: i18n/messages
   kaptcha:
     enabled: true
     properties:
