@@ -1,8 +1,12 @@
 package com.paradm.sse.business.configuration;
 
+import com.paradm.sse.common.constant.GlobalConstant;
+import com.paradm.sse.domain.framework.ApplicationContainer;
 import com.paradm.sse.framework.configuration.BaseWebConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.annotation.PostConstruct;
 
@@ -24,5 +28,11 @@ public class WebConfiguration extends BaseWebConfiguration {
     // Initialize system parameter
     this.initGlobalReference();
 
+    // Create a new ApplicationContainer instance
+    ApplicationContainer applicationContainer = ApplicationContainer.INSTANCE;
+    // Initialize System Function and store the cache into ApplicationContainer
+    this.initSysFunction(applicationContainer);
+
+    RequestContextHolder.getRequestAttributes().setAttribute(GlobalConstant.APPLICATION_CONTAINER_KEY, applicationContainer, RequestAttributes.SCOPE_SESSION);
   }
 }

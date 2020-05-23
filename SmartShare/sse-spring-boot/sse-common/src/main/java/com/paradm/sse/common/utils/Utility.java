@@ -39,6 +39,13 @@ public class Utility {
     }
   }
 
+  public static String formatInteger(Integer intValue) {
+    if (isEmpty(intValue)) {
+      return "";
+    }
+    return (String.valueOf(intValue));
+  }
+
   public static boolean parseBoolean(String inStr) {
     if (isEmpty(inStr)) {
       return false;

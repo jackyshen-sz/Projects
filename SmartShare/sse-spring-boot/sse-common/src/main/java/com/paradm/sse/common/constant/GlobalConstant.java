@@ -12,6 +12,11 @@ public interface GlobalConstant {
 
   String FUNCTION_CODE_KEY = "FUNCTION_CODE";
 
+  /**
+   * The key which used to retrieve the ApplicationContainer in application scope.
+   */
+  String APPLICATION_CONTAINER_KEY = "applicationContainer";
+
   enum Symbol {
     MINUS("-"), UNDERLINE("_"), SLASH("/"), BACKSLASH("\\"), COMMA(","), POINT("."),
     SEMICOLON(";"), COLON(":"), BLANK(" "), OPEN_ANGLE("<"), CLOSE_ANGLE(">"),

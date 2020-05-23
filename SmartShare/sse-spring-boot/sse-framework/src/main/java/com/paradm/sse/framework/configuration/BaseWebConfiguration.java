@@ -3,10 +3,15 @@ package com.paradm.sse.framework.configuration;
 import com.paradm.sse.common.constant.GlobalConstant;
 import com.paradm.sse.common.exception.ApplicationException;
 import com.paradm.sse.common.license.SiteValidator;
+import com.paradm.sse.domain.framework.ApplicationContainer;
+import com.paradm.sse.domain.system.model.SysFunctionModel;
+import com.paradm.sse.services.system.ISysFunctionService;
 import com.paradm.sse.services.system.ISysParameterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+
+import java.util.List;
 
 /**
  * @author Jacky.shen
@@ -34,5 +39,21 @@ public class BaseWebConfiguration {
 
   protected void initGlobalReference() {
     sysParameterService.initGlobalSysParameter();
+  }
+
+  @Autowired
+  protected ISysFunctionService sysFunctionService;
+
+  protected void initSysFunction(ApplicationContainer applicationContainer){
+    log.info("init initSysFunction start");
+    try {
+      // get all activated system function
+      List<SysFunctionModel> sysFunctionModelList = sysFunctionService.getAllSysFunction();
+      applicationContainer.setSysFunctionList(sysFunctionModelList);
+    } catch (Exception e) {
+      log.error("init initSysFunction failed", e);
+      throw new ApplicationException("init initSysFunction failed");
+    }
+    log.info("init initSysFunction finished");
   }
 }
