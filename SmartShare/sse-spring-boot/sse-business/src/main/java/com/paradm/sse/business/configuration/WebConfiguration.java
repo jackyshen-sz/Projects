@@ -4,11 +4,11 @@ import com.paradm.sse.common.constant.GlobalConstant;
 import com.paradm.sse.domain.framework.ApplicationContainer;
 import com.paradm.sse.framework.configuration.BaseWebConfiguration;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.ServletContext;
 
 /**
  * @author Jacky.shen
@@ -17,6 +17,9 @@ import javax.annotation.PostConstruct;
 @Slf4j
 @Configuration
 public class WebConfiguration extends BaseWebConfiguration {
+
+  @Autowired
+  private ServletContext servletContext;
 
   @Override
   @PostConstruct
@@ -33,6 +36,6 @@ public class WebConfiguration extends BaseWebConfiguration {
     // Initialize System Function and store the cache into ApplicationContainer
     this.initSysFunction(applicationContainer);
 
-    RequestContextHolder.getRequestAttributes().setAttribute(GlobalConstant.APPLICATION_CONTAINER_KEY, applicationContainer, RequestAttributes.SCOPE_SESSION);
+    servletContext.setAttribute(GlobalConstant.APPLICATION_CONTAINER_KEY, applicationContainer);
   }
 }

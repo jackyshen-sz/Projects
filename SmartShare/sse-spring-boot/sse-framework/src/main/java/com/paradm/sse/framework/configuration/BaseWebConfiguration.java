@@ -7,6 +7,7 @@ import com.paradm.sse.domain.framework.ApplicationContainer;
 import com.paradm.sse.domain.system.model.SysFunctionModel;
 import com.paradm.sse.services.system.ISysFunctionService;
 import com.paradm.sse.services.system.ISysParameterService;
+import com.paradm.sse.services.user.IUserRecordService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -36,9 +37,20 @@ public class BaseWebConfiguration {
 
   @Autowired
   protected ISysParameterService sysParameterService;
+  @Autowired
+  protected IUserRecordService userRecordService;
 
   protected void initGlobalReference() {
-    sysParameterService.initGlobalSysParameter();
+    log.info("init initGlobalReference start");
+    try {
+      sysParameterService.initGlobalSysParameter();
+      // Initialize user names and user emails and user icons hash tables.
+      userRecordService.initGlobalUserInfo();
+    } catch (Exception e) {
+      log.error("init initGlobalReference failed", e);
+      throw new ApplicationException("init initGlobalReference failed");
+    }
+    log.info("init initGlobalReference finished");
   }
 
   @Autowired
