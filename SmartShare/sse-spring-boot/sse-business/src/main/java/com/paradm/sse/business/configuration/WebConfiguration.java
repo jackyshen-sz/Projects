@@ -4,11 +4,9 @@ import com.paradm.sse.common.constant.GlobalConstant;
 import com.paradm.sse.domain.framework.ApplicationContainer;
 import com.paradm.sse.framework.configuration.BaseWebConfiguration;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.ServletContext;
 
 /**
  * @author Jacky.shen
@@ -17,9 +15,6 @@ import javax.servlet.ServletContext;
 @Slf4j
 @Configuration
 public class WebConfiguration extends BaseWebConfiguration {
-
-  @Autowired
-  private ServletContext servletContext;
 
   @Override
   @PostConstruct
@@ -38,4 +33,5 @@ public class WebConfiguration extends BaseWebConfiguration {
 
     servletContext.setAttribute(GlobalConstant.APPLICATION_CONTAINER_KEY, applicationContainer);
   }
+
 }

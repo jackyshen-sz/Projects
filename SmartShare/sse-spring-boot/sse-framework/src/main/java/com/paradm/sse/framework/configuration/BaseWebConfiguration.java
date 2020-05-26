@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 
+import javax.servlet.ServletContext;
 import java.util.List;
 
 /**
@@ -20,6 +21,9 @@ import java.util.List;
  */
 @Slf4j
 public class BaseWebConfiguration {
+
+  @Autowired
+  protected ServletContext servletContext;
 
   public void init() {
     log.info("Starting SmartShare Business Version: {}", GlobalConstant.APPLICATION_NAME + GlobalConstant.Symbol.MINUS + GlobalConstant.VERSION);
