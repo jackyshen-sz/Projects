@@ -2,6 +2,7 @@ package com.paradm.sse.domain.user.model;
 
 import com.paradm.sse.domain.framework.entity.IdEntity;
 import com.paradm.sse.domain.framework.model.BaseModel;
+import com.paradm.sse.domain.user.entity.UserRecord;
 import lombok.Data;
 
 /**
@@ -43,6 +44,13 @@ public class UserRecordModel extends BaseModel {
   private String notifyFlag;
   private String notifyGroupByStatus;
   private String amdpSyncFlag;
+
+  public UserRecordModel() {
+  }
+
+  public UserRecordModel(UserRecord userRecord) {
+    this.setModelData(userRecord);
+  }
 
   @Override
   public void setModelData(IdEntity entity) {

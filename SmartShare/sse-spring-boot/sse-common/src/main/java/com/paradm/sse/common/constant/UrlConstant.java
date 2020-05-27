@@ -7,4 +7,6 @@ package com.paradm.sse.common.constant;
 public interface UrlConstant {
 
   String HOME = "/home";
+
+  String INIT_SYSTEM = "/init?system";
 }

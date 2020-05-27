@@ -7,7 +7,7 @@ import com.paradm.sse.common.utils.Utility;
 import com.paradm.sse.domain.system.entity.SysFunction;
 import com.paradm.sse.domain.system.model.SysFunctionModel;
 import com.paradm.sse.persist.system.SysFunctionRepository;
-import com.paradm.sse.services.framework.impl.BaseServce;
+import com.paradm.sse.services.framework.impl.BaseService;
 import com.paradm.sse.services.system.ISysFunctionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Service
-public class SysFunctionService extends BaseServce implements ISysFunctionService {
+public class SysFunctionService extends BaseService implements ISysFunctionService {
 
   @Autowired
   private SysFunctionRepository sysFunctionRepository;

@@ -6,7 +6,7 @@ import com.paradm.sse.common.factory.SystemParameterFactory;
 import com.paradm.sse.common.utils.Utility;
 import com.paradm.sse.domain.system.entity.SysParameter;
 import com.paradm.sse.persist.system.SysParameterRepository;
-import com.paradm.sse.services.framework.impl.BaseServce;
+import com.paradm.sse.services.framework.impl.BaseService;
 import com.paradm.sse.services.system.ISysParameterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import java.util.Map;
  */
 @Slf4j
 @Service
-public class SysParameterService extends BaseServce implements ISysParameterService {
+public class SysParameterService extends BaseService implements ISysParameterService {
 
   @Autowired
   private SysParameterRepository sysParameterRepository;

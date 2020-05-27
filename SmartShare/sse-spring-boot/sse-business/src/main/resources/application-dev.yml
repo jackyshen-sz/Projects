@@ -12,7 +12,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     druid:
-      url: jdbc:sqlserver://mssql.paradm.com:1433;databaseName=OnPremise
+      url: jdbc:sqlserver://mssql.paradm.com:1433;databaseName=OnPremise-Jacky
       username: sa
       password: Bj4dhva3HctuR4D2jzhSRVsHt7Rf1V9pHUufqnpb5++NgS3Tx1j1fv7uT4e+efKJn3v3D9oVLq70BzXnNxwXQg==
       filters: config,stat,wall
@@ -42,7 +42,7 @@ spring:
   customize:
     security:
       csrf-ignore-url: /api/**,/druid/**
-      permit-all: /theme/**,/js/**,/webjars/**,/kaptcha/**,/druid/**,/api/**
+      permit-all: /theme/**,/js/**,/webjars/**,/kaptcha/**,/druid/**,/api/**,/,/index,/init/**
       browser:
         login-page: /login
         logout-url: /logout

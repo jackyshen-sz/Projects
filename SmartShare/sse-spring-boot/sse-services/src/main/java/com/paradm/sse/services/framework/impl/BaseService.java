@@ -1,6 +1,6 @@
 package com.paradm.sse.services.framework.impl;
 
-import com.paradm.sse.services.framework.IBaseServce;
+import com.paradm.sse.services.framework.IBaseService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,5 +8,5 @@ import org.springframework.stereotype.Service;
  * @create data 2020/5/22
  */
 @Service
-public class BaseServce implements IBaseServce {
+public class BaseService implements IBaseService {
 }

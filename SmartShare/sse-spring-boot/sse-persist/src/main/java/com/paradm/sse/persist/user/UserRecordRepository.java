@@ -15,6 +15,6 @@ import java.util.List;
 @Repository
 public interface UserRecordRepository extends JpaRepository<UserRecord, Integer>, JpaSpecificationExecutor<UserRecord> {
 
-  List<UserRecord> findByRecordStatusAndIdGreaterThan(RecordStatus recordStatus, Integer id);
+  List<UserRecord> findByRecordStatus(RecordStatus recordStatus);
 
 }

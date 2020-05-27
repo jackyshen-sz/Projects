@@ -7,7 +7,7 @@ import com.paradm.sse.common.utils.Utility;
  * @create data 2020/5/12
  */
 public enum UserStatus {
-  ACTIVE("A"), INACTIVE("I"), LOCKED("X"), ARCHIVED("R"), PENDING("P"),
+  ACTIVE("A"), INACTIVE("I"), LOCKED("X"), PENDING("P"),
   ;
   private String name;
 
