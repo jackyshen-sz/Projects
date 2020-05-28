@@ -1,5 +1,8 @@
 package com.paradm.sse.domain.framework.model;
 
+import com.paradm.sse.common.enums.RecordStatus;
+import com.paradm.sse.common.utils.Utility;
+import com.paradm.sse.domain.framework.entity.BaseEntity;
 import com.paradm.sse.domain.framework.entity.IdEntity;
 import lombok.Data;
 
@@ -49,6 +52,26 @@ public abstract class BaseModel implements Serializable {
       e.printStackTrace();
     }
     return deepCopy;
+  }
+
+  public void setBaseModelData(BaseModel baseModel, BaseEntity entity) {
+    baseModel.setId(Utility.formatInteger(entity.getId()));
+    baseModel.setRecordStatus(entity.getRecordStatus().toString());
+    baseModel.setUpdateCount(Utility.formatInteger(entity.getUpdateCount()));
+    baseModel.setUpdaterId(Utility.formatInteger(entity.getUpdaterId()));
+    baseModel.setUpdateDate(Utility.formatDate(entity.getUpdateDate()));
+    baseModel.setCreatorId(Utility.formatInteger(entity.getCreatorId()));
+    baseModel.setCreateDate(Utility.formatDate(entity.getCreateDate()));
+  }
+
+  public void setBaseEntity(BaseEntity entity) {
+    entity.setId(Utility.parseInteger(this.getId()));
+    entity.setRecordStatus(RecordStatus.fromAcronym(this.getRecordStatus()));
+    entity.setUpdateCount(Utility.parseInteger(this.getUpdateCount()));
+    entity.setUpdaterId(Utility.parseInteger(this.getUpdaterId()));
+    entity.setUpdateDate(Utility.parseDate(this.getUpdateDate()));
+    entity.setCreatorId(Utility.parseInteger(this.getCreatorId()));
+    entity.setCreateDate(Utility.parseDate(this.getCreateDate()));
   }
 
   public abstract void setModelData(IdEntity entity);

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:include="layout/Head::head(pref=*{pref}?:'0')" th:with="title=#{system.smartshare.business.title}"></head>
+  <body>
+    <div id="wrap">
+      <a href="javascript:void(0);" id="sign-in-btn" class="sign-in_btn" th:text="#{init.label.sign_in}"></a>
+    </div>
+    <div class="modal fade" id="sign-in-modal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content" style="max-height: 600px;"></div>
+      </div>
+    </div>
+    <footer id="footer" th:include="layout/Footer::footer"></footer>
+    <script th:inline="javascript">
+      $(function () {
+        $("#sign-in-modal").on("hidden.bs.modal", function() {
+          $(this).removeData("bs.modal");
+          $("#sign-in-modal .modal-content").empty();
+        });
+        $("#sign-in-btn").click(function (evt) {
+          evt.stopPropagation();
+          if (evt && evt.preventDefault) {
+            evt.preventDefault();
+          } else {
+            window.event.returnValue = false;
+          }
+          $("#sign-in-modal").modal({
+            backdrop : 'static',
+            keyboard : false,
+            remote : "${pageContext.request.contextPath}/init/system/sign-in?data=" + Math.floor(Math.random() * 100)
+          });
+        });
+        $("#sign-in-btn").trigger("click");
+      })
+    </script>
+  </body>
+</html>

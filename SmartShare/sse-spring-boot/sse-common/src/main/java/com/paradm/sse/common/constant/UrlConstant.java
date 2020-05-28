@@ -9,4 +9,5 @@ public interface UrlConstant {
   String HOME = "/home";
 
   String INIT_SYSTEM = "/init?system";
+
 }

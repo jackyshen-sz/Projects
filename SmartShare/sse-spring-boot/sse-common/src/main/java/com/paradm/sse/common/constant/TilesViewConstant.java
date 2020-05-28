@@ -6,5 +6,9 @@ package com.paradm.sse.common.constant;
  */
 public interface TilesViewConstant {
 
-  String LOGIN = "login";
+  String LOGIN = "common/Login";
+
+  String INIT_SYSTEM = "init/system/InitSystem";
+
+  String INIT_SYSTEM_SIGNIN = "init/system/Sign-in";
 }

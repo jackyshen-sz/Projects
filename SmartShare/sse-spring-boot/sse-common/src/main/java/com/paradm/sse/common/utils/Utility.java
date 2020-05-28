@@ -1,14 +1,21 @@
 package com.paradm.sse.common.utils;
 
+import com.paradm.sse.common.constant.SystemParameterConstant;
 import com.paradm.sse.common.enums.YesNoFlag;
+import com.paradm.sse.common.factory.SystemParameterFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  * @author Jacky.shen
  * @create data 2020/5/12
  */
+@Slf4j
 public class Utility {
 
   public static boolean isEmpty(Object val) {
@@ -71,5 +78,36 @@ public class Utility {
       default:
         return false;
     }
+  }
+
+  public static Date parseDate(String inStr) {
+    String format = SystemParameterFactory.getSystemParameter(SystemParameterConstant.DB_DATE_FORMAT);
+    return parseDate(inStr, format);
+  }
+
+  public static Date parseDate(String inStr, String format) {
+    if (Utility.isEmpty(inStr)) {
+      return (null);
+    }
+    try {
+      SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+      return dateFormat.parse(inStr);
+    } catch (ParseException e) {
+      log.error("parse date error.");
+      return (null);
+    }
+  }
+
+  public static String formatDate(Date inDate) {
+    String format = SystemParameterFactory.getSystemParameter(SystemParameterConstant.DB_DATE_FORMAT);
+    return formatDate(inDate, format);
+  }
+
+  public static String formatDate(Date inDate, String format) {
+    if (Utility.isEmpty(inDate)) {
+      return "";
+    }
+    SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+    return dateFormat.format(inDate);
   }
 }
