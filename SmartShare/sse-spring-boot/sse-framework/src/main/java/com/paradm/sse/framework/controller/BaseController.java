@@ -1,9 +1,11 @@
 package com.paradm.sse.framework.controller;
 
 import com.paradm.sse.common.constant.GlobalConstant;
+import com.paradm.sse.common.constant.TilesViewConstant;
 import com.paradm.sse.common.utils.Utility;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -47,5 +49,12 @@ public class BaseController {
     }
     this.request = request;
     this.response = response;
+  }
+
+  @ExceptionHandler
+  public String exceptionHandler(Exception ex) {
+    log.error("controller throw exception...");
+    log.error(ex.getMessage(), ex);
+    return TilesViewConstant.ERROR;
   }
 }

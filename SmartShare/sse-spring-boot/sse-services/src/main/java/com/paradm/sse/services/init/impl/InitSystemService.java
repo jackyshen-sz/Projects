@@ -2,7 +2,6 @@ package com.paradm.sse.services.init.impl;
 
 import com.paradm.sse.common.constant.ModelConstant;
 import com.paradm.sse.common.constant.SystemParameterConstant;
-import com.paradm.sse.common.exception.ApplicationException;
 import com.paradm.sse.common.utils.Utility;
 import com.paradm.sse.domain.company.entity.ParadmCompany;
 import com.paradm.sse.domain.company.model.ParadmCompanyModel;
@@ -52,8 +51,6 @@ public class InitSystemService extends InitService implements IInitSystemService
         SmartshareLocMasterModel locMasterModel = locMasterService.getDefaultLocMaster();
         formModel.setLocMasterModel(locMasterModel);
       }
-    } catch (ApplicationException e) {
-      log.error(e.getMessage(), e);
     } catch (Exception e) {
       log.error(e.getMessage(), e);
     }

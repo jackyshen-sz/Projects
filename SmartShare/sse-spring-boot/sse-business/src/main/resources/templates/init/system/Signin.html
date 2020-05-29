@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <form id="signinForm" method="post" th:action="@{/init/system/sign-in}" th:object="${formModel}">
+    <input type="hidden" name="paradmCompanyModel.id" th:field="*{paradmCompanyModel.id}" />
+    <div class="SS_modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="SS_modal-title" th:text="#{init.label.sign_in}"></h4>
+    </div>
+  </form>
+</html>

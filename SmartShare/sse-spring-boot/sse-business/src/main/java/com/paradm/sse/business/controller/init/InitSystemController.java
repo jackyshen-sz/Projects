@@ -1,5 +1,6 @@
 package com.paradm.sse.business.controller.init;
 
+import com.paradm.sse.common.constant.GlobalConstant;
 import com.paradm.sse.common.constant.TilesViewConstant;
 import com.paradm.sse.services.init.IInitSystemService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,11 +22,16 @@ public class InitSystemController extends InitController {
   @Autowired
   private IInitSystemService initSystemService;
 
-  @GetMapping(value = "sign-in")
+  @GetMapping("sign-in")
   public String signin(Model model) {
     log.debug("init system form...");
-    String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-    initSystemService.initSystemForm(model, baseUrl);
+    StringBuilder baseUrl = new StringBuilder(request.getScheme());
+    baseUrl.append(GlobalConstant.Symbol.COLON.toString()).append(GlobalConstant.Symbol.SLASH.toString()).append(GlobalConstant.Symbol.SLASH.toString());
+    baseUrl.append(request.getServerName());
+    baseUrl.append(GlobalConstant.Symbol.COLON.toString());
+    baseUrl.append(request.getServerPort());
+    baseUrl.append(request.getContextPath());
+    initSystemService.initSystemForm(model, baseUrl.toString());
     return TilesViewConstant.INIT_SYSTEM_SIGNIN;
   }
 }

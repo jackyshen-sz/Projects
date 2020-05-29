@@ -12,11 +12,11 @@
     <link rel="stylesheet" th:href="@{'/theme/pref' + ${pref} + '/css/framework.css'}"/>
 
     <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/1.14.3/popper.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.14.3/popper.js}" type="module"></script>
     <script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
     <script th:inline="javascript">
       var contextPath = /*[[@{/}]]*/;
-      var globalMessages = {
+      var globalMessage = {
         deleteComfirm: [[#{common.message.comfirm_delete}]],
         logoutComfirm: [[#{common.message.confirm_logout}]]
       };
@@ -24,7 +24,7 @@
         deleteTitle: [[#{common.title.delete_warning}]],
         logoutTitle: [[#{common.label.logout}]]
       };
-      var globalButton = {
+      var globalBtn = {
         okBtn: [[#{common.label.ok}]],
         cancelBtn: [[#{common.label.cancel}]],
         deleteBtn: [[#{common.label.delete}]],
