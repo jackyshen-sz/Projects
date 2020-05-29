@@ -47,7 +47,7 @@ public class SysFunctionModel extends BaseModel {
   }
 
   @Override
-  public IdEntity getEntityData() {
+  public SysFunction getEntityData() {
     SysFunction sysFunction = new SysFunction();
     BeanUtils.copyProperties(this, sysFunction);
     sysFunction.setId(Utility.parseInteger(this.getId()));

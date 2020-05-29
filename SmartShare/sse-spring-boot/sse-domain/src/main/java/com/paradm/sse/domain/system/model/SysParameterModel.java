@@ -34,7 +34,7 @@ public class SysParameterModel extends BaseModel {
   }
 
   @Override
-  public IdEntity getEntityData() {
+  public SysParameter getEntityData() {
     SysParameter sysParameter = new SysParameter();
     BeanUtils.copyProperties(this, sysParameter);
     this.setBaseEntity(sysParameter);

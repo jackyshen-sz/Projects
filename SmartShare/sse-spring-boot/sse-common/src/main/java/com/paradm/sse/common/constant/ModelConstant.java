@@ -7,4 +7,6 @@ package com.paradm.sse.common.constant;
 public interface ModelConstant {
 
   String URL = "url";
+
+  String FORM_MODEL = "formModel";
 }

@@ -1,3 +1,84 @@
+CREATE TABLE PARADM_COMPANY
+(
+    ID                       INT IDENTITY (10000,1) NOT NULL,
+    COMPANY_NAME             NVARCHAR(100)          NOT NULL,
+    COMPANY_NAME_ENG         NVARCHAR(100)          NULL,
+    CODE                     NVARCHAR(150)          NULL,
+    OWNER_ID                 INT                    NOT NULL,
+    ADDRESS1                 NVARCHAR(150)          NULL,
+    ADDRESS2                 NVARCHAR(150)          NULL,
+    ADDRESS3                 NVARCHAR(150)          NULL,
+    CITY                     NVARCHAR(150)          NULL,
+    STATE                    NVARCHAR(150)          NULL,
+    POSTAL_CODE              NVARCHAR(50)           NULL,
+    AREA_CODE                NVARCHAR(50)           NULL,
+    PHONE_NO                 NVARCHAR(50)           NULL,
+    FAX_NO                   NVARCHAR(50)           NULL,
+    URL                      NVARCHAR(50)           NULL,
+    EMAIL                    NVARCHAR(200)          NOT NULL,
+    COUNTRY_ID               INT                    NULL,
+    PROVINCE_ID              INT                    NULL,
+    LEAD_SOURCE_ID           INT                    NULL,
+    INDUSTRY_ID              INT                    NULL,
+    TURNOVER                 FLOAT                  NULL,
+    EMPLOYEE_COUNT           INT                    NULL,
+    STOCK_CODE               NVARCHAR(20)           NULL,
+    BUSINESS_ACTIVITY        NVARCHAR(500),
+    BACKGROUND               NVARCHAR(500),
+    USER_DEF_1               NVARCHAR(150)          NULL,
+    USER_DEF_2               NVARCHAR(150)          NULL,
+    USER_DEF_3               NVARCHAR(150)          NULL,
+    USER_DEF_4               NVARCHAR(150)          NULL,
+    USER_DEF_5               NVARCHAR(150)          NULL,
+    SPECIAL_ALERT_ID         INT                    NULL,
+    CLASS_TYPE               VARCHAR(2)             NULL,
+    CIC_ID                   INT                    NULL,
+    SIC_ID                   INT                    NULL,
+    STATUS_ID                INT                    NULL,
+    OVERSEAS_BRANCHES        INT                    NULL,
+    HK_BRANCHES              INT                    NULL,
+
+    DS_DB_NAME               NVARCHAR(50)           NOT NULL,
+    DS_DB_TYPE               INT                    NULL,
+    DS_DRIVER_CLASS          NVARCHAR(150)          NULL,
+    DS_URL                   NVARCHAR(150)          NULL,
+    DS_USERNAME              NVARCHAR(30)           NULL,
+    DS_PWD                   NVARCHAR(30)           NULL,
+    DS_JNDI_NAME             NVARCHAR(150)          NULL,
+    DS_AUTO_COMMIT           NVARCHAR(10)           NULL,
+    DS_READ_ONLY             NVARCHAR(10)           NULL,
+    DS_MAX_ACTIVE            INT                    NULL,
+    DS_MAX_IDLE              INT                    NULL,
+    DS_MAX_WAIT              INT                    NULL,
+    DS_POOL_PS               NVARCHAR(10)           NULL,
+    DS_MAX_OPEN_PS           INT                    NULL,
+    DS_TRANSACTION_ISOLATION INT                    NULL,
+    DS_LOG_ABANDONED         NVARCHAR(10)           NULL,
+    DS_REMOVE_ABANDONED      NVARCHAR(10)           NULL,
+    DS_WHILE_IDLE            NVARCHAR(10)           NULL,
+
+    ACTIVE_FLAG              INT                    NULL,
+    EXPIRE_DATE              DATETIME               NULL,
+    REMIND_DATE              DATETIME               NULL,
+    COMPLETE_INIT            INT                    NULL,
+    CONFIGURING_PERCENT      INT                    NOT NULL DEFAULT 0,
+
+    LICENSED_USER            INT                    NOT NULL,
+    STORAGE_SPACE            INT                    NULL,     --use paradm company default 500GB
+    IS_CLOUD                 INT                    NOT NULL, --0 is use other company storage space ,1 is use cloud storage space
+    STORAGE_TYPE             INT                    NOT NULL,
+
+    RECORD_STATUS            INT                    NOT NULL,
+    UPDATE_COUNT             INT                    NOT NULL,
+    CREATOR_ID               INT                    NOT NULL,
+    CREATE_DATE              DATETIME               NOT NULL,
+    UPDATER_ID               INT                    NOT NULL,
+    UPDATE_DATE              DATETIME               NOT NULL,
+
+    PRIMARY KEY (ID),
+    UNIQUE (EMAIL)
+);
+
 CREATE TABLE SYS_FUNCTION
 (
     ID              INT IDENTITY (10000,1) NOT NULL,
@@ -147,3 +228,19 @@ CREATE TABLE USER_RULES
     PRIMARY KEY (ID)
 );
 CREATE NONCLUSTERED INDEX IDX_RULES_OBJECT_ID ON USER_RULES (OBJECT_ID);
+
+CREATE TABLE SMARTSHARE_LOC_MASTER
+(
+    ID            INT IDENTITY (10000,1) NOT NULL,
+    LOC_NAME      NVARCHAR(90)           NULL,
+    LOC_PATH      NVARCHAR(100)          NOT NULL,
+    SEGMENT_NO    INT,
+    DESCRIPTION   NVARCHAR(255)          NULL,
+    RECORD_STATUS INT                    NOT NULL,
+    UPDATE_COUNT  INT                    NOT NULL,
+    CREATOR_ID    INT                    NOT NULL,
+    CREATE_DATE   DATETIME               NOT NULL,
+    UPDATER_ID    INT                    NOT NULL,
+    UPDATE_DATE   DATETIME               NOT NULL,
+    PRIMARY KEY (ID)
+);

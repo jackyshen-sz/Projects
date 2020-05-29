@@ -53,6 +53,21 @@ public class Utility {
     return (String.valueOf(intValue));
   }
 
+  public static Long parseLong(String inStr) {
+    try {
+      return (Long.valueOf(inStr));
+    } catch (Exception e) {
+      return (null);
+    }
+  }
+
+  public static String formatLong(Long intValue) {
+    if (isEmpty(intValue)) {
+      return "";
+    }
+    return (String.valueOf(intValue));
+  }
+
   public static boolean parseBoolean(String inStr) {
     if (isEmpty(inStr)) {
       return false;
