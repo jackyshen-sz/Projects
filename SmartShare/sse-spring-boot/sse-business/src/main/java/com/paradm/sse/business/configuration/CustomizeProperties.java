@@ -24,6 +24,7 @@ public class CustomizeProperties implements Serializable {
   static class Security {
     private String permitAll;
     private String csrfIgnoreUrl = "/api/**";
+    private String staticIgnoreUrl = "/webjars/**";
     private Browser browser = new Browser();
     @Data
     static class Browser {

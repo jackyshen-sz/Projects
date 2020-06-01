@@ -58,3 +58,15 @@
 .footer-message a:active {
   color: white;
 }
+
+.sign-in_btn {
+  cursor: pointer;
+  font-family: Arial, "微軟正黑體", "微軟雅黑體";
+  font-weight: normal;
+  font-size: 13px;
+  color: #747474;
+  text-align: center;
+  float: right;
+  padding-top: 10px;
+  padding-right: 10px;
+}

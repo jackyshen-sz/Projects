@@ -5,26 +5,13 @@
     <div id="wrap">
       <a id="signinBtn" class="sign-in_btn" th:text="#{init.label.sign_in}"></a>
     </div>
-    <div class="modal fade" id="sign-in-modal" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content" style="max-height: 600px;"></div>
-      </div>
-    </div>
     <footer id="footer" th:include="layout/Footer::footer"></footer>
     <script th:inline="javascript">
       var signinUrl = contextPath + "init/system/sign-in?data=" + Math.random();
       $(function () {
-        $("#sign-in-modal").on("hidden.bs.modal", function() {
-          $(this).removeData("bs.modal");
-          //$("#sign-in-modal .modal-content").empty();
-        });
         $("#signinBtn").click(function () {
           console.log("signinUrl : " + signinUrl);
-          $("#sign-in-modal").modal({
-            backdrop : 'static',
-            keyboard : false,
-            remote : signinUrl
-          });
+          layer.alert("test");
         });
         $("#signinBtn").click();
       })

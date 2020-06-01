@@ -23,7 +23,10 @@
 
     <!-- webjars -->
     <jquery.version>3.5.1</jquery.version>
+    <popper.version>1.16.0</popper.version>
     <bootstrap.version>4.4.1</bootstrap.version>
+    <dialog.version>1.35.4</dialog.version>
+    <layer.version>3.1.1</layer.version>
     <!-- maven plugin version -->
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <maven-source-plugin.version>3.1.0</maven-source-plugin.version>
@@ -65,6 +68,18 @@
       </dependency>
 
       <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <version>${spring-boot.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
         <groupId>com.paradm</groupId>
         <artifactId>kaptcha-spring-boot-starter</artifactId>
         <version>${kaptcha.starter.version}</version>
@@ -83,8 +98,23 @@
       </dependency>
       <dependency>
         <groupId>org.webjars</groupId>
+        <artifactId>popper.js</artifactId>
+        <version>${popper.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars</groupId>
         <artifactId>bootstrap</artifactId>
         <version>${bootstrap.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars.bower</groupId>
+        <artifactId>bootstrap3-dialog</artifactId>
+        <version>${dialog.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars.bower</groupId>
+        <artifactId>layer</artifactId>
+        <version>${layer.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

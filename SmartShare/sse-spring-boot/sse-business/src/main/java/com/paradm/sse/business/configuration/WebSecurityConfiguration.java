@@ -80,7 +80,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Override
   public void configure(WebSecurity web) throws Exception {
-    super.configure(web);
+    web.ignoring().antMatchers(Utility.splitString(cusProp.getSecurity().getStaticIgnoreUrl(), GlobalConstant.Symbol.COMMA.toString()));
   }
 
   @Bean
