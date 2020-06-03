@@ -22,7 +22,7 @@ public class KaptchaAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  @ConditionalOnProperty(prefix = KaptchaProperties.KAPTCHA_PREFIX, value = "enabled", havingValue = "true")
+  @ConditionalOnProperty(prefix = KaptchaProperties.KAPTCHA_PREFIX, name = "enabled", havingValue = "true")
   public ServletRegistrationBean<KaptchaServlet> kaptchaServlet(KaptchaProperties kaptchaProperties) {
     ServletRegistrationBean<KaptchaServlet> registrationBean = new ServletRegistrationBean<>();
     registrationBean.setServlet(new KaptchaServlet());

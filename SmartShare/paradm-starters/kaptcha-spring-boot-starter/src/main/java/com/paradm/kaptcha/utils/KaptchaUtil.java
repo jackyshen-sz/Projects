@@ -64,24 +64,31 @@ public class KaptchaUtil {
   private static String getBorderColor(KaptchaProperties.Border border) {
     return border.getColor();
   }
+
   private static String getBorderThickness(KaptchaProperties.Border border) {
     return border.getThickness().toString();
   }
+
   private static String getCharString(KaptchaProperties.TextProducer.Char character) {
     return character.getString();
   }
+
   private static String getCharSpace(KaptchaProperties.TextProducer.Char character) {
     return character.getSpace().toString();
   }
+
   private static String getCharLength(KaptchaProperties.TextProducer.Char character) {
     return character.getLength().toString();
   }
+
   private static String getFontColor(KaptchaProperties.TextProducer.Font font) {
     return font.getColor();
   }
+
   private static String getFontSize(KaptchaProperties.TextProducer.Font font) {
     return font.getSize().toString();
   }
+
   private static String getFontNames(KaptchaProperties.TextProducer.Font font) {
     return StringUtils.arrayToCommaDelimitedString(font.getNames());
   }

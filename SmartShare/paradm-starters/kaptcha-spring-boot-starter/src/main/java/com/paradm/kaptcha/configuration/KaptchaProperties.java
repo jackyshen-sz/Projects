@@ -66,6 +66,7 @@ public class KaptchaProperties {
     private Image image = new Image();
   }
 
+
   @Data
   public static class Border {
     private boolean enabled = true;
@@ -73,27 +74,32 @@ public class KaptchaProperties {
     private Integer thickness = 1;
   }
 
+
   @Data
   public static class Noise {
     private String color = "black";
     private String impl = "com.google.code.kaptcha.impl.NoNoise";
   }
 
+
   @Data
   public static class Obscurificator {
     private String impl = "com.paradm.kaptcha.impl.NoDistortion";
   }
+
 
   @Data
   public static class Producer {
     private String impl = "com.google.code.kaptcha.impl.DefaultKaptcha";
   }
 
+
   @Data
   public static class TextProducer {
     private String impl = "com.google.code.kaptcha.text.impl.DefaultTextCreator";
     private Char character = new Char();
     private Font font = new Font();
+
 
     @Data
     public static class Char {
@@ -102,18 +108,21 @@ public class KaptchaProperties {
       private Integer space = 2;
     }
 
+
     @Data
     public static class Font {
-      private String[] names = new String[]{"Arial"};
+      private String[] names = new String[] {"Arial"};
       private String color = "98,98,98";
       private Integer size = 14;
     }
   }
 
+
   @Data
   public static class Word {
     private String impl = "com.google.code.kaptcha.text.impl.DefaultWordRenderer";
   }
+
 
   @Data
   public static class Background {
@@ -121,6 +130,7 @@ public class KaptchaProperties {
     private String clearFrom = "238,238,238";
     private String clearTo = "238,238,238";
   }
+
 
   @Data
   public static class Image {
