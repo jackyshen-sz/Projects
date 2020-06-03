@@ -2,7 +2,8 @@ package com.paradm.kaptcha.configuration;
 
 import com.google.code.kaptcha.servlet.KaptchaServlet;
 import com.paradm.kaptcha.utils.KaptchaUtil;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -16,11 +17,12 @@ import org.springframework.util.StringUtils;
  * @author Jacky.shen
  * @create data 2020/4/27
  */
-@Slf4j
 @Configuration
 @ConditionalOnWebApplication
 @EnableConfigurationProperties(KaptchaProperties.class)
 public class KaptchaAutoConfiguration {
+
+  private static final Logger log = LoggerFactory.getLogger(KaptchaAutoConfiguration.class);
 
   @Bean
   @ConditionalOnMissingBean
