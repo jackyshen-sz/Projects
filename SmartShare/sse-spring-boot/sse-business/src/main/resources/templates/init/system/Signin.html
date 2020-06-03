@@ -36,16 +36,6 @@
   </div>
   <script th:inline="javascript">
     var signinForm = $("#signinForm");
-    $(function () {
-      signinForm.submit(function () {
-        console.log("submit...");
-        return false;
-      });
-      initkaptcha('#kaptchaImage');
-    });
-    function opSignin(index, layero) {
-      loadIndex = layer.load(1);
-      signinForm.submit();
-    }
   </script>
+  <script th:src="@{/js/sse/init/sign-in.js}"></script>
 </html>

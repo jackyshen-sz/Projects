@@ -7,26 +7,12 @@
     </div>
     <footer id="footer" th:include="layout/Footer::footer"></footer>
     <script th:inline="javascript">
-      var signinUrl = contextPath + "init/system/sign-in?data=" + Math.random();
+      var signinUrl = contextPath + "init/system/sign-in?";
       var globalTitle = {
         signinTitle: [[#{init.label.sign_in}]]
       };
-      $(function () {
-        $("#signinBtn").click(function () {
-          $.get(signinUrl, function (_html) {
-            $.layer.show({
-              title: globalTitle.signinTitle,
-              content: _html,
-              btn: [globalBtn.okBtn, globalBtn.cancelBtn],
-              btn1: function (index, layero) {
-                opSignin(index, layero);
-                return false;
-              }
-            });
-          });
-        });
-        $("#signinBtn").click();
-      })
+      var signinBtn = $("#signinBtn");
     </script>
+    <script th:src="@{/js/sse/init/init-system.js}"></script>
   </body>
 </html>
