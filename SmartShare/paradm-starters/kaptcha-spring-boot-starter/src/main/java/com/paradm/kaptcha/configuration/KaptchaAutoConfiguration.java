@@ -2,6 +2,7 @@ package com.paradm.kaptcha.configuration;
 
 import com.google.code.kaptcha.servlet.KaptchaServlet;
 import com.paradm.kaptcha.utils.KaptchaUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -15,6 +16,7 @@ import org.springframework.util.StringUtils;
  * @author Jacky.shen
  * @create data 2020/4/27
  */
+@Slf4j
 @Configuration
 @ConditionalOnWebApplication
 @EnableConfigurationProperties(KaptchaProperties.class)
@@ -24,6 +26,7 @@ public class KaptchaAutoConfiguration {
   @ConditionalOnMissingBean
   @ConditionalOnProperty(prefix = KaptchaProperties.KAPTCHA_PREFIX, name = "enabled", havingValue = "true")
   public ServletRegistrationBean<KaptchaServlet> kaptchaServlet(KaptchaProperties kaptchaProperties) {
+    log.debug("init KaptchaServlet url: {}", kaptchaProperties.getUrlMappings());
     ServletRegistrationBean<KaptchaServlet> registrationBean = new ServletRegistrationBean<>();
     registrationBean.setServlet(new KaptchaServlet());
     registrationBean.setUrlMappings(StringUtils.commaDelimitedListToSet(kaptchaProperties.getUrlMappings()));

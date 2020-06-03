@@ -33,14 +33,17 @@
       <id>SmartShare</id>
       <name>SmartShare</name>
       <url>https://repository.paradm.com/repository/SmartShare/</url>
-      <releases><enabled>true</enabled></releases>
-      <snapshots><enabled>true</enabled></snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
     </repository>
   </repositories>
 
   <modules>
     <module>kaptcha-spring-boot-starter</module>
-    <module>test</module>
   </modules>
 
   <properties>
@@ -72,6 +75,10 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-log4j2</artifactId>
     </dependency>
 
     <dependency>
@@ -106,7 +113,9 @@
           <execution>
             <id>attach-sources</id>
             <phase>package</phase>
-            <goals><goal>jar</goal></goals>
+            <goals>
+              <goal>jar</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
