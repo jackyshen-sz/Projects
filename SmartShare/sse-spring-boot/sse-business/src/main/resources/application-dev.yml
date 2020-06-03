@@ -1,7 +1,5 @@
 server:
   port: 8088
-  servlet:
-    context-path: /Business
 
 spring:
   devtools:
@@ -34,7 +32,7 @@ spring:
         url-pattern: /druid/*
   jpa:
     generate-ddl: false
-    show-sql: false
+    show-sql: true
     database: sql_server
     database-platform: com.paradm.sse.framework.dialect.ParadmSQLServerDialect
     hibernate:

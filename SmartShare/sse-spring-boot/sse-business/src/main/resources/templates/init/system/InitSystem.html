@@ -8,10 +8,22 @@
     <footer id="footer" th:include="layout/Footer::footer"></footer>
     <script th:inline="javascript">
       var signinUrl = contextPath + "init/system/sign-in?data=" + Math.random();
+      var globalTitle = {
+        signinTitle: [[#{init.label.sign_in}]]
+      };
       $(function () {
         $("#signinBtn").click(function () {
-          console.log("signinUrl : " + signinUrl);
-          layer.alert("test");
+          $.get(signinUrl, function (_html) {
+            layer.open({
+              title: globalTitle.signinTitle,
+              content: _html,
+              btn: [globalBtn.okBtn, globalBtn.cancelBtn],
+              btn1: function (index, layero) {
+                console.log(layero);
+                return false;
+              }
+            });
+          });
         });
         $("#signinBtn").click();
       })

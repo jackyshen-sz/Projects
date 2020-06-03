@@ -2,9 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head th:include="layout/Head::head" th:with="title=#{system.smartshare.business.title}"></head>
   <body>
-    <div id="appDiv" style="display: none;">
-      <iframe id="appIframe" width="100%" height="100%" allowFullScreen></iframe>
-    </div>
     <div id="wrap">
       <header th:include="layout/Header::header"></header>
       <div th:include="::main-body" class="container-fluid"></div>

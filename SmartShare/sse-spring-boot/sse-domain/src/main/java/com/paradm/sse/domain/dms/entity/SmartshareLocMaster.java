@@ -18,7 +18,7 @@ public class SmartshareLocMaster extends BaseEntity {
 
   private static final long serialVersionUID = -1674065951481594266L;
 
-  public static final String TABLE_NAME = "SYS_FUNCTION";
+  public static final String TABLE_NAME = "SMARTSHARE_LOC_MASTER";
 
   @Column(name = "DESCRIPTION")
   private String description;

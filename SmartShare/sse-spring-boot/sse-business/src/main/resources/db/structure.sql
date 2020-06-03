@@ -123,6 +123,31 @@ CREATE TABLE SYS_PARAMETER
     UNIQUE (PARAMETER_CODE)
 );
 
+CREATE TABLE SYS_LDAP
+(
+    ID                    INT IDENTITY (10000,1) NOT NULL,
+    LDAP_NAME             NVARCHAR(255)          NOT NULL,
+    LDAP_HOST             NVARCHAR(255)          NOT NULL,
+    LDAP_MGRDN            NVARCHAR(255)          NOT NULL,
+    LDAP_MGRPWD           NVARCHAR(255)          NOT NULL,
+    SEARCH_BASE           NVARCHAR(255)          NOT NULL,
+    SEARCH_FILTER         NVARCHAR(255)          NOT NULL,
+    LDAP_USER_FIRST_NAME  NVARCHAR(100)          NULL,
+    LDAP_USER_LAST_NAME   NVARCHAR(100)          NULL,
+    LDAP_USER_FULL_NAME   NVARCHAR(200)          NULL,
+    LDAP_USER_LOGIN_NAME  NVARCHAR(200)          NULL,
+    LDAP_USER_LOGIN_PWD   NVARCHAR(200)          NULL,
+    LDAP_USER_MAX_ATTEMPT INT                    NULL,
+    LDAP_USER_PREFERENCE  INT                    NULL,
+    RECORD_STATUS         INT                    NOT NULL, -- 0: ACTIVE,1: INACTIVE
+    UPDATE_COUNT          INT                    NOT NULL,
+    CREATOR_ID            INT                    NOT NULL,
+    CREATE_DATE           DATETIME               NOT NULL,
+    UPDATER_ID            INT                    NOT NULL,
+    UPDATE_DATE           DATETIME               NOT NULL,
+    PRIMARY KEY (ID)
+);
+
 CREATE TABLE USER_RECORD
 (
     ID                       INT IDENTITY (10000,1) NOT NULL,
