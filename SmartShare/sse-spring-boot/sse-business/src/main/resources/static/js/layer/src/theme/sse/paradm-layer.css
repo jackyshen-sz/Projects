@@ -46,7 +46,7 @@ body .ss-layer .layui-layer-btn .layui-layer-btn0 {
   color: #fff;
 }
 
-.layer-dialog-body {
+body .ss-layer .layer-dialog-body {
   padding: 5px 25px;
   font-family: Arial, "微軟正黑體", "微軟雅黑體";
   font-size: 13px;

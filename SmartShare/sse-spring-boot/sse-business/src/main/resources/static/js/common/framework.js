@@ -1,3 +1,31 @@
+var loadIndex;
+$(function() {
+  layer.config({
+    extend: 'sse/paradm-layer.css',
+    skin: 'ss-layer',
+    move: false,
+    resize: false,
+    btnAlign: 'c'
+  });
+  var token = $("meta[name='_csrf']").attr("content");
+  var header = $("meta[name='_csrf_header']").attr("content");
+  $.ajaxSetup({
+    beforeSend : function(xhr) {
+      xhr.setRequestHeader(header, token);
+    }
+  });
+});
+
+$.layer = {
+  show : function (showOpt) {
+    var opt = $.extend({
+      area: '600px',
+      offset: '30px',
+    }, showOpt);
+    return layer.open(opt);
+  }
+};
+
 String.prototype.endWith = function (s) {
   if (s == null || s === "" || this.length === 0 || s.length > this.length) {
     return false;
@@ -27,7 +55,7 @@ Array.prototype.remove = function (obj) {
   }
 }
 
-Date.prototype.Format = function (fmt) {
+Date.prototype.format = function (fmt) {
   var o = {
     "M+": this.getMonth() + 1, // Month
     "d+": this.getDate(), // date
@@ -48,20 +76,6 @@ Date.prototype.Format = function (fmt) {
   }
   return fmt;
 }
-
-(function ($) {
-  jQuery._evalUrl = function (url) {
-    return jQuery.ajax({
-      url: url,
-      type: "GET",
-      dataType: "script",
-      async: false,
-      global: false,
-      "throws": true,
-      cache: true
-    });
-  };
-})(jQuery);
 
 function formatFileSize(fileSize) {
   var fileSizeByte = fileSize;
@@ -92,4 +106,12 @@ function formatFileSize(fileSize) {
     fileSizeMsg = "File over 1TB";
   }
   return fileSizeMsg;
+}
+
+function initkaptcha(selector) {
+  var kaptchaUrl = contextPath + 'kaptcha/image?data=';
+  $(selector).attr('src', kaptchaUrl + Math.floor(Math.random() * 100)).click(function(evt) {//generate captcha
+    $(this).hide().prop('src', kaptchaUrl + Math.floor(Math.random() * 100)).fadeIn();
+    evt.cancelBubble = true;
+  });
 }

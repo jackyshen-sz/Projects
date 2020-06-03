@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <div class="layer-dialog-body">
-    <form id="signinForm" method="post" th:action="@{/init/system/sign-in}" th:object="${formModel}">
+    <form id="signinForm" method="post" class="needs-validation" th:action="@{/init/system/sign-in}" th:object="${formModel}">
       <input type="hidden" name="paradmCompanyModel.id" th:field="*{paradmCompanyModel.id}" />
       [[#{init.message.sign_in_user}]]
       <br><br>
@@ -25,22 +25,27 @@
       <div class="form-group captcha">
         <div class="input-group">
           <input type="text" class="form-control captcha_box" name="captcha" th:placeholder='#{common.label.captcha_value}' required />
-          <span class="input-group-addon">
-					  <i class="fa fa-search"><img id="kaptchaImage" th:title='#{common.label.click_here}' align="middle" /></i>
-				  </span>
+          <div class="input-group-append">
+            <span class="input-group-text" style="font-size: 13px;">
+              <i class="fa fa-search"><img id="kaptchaImage" th:title='#{common.label.click_here}' align="middle" /></i>
+            </span>
+				  </div>
         </div>
       </div>
     </form>
   </div>
   <script th:inline="javascript">
-    var kaptchaUrl = contextPath + 'kaptcha/image?data=';
-    console.log("kaptchaUrl : " + kaptchaUrl);
+    var signinForm = $("#signinForm");
     $(function () {
-      $('#kaptchaImage').attr('src', kaptchaUrl + Math.floor(Math.random() * 100)).click(function(evt) {//generate captcha
-        console.log("kaptchaUrl : " + kaptchaUrl);
-        $(this).hide().prop('src', kaptchaUrl + Math.floor(Math.random() * 100)).fadeIn();
-        evt.cancelBubble = true;
+      signinForm.submit(function () {
+        console.log("submit...");
+        return false;
       });
-    })
+      initkaptcha('#kaptchaImage');
+    });
+    function opSignin(index, layero) {
+      loadIndex = layer.load(1);
+      signinForm.submit();
+    }
   </script>
 </html>

@@ -14,12 +14,12 @@
       $(function () {
         $("#signinBtn").click(function () {
           $.get(signinUrl, function (_html) {
-            layer.open({
+            $.layer.show({
               title: globalTitle.signinTitle,
               content: _html,
               btn: [globalBtn.okBtn, globalBtn.cancelBtn],
               btn1: function (index, layero) {
-                console.log(layero);
+                opSignin(index, layero);
                 return false;
               }
             });
