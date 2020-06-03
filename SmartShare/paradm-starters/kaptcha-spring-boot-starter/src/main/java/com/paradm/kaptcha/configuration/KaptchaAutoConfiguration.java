@@ -28,7 +28,7 @@ public class KaptchaAutoConfiguration {
   @ConditionalOnMissingBean
   @ConditionalOnProperty(prefix = KaptchaProperties.KAPTCHA_PREFIX, name = "enabled", havingValue = "true")
   public ServletRegistrationBean<KaptchaServlet> kaptchaServlet(KaptchaProperties kaptchaProperties) {
-    log.debug("init KaptchaServlet url: {}", kaptchaProperties.getUrlMappings());
+    log.info("init KaptchaServlet url: {}", kaptchaProperties.getUrlMappings());
     ServletRegistrationBean<KaptchaServlet> registrationBean = new ServletRegistrationBean<>();
     registrationBean.setServlet(new KaptchaServlet());
     registrationBean.setUrlMappings(StringUtils.commaDelimitedListToSet(kaptchaProperties.getUrlMappings()));
