@@ -42,14 +42,10 @@
       <groupId>org.webjars</groupId>
       <artifactId>bootstrap</artifactId>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>org.webjars.bower</groupId>-->
-<!--      <artifactId>bootstrap3-dialog</artifactId>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>org.webjars.bower</groupId>-->
-<!--      <artifactId>layer</artifactId>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>org.webjars.bower</groupId>
+      <artifactId>bootstrap-validator</artifactId>
+    </dependency>
     <!-- end -->
   </dependencies>
 
