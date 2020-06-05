@@ -43,8 +43,8 @@
       <artifactId>bootstrap</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.webjars.bower</groupId>
-      <artifactId>bootstrap-validator</artifactId>
+      <groupId>com.paradm</groupId>
+      <artifactId>paradm-validator</artifactId>
     </dependency>
     <!-- end -->
   </dependencies>
