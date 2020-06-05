@@ -1,22 +1,36 @@
 $(function () {
   initkaptcha('#kaptchaImage');
+  signinForm.bootstrapValidator({
+    fields: {
+      'paradmCompanyModel.companyName': {
+        validators: {
+          notEmpty: {
+            message: signinMessage.companyNameIsRequired
+          }
+        }
+      }
+    }
+  });
 });
 
 function opSignin(index, layero) {
   loadIndex = layer.load(1);
-  if (!checkSigninForm()) {
-    layer.close(loadIndex);
-    return;
+  var validator = signinForm.data('bootstrapValidator');
+  if (validator) {
+    validator.validate();
+    if (!validator.isValid()) {
+      layer.close(loadIndex);
+      return;
+    }
   }
   $.ajax({
-    url: "",
-    type: "",
+    url: signinForm.attr("action"),
+    type: signinForm.attr("method"),
+    cache : false,
+    data: signinForm.serialize(),
+    dataType : "json",
     success: function (data) {
       layer.close(loadIndex);
     }
   });
-}
-
-function checkSigninForm() {
-  return false;
 }

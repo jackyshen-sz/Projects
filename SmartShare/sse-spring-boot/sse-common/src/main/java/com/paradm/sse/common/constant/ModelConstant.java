@@ -9,4 +9,7 @@ public interface ModelConstant {
   String URL = "url";
 
   String FORM_MODEL = "formModel";
+
+  String STATUS = "status";
+  String MESSAGE = "message";
 }

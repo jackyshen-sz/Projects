@@ -36,4 +36,8 @@ public interface GlobalConstant {
   enum LoginMethod {
     WEB, COOKIE, MFD, FTP, SYNC, MOBILE, OUTLOOK, PARA_SCAN;
   }
+
+  enum WebStatus {
+    SUCCESSFUL, FAILED;
+  }
 }

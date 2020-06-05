@@ -136,7 +136,7 @@
       </dependency>
       <dependency>
         <groupId>com.paradm</groupId>
-        <artifactId>paradm-validator</artifactId>
+        <artifactId>paradm-jslib</artifactId>
         <version>1.0.0</version>
       </dependency>
     </dependencies>
