@@ -8,8 +8,10 @@
   <artifactId>paradm-webjars</artifactId>
   <packaging>pom</packaging>
   <version>1.0.0</version>
+
   <modules>
     <module>paradm-validator</module>
+    <module>paradm-jslib</module>
   </modules>
 
   <properties>
