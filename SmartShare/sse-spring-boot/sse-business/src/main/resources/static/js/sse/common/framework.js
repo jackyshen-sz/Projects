@@ -1,12 +1,4 @@
-var loadIndex;
 $(function() {
-  layer.config({
-    extend: 'sse/paradm-layer.css',
-    skin: 'ss-layer',
-    move: false,
-    resize: false,
-    btnAlign: 'c'
-  });
   var token = $("meta[name='_csrf']").attr("content");
   var header = $("meta[name='_csrf_header']").attr("content");
   $.ajaxSetup({
@@ -15,16 +7,6 @@ $(function() {
     }
   });
 });
-
-$.layer = {
-  show : function (showOpt) {
-    var opt = $.extend({
-      area: '600px',
-      offset: '30px',
-    }, showOpt);
-    return layer.open(opt);
-  }
-};
 
 String.prototype.endWith = function (s) {
   if (s == null || s === "" || this.length === 0 || s.length > this.length) {
