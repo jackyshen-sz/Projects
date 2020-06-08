@@ -3,6 +3,7 @@ package com.paradm.sse.common.factory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.Locale;
@@ -19,6 +20,14 @@ public class MessageResourcesFactory implements ApplicationContextAware {
   @Override
   public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
     MessageResourcesFactory.applicationContext = applicationContext;
+  }
+
+  public static String getMessage(String key) {
+    return getMessage(key, "");
+  }
+
+  public static String getMessage(String key, Object... args) {
+    return getMessage(LocaleContextHolder.getLocale(), key, args);
   }
 
   public static String getMessage(Locale loc, String key) {

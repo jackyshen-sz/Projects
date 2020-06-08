@@ -8,6 +8,13 @@ $(function () {
             message: signinMessage.companyNameIsRequired
           }
         }
+      },
+      'userModel.loginName': {
+        validators: {
+          notEmpty: {
+            message: signinMessage.emailIsRequired
+          }
+        }
       }
     }
   });
