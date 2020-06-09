@@ -1,6 +1,6 @@
 package com.paradm.sse.services.user.impl;
 
-import com.paradm.sse.common.constant.ErrorConstant;
+import com.paradm.sse.common.constant.error.CommonError;
 import com.paradm.sse.common.enums.RecordStatus;
 import com.paradm.sse.common.exception.ApplicationException;
 import com.paradm.sse.common.factory.UserInfoFactory;
@@ -57,7 +57,7 @@ public class UserRecordService extends BaseService implements IUserRecordService
       throw e;
     } catch (Exception e) {
       log.error(e.getMessage(), e);
-      throw new ApplicationException(ErrorConstant.DB_SELECT_ERROR.getCode());
+      throw new ApplicationException(CommonError.DB_SELECT_ERROR.getCode());
     }
     return result;
   }

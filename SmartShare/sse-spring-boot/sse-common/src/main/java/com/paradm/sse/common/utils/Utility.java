@@ -1,6 +1,6 @@
 package com.paradm.sse.common.utils;
 
-import com.paradm.sse.common.constant.SystemParameterConstant;
+import com.paradm.sse.common.constant.paramter.ParameterCode;
 import com.paradm.sse.common.enums.YesNoFlag;
 import com.paradm.sse.common.factory.SystemParameterFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -96,7 +96,7 @@ public class Utility {
   }
 
   public static Date parseDate(String inStr) {
-    String format = SystemParameterFactory.getSystemParameter(SystemParameterConstant.DB_DATE_FORMAT);
+    String format = SystemParameterFactory.getSystemParameter(ParameterCode.DB_DATE_FORMAT.getCode());
     return parseDate(inStr, format);
   }
 
@@ -114,7 +114,7 @@ public class Utility {
   }
 
   public static String formatDate(Date inDate) {
-    String format = SystemParameterFactory.getSystemParameter(SystemParameterConstant.DB_DATE_FORMAT);
+    String format = SystemParameterFactory.getSystemParameter(ParameterCode.DB_DATE_FORMAT.toString());
     return formatDate(inDate, format);
   }
 

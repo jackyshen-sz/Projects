@@ -1,6 +1,7 @@
 package com.paradm.sse.framework.configuration;
 
 import com.paradm.sse.common.constant.GlobalConstant;
+import com.paradm.sse.common.constant.global.Symbol;
 import com.paradm.sse.common.exception.ApplicationException;
 import com.paradm.sse.common.license.SiteValidator;
 import com.paradm.sse.domain.framework.ApplicationContainer;
@@ -26,7 +27,7 @@ public class BaseWebConfiguration {
   protected ServletContext servletContext;
 
   public void init() {
-    log.info("Starting SmartShare Business Version: {}", GlobalConstant.APPLICATION_NAME + GlobalConstant.Symbol.MINUS + GlobalConstant.VERSION);
+    log.info("Starting SmartShare Business Version: {}", GlobalConstant.APPLICATION_NAME + Symbol.MINUS + GlobalConstant.VERSION);
   }
 
   protected void initLicense() {

@@ -1,10 +1,10 @@
 package com.paradm.sse.business.configuration;
 
-import com.paradm.sse.common.constant.GlobalConstant;
-import com.paradm.sse.common.constant.SecurityConstant;
-import com.paradm.sse.common.utils.Utility;
 import com.paradm.sse.business.sercurity.authentication.KaptchaAuthenticationDetailsSource;
 import com.paradm.sse.business.sercurity.authentication.KaptchaAuthenticationProvider;
+import com.paradm.sse.common.constant.SecurityConstant;
+import com.paradm.sse.common.constant.global.Symbol;
+import com.paradm.sse.common.utils.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -55,9 +55,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         .cors()
           .configurationSource(configurationSource()).and()
         .csrf()
-          .ignoringAntMatchers(Utility.splitString(cusProp.getSecurity().getCsrfIgnoreUrl(), GlobalConstant.Symbol.COMMA.toString())).and()
+          .ignoringAntMatchers(Utility.splitString(cusProp.getSecurity().getCsrfIgnoreUrl(), Symbol.COMMA.toString())).and()
         .authorizeRequests()
-          .antMatchers(Utility.splitString(cusProp.getSecurity().getPermitAll(), GlobalConstant.Symbol.COMMA.toString())).permitAll()
+          .antMatchers(Utility.splitString(cusProp.getSecurity().getPermitAll(), Symbol.COMMA.toString())).permitAll()
           .anyRequest().authenticated().and()
         .formLogin()
           .loginPage(cusProp.getSecurity().getBrowser().getLoginPage())
@@ -80,7 +80,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Override
   public void configure(WebSecurity web) throws Exception {
-    web.ignoring().antMatchers(Utility.splitString(cusProp.getSecurity().getStaticIgnoreUrl(), GlobalConstant.Symbol.COMMA.toString()));
+    web.ignoring().antMatchers(Utility.splitString(cusProp.getSecurity().getStaticIgnoreUrl(), Symbol.COMMA.toString()));
   }
 
   @Bean

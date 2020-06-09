@@ -1,8 +1,9 @@
 package com.paradm.sse.business.sercurity.authentication.handler;
 
-import com.paradm.sse.common.constant.GlobalConstant;
 import com.paradm.sse.common.constant.ModelConstant;
 import com.paradm.sse.common.constant.UrlConstant;
+import com.paradm.sse.common.constant.global.LoginMethod;
+import com.paradm.sse.common.constant.global.Symbol;
 import com.paradm.sse.common.utils.Utility;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -20,7 +21,7 @@ import java.io.IOException;
 @Slf4j
 public class ParadmWebAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-  private String loginMethod = GlobalConstant.LoginMethod.WEB.toString();
+  private String loginMethod = LoginMethod.WEB.toString();
 
   public String getLoginMethod() {
     return loginMethod;
@@ -40,8 +41,8 @@ public class ParadmWebAuthenticationSuccessHandler extends SimpleUrlAuthenticati
 //      targetUrl = "/login?error&action=" + GlobalConstant.ActionType.UNKNOWN_ERROR.toString();
       String url = request.getParameter(ModelConstant.URL);
       if (!Utility.isEmpty(url)) {
-        if (!url.startsWith(GlobalConstant.Symbol.SLASH.toString())) {
-          url = GlobalConstant.Symbol.SLASH.toString() + url;
+        if (!url.startsWith(Symbol.SLASH.toString())) {
+          url = Symbol.SLASH.toString() + url;
         }
         targetUrl += "&url=" + url;
       }

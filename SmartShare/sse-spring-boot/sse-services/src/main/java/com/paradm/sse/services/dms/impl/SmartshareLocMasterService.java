@@ -1,6 +1,6 @@
 package com.paradm.sse.services.dms.impl;
 
-import com.paradm.sse.common.constant.ErrorConstant;
+import com.paradm.sse.common.constant.error.CommonError;
 import com.paradm.sse.common.exception.ApplicationException;
 import com.paradm.sse.common.utils.Utility;
 import com.paradm.sse.domain.dms.entity.SmartshareLocMaster;
@@ -38,7 +38,7 @@ public class SmartshareLocMasterService extends BaseService implements ISmartsha
     } catch (ApplicationException e) {
       throw e;
     } catch (Exception e) {
-      throw new ApplicationException(ErrorConstant.DB_SELECT_ERROR.getCode());
+      throw new ApplicationException(CommonError.DB_SELECT_ERROR.getCode());
     }
     return locMasterModel;
   }

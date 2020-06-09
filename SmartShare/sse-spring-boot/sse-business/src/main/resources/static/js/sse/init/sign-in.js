@@ -13,10 +13,18 @@ $(function () {
         validators: {
           notEmpty: {
             message: signinMessage.emailIsRequired
+          },
+          emailAddress: {
+            message: signinMessage.emailIsValid
           }
         }
       }
     }
+  }).on('success.form.bv', function (e) {
+    console.log("success.form.bv");
+  }).on('error.form.bv', function (e) {
+    console.log("error.form.bv");
+    layer.close(loadIndex);
   });
 });
 
@@ -30,14 +38,16 @@ function opSignin(index, layero) {
       return;
     }
   }
+  // check email config
   $.ajax({
-    url: signinForm.attr("action"),
-    type: signinForm.attr("method"),
+    url: contextPath + 'init/system/check',
     cache : false,
-    data: signinForm.serialize(),
-    dataType : "json",
+    async : false,
+    data : $(this).serialize(),
     success: function (data) {
-      layer.close(loadIndex);
+      if (data.status === 'failed') {
+
+      }
     }
-  });
+  })
 }

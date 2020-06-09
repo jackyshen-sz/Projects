@@ -1,10 +1,13 @@
-package com.paradm.sse.common.constant;
+package com.paradm.sse.common.constant.error;
+
+import com.paradm.sse.common.constant.Constant;
 
 /**
  * @author Jacky.shen
- * @create data 2020/5/22
+ * @create data 2020/6/9
  */
-public enum ErrorConstant {
+public enum CommonError implements Constant {
+
   COMMON_UNKNOWN_ERROR("errors.common.unknown_error"),
 
   DB_SELECT_ERROR("errors.framework.select"),
@@ -12,12 +15,13 @@ public enum ErrorConstant {
   DB_UPDATE_ERROR("errors.framework.update"),
   ;
 
-  String code;
+  String code = "";
 
-  ErrorConstant(String code) {
+  CommonError(String code) {
     this.code = code;
   }
 
+  @Override
   public String getCode() {
     return this.code;
   }

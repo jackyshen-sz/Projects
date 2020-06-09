@@ -1,6 +1,6 @@
 package com.paradm.sse.common.factory;
 
-import com.paradm.sse.common.constant.GlobalConstant;
+import com.paradm.sse.common.constant.global.Symbol;
 import com.paradm.sse.common.utils.Utility;
 
 import java.util.*;
@@ -77,7 +77,7 @@ public class SystemParameterFactory {
     if (Utility.isEmpty(valueStr)) {
       return result;
     }
-    StringTokenizer st = new StringTokenizer(valueStr, GlobalConstant.Symbol.COMMA.toString());
+    StringTokenizer st = new StringTokenizer(valueStr, Symbol.COMMA.toString());
     while (st.hasMoreTokens()) {
       String token = st.nextToken();
       if (token.length() > 0) {

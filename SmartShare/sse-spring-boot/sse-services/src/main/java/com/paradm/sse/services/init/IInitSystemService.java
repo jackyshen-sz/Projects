@@ -1,5 +1,6 @@
 package com.paradm.sse.services.init;
 
+import com.paradm.sse.domain.init.model.InitSystemModel;
 import org.springframework.ui.Model;
 
 /**
@@ -10,4 +11,5 @@ public interface IInitSystemService extends IInitService {
 
   void initSystemForm(Model model, String baseUrl);
 
+  void check(InitSystemModel initSystemModel);
 }

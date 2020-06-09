@@ -1,6 +1,6 @@
 package com.paradm.sse.services.system.impl;
 
-import com.paradm.sse.common.constant.ErrorConstant;
+import com.paradm.sse.common.constant.error.CommonError;
 import com.paradm.sse.common.enums.FunctionStatus;
 import com.paradm.sse.common.exception.ApplicationException;
 import com.paradm.sse.common.utils.Utility;
@@ -41,7 +41,7 @@ public class SysFunctionService extends BaseService implements ISysFunctionServi
       }
     } catch (Exception e) {
       log.error(e.getMessage(), e);
-      throw new ApplicationException(ErrorConstant.DB_SELECT_ERROR.getCode());
+      throw new ApplicationException(CommonError.DB_SELECT_ERROR.getCode());
     }
     return result;
   }
