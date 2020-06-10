@@ -48,11 +48,11 @@ public class InitSystemService extends InitService implements IInitSystemService
         // parameter list model
         List<SysParameterModel> parameterModelList = new ArrayList<>();
         SysParameterModel parameterModel = new SysParameterModel();
-        parameterModel.setParameterCode(ParameterCode.APPLICATION_BASE_URL.getCode());
+        parameterModel.setParameterCode(ParameterCode.APPLICATION_BASE_URL.getKey());
         parameterModel.setParameterValue(baseUrl);
         parameterModelList.add(parameterModel);
         formModel.setParameterModelList(parameterModelList);
-        // locmaster model
+        // loc-master model
         SmartshareLocMasterModel locMasterModel = locMasterService.getDefaultLocMaster();
         formModel.setLocMasterModel(locMasterModel);
       }
@@ -70,7 +70,7 @@ public class InitSystemService extends InitService implements IInitSystemService
       List<SysParameterModel> parameterModelList = initSystemModel.getParameterModelList();
 //      this.setEmailParameter(Utility.parseInteger(paradmCompanyModel.getId()), parameterModelList);
       if (Utility.isEmpty(paradmCompanyModel) || Utility.isEmpty(paradmCompanyModel.getId()) || Utility.isEmpty(parameterModelList) || Utility.isEmpty(userModel)) {
-        throw new ApplicationException(InitError.PARAMETER_ERROR.getCode());
+        throw new ApplicationException(InitError.PARAMETER_ERROR.getKey());
       }
       if (!Utility.isEmpty(parameterModelList)) {
         Map<String, SysParameterModel> parameterModelMap = new HashMap<>();
@@ -84,7 +84,7 @@ public class InitSystemService extends InitService implements IInitSystemService
       throw e;
     } catch (Exception e) {
       log.error(e.getMessage(), e);
-      throw new ApplicationException(InitError.PARAMETER_ERROR.getCode());
+      throw new ApplicationException(InitError.PARAMETER_ERROR.getKey());
     }
   }
 

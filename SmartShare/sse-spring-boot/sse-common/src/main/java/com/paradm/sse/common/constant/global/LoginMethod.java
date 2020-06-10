@@ -11,7 +11,12 @@ public enum LoginMethod implements GlobalConstant {
   ;
 
   @Override
-  public String getCode() {
+  public String getKey() {
+    return toString();
+  }
+
+  @Override
+  public String getValue() {
     return toString();
   }
 }

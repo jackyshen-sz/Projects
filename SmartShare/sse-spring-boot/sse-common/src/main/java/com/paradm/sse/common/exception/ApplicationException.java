@@ -10,14 +10,14 @@ public class ApplicationException extends ApplicationContextException {
 
   private static final long serialVersionUID = 6107452481799412379L;
 
-  private String[] msgArg;
+  private Object[] msgArg;
   private int errorCode;
 
-  public String[] getMsgArg() {
+  public Object[] getMsgArg() {
     return msgArg;
   }
 
-  public void setMsgArg(String[] msgArg) {
+  public void setMsgArg(Object[] msgArg) {
     this.msgArg = msgArg;
   }
 
@@ -33,7 +33,7 @@ public class ApplicationException extends ApplicationContextException {
     super(msg);
   }
 
-  public ApplicationException(String msg, String... args) {
+  public ApplicationException(String msg, Object... args) {
     super(msg);
     this.msgArg = args;
   }

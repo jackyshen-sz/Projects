@@ -41,8 +41,8 @@ public class ParadmWebAuthenticationSuccessHandler extends SimpleUrlAuthenticati
 //      targetUrl = "/login?error&action=" + GlobalConstant.ActionType.UNKNOWN_ERROR.toString();
       String url = request.getParameter(ModelConstant.URL);
       if (!Utility.isEmpty(url)) {
-        if (!url.startsWith(Symbol.SLASH.toString())) {
-          url = Symbol.SLASH.toString() + url;
+        if (!url.startsWith(Symbol.SLASH.getValue())) {
+          url = Symbol.SLASH.getValue() + url;
         }
         targetUrl += "&url=" + url;
       }

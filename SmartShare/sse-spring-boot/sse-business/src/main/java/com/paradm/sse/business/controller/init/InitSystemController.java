@@ -36,9 +36,9 @@ public class InitSystemController extends InitController {
   public String signin(Model model) {
     log.debug("init system form...");
     StringBuilder baseUrl = new StringBuilder(request.getScheme());
-    baseUrl.append(Symbol.COLON.toString()).append(Symbol.SLASH.toString()).append(Symbol.SLASH.toString());
+    baseUrl.append(Symbol.COLON.getValue()).append(Symbol.SLASH.getValue()).append(Symbol.SLASH.getValue());
     baseUrl.append(request.getServerName());
-    baseUrl.append(Symbol.COLON.toString());
+    baseUrl.append(Symbol.COLON.getValue());
     baseUrl.append(request.getServerPort());
     baseUrl.append(request.getContextPath());
     initSystemService.initSystemForm(model, baseUrl.toString());
@@ -54,7 +54,7 @@ public class InitSystemController extends InitController {
     String message = "";
     try {
 
-      status = WebStatus.SUCCESSFUL.toString();
+      status = WebStatus.SUCCESSFUL.getValue();
       result.put(ModelConstant.STATUS, status);
       result.put(ModelConstant.MESSAGE, message);
       asyncTask = () -> {
@@ -63,15 +63,15 @@ public class InitSystemController extends InitController {
       };
     } catch (ApplicationException e) {
       log.error(e.getMessage(), e);
-      status = WebStatus.FAILED.toString();
+      status = WebStatus.FAILED.getValue();
       result.put(ModelConstant.STATUS, status);
       result.put(ModelConstant.MESSAGE, MessageResourcesFactory.getMessage(e.getMessage(), e.getMsgArg()));
       asyncTask = () -> result;
     } catch (Exception e) {
       log.error(e.getMessage(), e);
-      status = WebStatus.FAILED.toString();
+      status = WebStatus.FAILED.getValue();
       result.put(ModelConstant.STATUS, status);
-      result.put(ModelConstant.MESSAGE, MessageResourcesFactory.getMessage(CommonError.COMMON_UNKNOWN_ERROR.getCode()));
+      result.put(ModelConstant.MESSAGE, MessageResourcesFactory.getMessage(CommonError.COMMON_UNKNOWN_ERROR.getKey()));
       asyncTask = () -> result;
     }
     WebAsyncTask<Map<String, ? extends Object>> webAsyncTask = new WebAsyncTask<>(1000l, asyncTask);
@@ -87,15 +87,15 @@ public class InitSystemController extends InitController {
     String message = "";
     try {
       initSystemService.check(initSystemModel);
-      status = WebStatus.SUCCESSFUL.toString();
+      status = WebStatus.SUCCESSFUL.getValue();
     } catch (ApplicationException e) {
       log.error(e.getMessage(), e);
-      status = WebStatus.FAILED.toString();
+      status = WebStatus.FAILED.getValue();
       message = MessageResourcesFactory.getMessage(e.getMessage(), e.getMsgArg());
     } catch (Exception e) {
       log.error(e.getMessage(), e);
-      status = WebStatus.FAILED.toString();
-      message = MessageResourcesFactory.getMessage(CommonError.COMMON_UNKNOWN_ERROR.getCode());
+      status = WebStatus.FAILED.getValue();
+      message = MessageResourcesFactory.getMessage(CommonError.COMMON_UNKNOWN_ERROR.getKey());
     }
     result.put(ModelConstant.STATUS, status);
     result.put(ModelConstant.MESSAGE, message);

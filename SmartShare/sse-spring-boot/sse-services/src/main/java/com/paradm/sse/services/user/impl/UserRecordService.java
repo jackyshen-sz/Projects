@@ -57,7 +57,7 @@ public class UserRecordService extends BaseService implements IUserRecordService
       throw e;
     } catch (Exception e) {
       log.error(e.getMessage(), e);
-      throw new ApplicationException(CommonError.DB_SELECT_ERROR.getCode());
+      throw new ApplicationException(CommonError.DB_SELECT_ERROR.getKey());
     }
     return result;
   }

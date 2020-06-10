@@ -16,5 +16,10 @@ $.layer = {
       offset: '30px',
     }, showOpt);
     return layer.open(opt);
+  },
+  showFormDialog: function (showOpt) {
+    if (showOpt.btn && showOpt.btn.length > 1) {
+
+    }
   }
 };

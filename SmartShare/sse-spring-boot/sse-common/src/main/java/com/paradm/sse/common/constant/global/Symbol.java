@@ -12,19 +12,24 @@ public enum Symbol implements GlobalConstant {
   AND("&"), EQUAL("="), ADD("+"),QUESTION_MARK("?"),LEFT_BRACKET("["),RIGHT_BRACKET("]"),
   ;
 
-  String name;
+  String value;
 
-  Symbol(String name) {
-    this.name = name;
+  Symbol(String value) {
+    this.value = value;
+  }
+
+  @Override
+  public String getKey() {
+    return getValue();
+  }
+
+  @Override
+  public String getValue() {
+    return this.value;
   }
 
   @Override
   public String toString() {
-    return this.name;
-  }
-
-  @Override
-  public String getCode() {
-    return toString();
+    return getValue();
   }
 }

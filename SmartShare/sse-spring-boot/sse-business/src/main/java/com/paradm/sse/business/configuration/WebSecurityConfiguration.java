@@ -55,9 +55,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         .cors()
           .configurationSource(configurationSource()).and()
         .csrf()
-          .ignoringAntMatchers(Utility.splitString(cusProp.getSecurity().getCsrfIgnoreUrl(), Symbol.COMMA.toString())).and()
+          .ignoringAntMatchers(Utility.splitString(cusProp.getSecurity().getCsrfIgnoreUrl(), Symbol.COMMA.getValue())).and()
         .authorizeRequests()
-          .antMatchers(Utility.splitString(cusProp.getSecurity().getPermitAll(), Symbol.COMMA.toString())).permitAll()
+          .antMatchers(Utility.splitString(cusProp.getSecurity().getPermitAll(), Symbol.COMMA.getValue())).permitAll()
           .anyRequest().authenticated().and()
         .formLogin()
           .loginPage(cusProp.getSecurity().getBrowser().getLoginPage())
@@ -80,7 +80,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Override
   public void configure(WebSecurity web) throws Exception {
-    web.ignoring().antMatchers(Utility.splitString(cusProp.getSecurity().getStaticIgnoreUrl(), Symbol.COMMA.toString()));
+    web.ignoring().antMatchers(Utility.splitString(cusProp.getSecurity().getStaticIgnoreUrl(), Symbol.COMMA.getValue()));
   }
 
   @Bean

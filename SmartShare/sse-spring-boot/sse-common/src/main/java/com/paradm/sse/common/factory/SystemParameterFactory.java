@@ -77,7 +77,7 @@ public class SystemParameterFactory {
     if (Utility.isEmpty(valueStr)) {
       return result;
     }
-    StringTokenizer st = new StringTokenizer(valueStr, Symbol.COMMA.toString());
+    StringTokenizer st = new StringTokenizer(valueStr, Symbol.COMMA.getValue());
     while (st.hasMoreTokens()) {
       String token = st.nextToken();
       if (token.length() > 0) {

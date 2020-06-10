@@ -9,14 +9,14 @@ import com.paradm.sse.common.constant.Constant;
 public enum CommonMessage implements Constant {
   ;
 
-  String code = "";
+  String key = "";
 
-  CommonMessage(String code) {
-    this.code = code;
+  CommonMessage(String key) {
+    this.key = key;
   }
 
   @Override
-  public String getCode() {
-    return this.code;
+  public String getKey() {
+    return this.key;
   }
 }

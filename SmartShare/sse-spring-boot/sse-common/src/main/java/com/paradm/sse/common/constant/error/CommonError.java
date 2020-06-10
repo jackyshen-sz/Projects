@@ -15,14 +15,14 @@ public enum CommonError implements Constant {
   DB_UPDATE_ERROR("errors.framework.update"),
   ;
 
-  String code = "";
+  String key = "";
 
-  CommonError(String code) {
-    this.code = code;
+  CommonError(String key) {
+    this.key = key;
   }
 
   @Override
-  public String getCode() {
-    return this.code;
+  public String getKey() {
+    return this.key;
   }
 }

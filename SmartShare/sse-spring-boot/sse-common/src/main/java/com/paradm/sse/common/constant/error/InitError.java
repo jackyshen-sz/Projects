@@ -10,14 +10,14 @@ public enum InitError implements Constant {
   PARAMETER_ERROR("");
   ;
 
-  String code = "";
+  String key = "";
 
-  InitError(String code) {
-    this.code = code;
+  InitError(String key) {
+    this.key = key;
   }
 
   @Override
-  public String getCode() {
-    return this.code;
+  public String getKey() {
+    return this.key;
   }
 }

@@ -11,14 +11,19 @@ public enum ParameterCode implements Constant {
   DB_DATE_FORMAT("db.date.format"),
   ;
 
-  String code;
+  String key;
 
-  ParameterCode(String code) {
-    this.code = code;
+  ParameterCode(String key) {
+    this.key = key;
   }
 
   @Override
-  public String getCode() {
-    return this.code;
+  public String getKey() {
+    return this.key;
+  }
+
+  @Override
+  public String toString() {
+    return getKey();
   }
 }

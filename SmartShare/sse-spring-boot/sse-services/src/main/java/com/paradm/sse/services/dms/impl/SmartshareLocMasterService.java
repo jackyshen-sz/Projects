@@ -38,7 +38,7 @@ public class SmartshareLocMasterService extends BaseService implements ISmartsha
     } catch (ApplicationException e) {
       throw e;
     } catch (Exception e) {
-      throw new ApplicationException(CommonError.DB_SELECT_ERROR.getCode());
+      throw new ApplicationException(CommonError.DB_SELECT_ERROR.getKey());
     }
     return locMasterModel;
   }

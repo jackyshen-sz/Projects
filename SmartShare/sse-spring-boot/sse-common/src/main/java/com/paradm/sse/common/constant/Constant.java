@@ -6,6 +6,6 @@ package com.paradm.sse.common.constant;
  */
 public interface Constant {
 
-  String getCode();
+  String getKey();
 
 }

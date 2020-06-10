@@ -96,7 +96,7 @@ public class Utility {
   }
 
   public static Date parseDate(String inStr) {
-    String format = SystemParameterFactory.getSystemParameter(ParameterCode.DB_DATE_FORMAT.getCode());
+    String format = SystemParameterFactory.getSystemParameter(ParameterCode.DB_DATE_FORMAT.getKey());
     return parseDate(inStr, format);
   }
 
@@ -114,7 +114,7 @@ public class Utility {
   }
 
   public static String formatDate(Date inDate) {
-    String format = SystemParameterFactory.getSystemParameter(ParameterCode.DB_DATE_FORMAT.toString());
+    String format = SystemParameterFactory.getSystemParameter(ParameterCode.DB_DATE_FORMAT.getKey());
     return formatDate(inDate, format);
   }
 
