@@ -17,9 +17,12 @@ $.layer = {
     }, showOpt);
     return layer.open(opt);
   },
-  showFormDialog: function (showOpt) {
-    if (showOpt.btn && showOpt.btn.length > 1) {
+  showForm: function (showOpt) {
+    if (showOpt.btn) {
+      if (showOpt['btn1']) {
 
+      }
     }
+    return this.show(showOpt);
   }
 };
