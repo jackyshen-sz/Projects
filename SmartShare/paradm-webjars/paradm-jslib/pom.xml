@@ -45,9 +45,9 @@
           <!-- 压缩后保存文件后缀 -->
           <suffix>.min</suffix>
           <!-- 源目录，即需压缩的根目录 -->
-          <sourceDirectory>src/main/resources</sourceDirectory>
+          <sourceDirectory>src/main/resources/src</sourceDirectory>
           <!-- 输出目录，即压缩后的目录-->
-          <outputDirectory>target/classes</outputDirectory>
+          <outputDirectory>src/main/resources/dist</outputDirectory>
           <!-- 压缩js和css文件 -->
           <includes>
             <include>**/*.js</include>
@@ -63,7 +63,11 @@
     </plugins>
     <resources>
       <resource>
-        <directory>src/main/resources</directory>
+        <directory>src/main/resources/src</directory>
+        <targetPath>META-INF/resources/webjars/${project.artifactId}/${project.version}</targetPath>
+      </resource>
+      <resource>
+        <directory>src/main/resources/dist</directory>
         <targetPath>META-INF/resources/webjars/${project.artifactId}/${project.version}</targetPath>
       </resource>
     </resources>
