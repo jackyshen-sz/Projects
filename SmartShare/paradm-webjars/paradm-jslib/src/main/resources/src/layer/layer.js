@@ -246,8 +246,15 @@ Class.pt.vessel = function(conType, callback){
       + (config.btn ? function(){
         var button = '';
         typeof config.btn === 'string' && (config.btn = [config.btn]);
+        typeof config.btnCls === 'string' && (config.btnCls = [config.btnCls]);
         for(var i = 0, len = config.btn.length; i < len; i++){
-          button += '<a class="'+ doms[6] +''+ i +'">'+ config.btn[i] +'</a>'
+          button += '<a class="btn ';
+          button += doms[6];
+          button += '-' + ((config.btnCls && config.btnCls[i]) ? config.btnCls[i] : i);
+          button += '">';
+          button += config.btn[i];
+          button += '</a>';
+          // button += '<a class="'+ doms[6] +''+ i +'">'+ config.btn[i] +'</a>'
         }
         return '<div class="'+ doms[6] +' layui-layer-btn-'+ (config.btnAlign||'') +'">'+ button +'</div>'
       }() : '')

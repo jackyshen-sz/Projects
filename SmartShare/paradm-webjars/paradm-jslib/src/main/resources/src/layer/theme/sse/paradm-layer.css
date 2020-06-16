@@ -1,10 +1,16 @@
 body .ss-layer .layui-layer-title {
+  font-family: Arial, "微軟正黑體", "微軟雅黑體";
+  font-size: 13px;
   border-bottom: 1px solid #eee;
   background-color: #158bc8;
   color: #ffffff;
+}
+
+body .ss-layer .layer-dialog-body {
   font-family: Arial, "微軟正黑體", "微軟雅黑體";
-  font-weight: normal;
   font-size: 13px;
+  padding: 5px 25px;
+  line-height: 1.42857143;
 }
 
 body .ss-layer .layui-layer-btn {
@@ -19,36 +25,39 @@ body .ss-layer .layui-layer-btn {
   -webkit-user-select: none;
 }
 
-body .ss-layer .layui-layer-btn a {
-  margin: unset;
+body .ss-layer .btn {
+  font-family: Arial,"微軟正黑體", "微軟雅黑體";
+  font-weight: normal;
+  font-size: 13px;
   height: 26px;
   background: #f0efef;
   border-color: #8c8c8c;
-  line-height: 28px;
+  line-height: 26px;
   border-radius: 4px;
   cursor: pointer;
   text-decoration: none;
 }
 
-body .ss-layer .layui-layer-btn a:hover {
+body .ss-layer .btn:hover {
   opacity: 0.9;
   text-decoration: none;
 }
 
-body .ss-layer .layui-layer-btn a:active {
-  opacity: 0.8;
+body .ss-layer .btn:active {
+  opacity: 0.9;
 }
 
-body .ss-layer .layui-layer-btn .layui-layer-btn0 {
-  margin-right: 5px;
+body .ss-layer .btn + .btn {
+  margin-bottom: 0;
+  margin-left: 5px;
+}
+
+body .ss-layer .layui-layer-btn a {
+  margin: unset;
+}
+
+body .ss-layer .layui-layer-btn .layui-layer-btn-blue {
   background: #158bc8;
   border: 1px solid transparent;
   color: #fff;
-}
-
-body .ss-layer .layer-dialog-body {
-  padding: 5px 25px;
-  font-family: Arial, "微軟正黑體", "微軟雅黑體";
-  font-size: 13px;
-  line-height: 1.42857143;
 }

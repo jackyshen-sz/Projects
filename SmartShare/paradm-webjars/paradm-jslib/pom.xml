@@ -22,6 +22,12 @@
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources/src</directory>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <groupId>net.alchim31.maven</groupId>
@@ -47,7 +53,7 @@
           <!-- 源目录，即需压缩的根目录 -->
           <sourceDirectory>src/main/resources/src</sourceDirectory>
           <!-- 输出目录，即压缩后的目录-->
-          <outputDirectory>src/main/resources/dist</outputDirectory>
+          <outputDirectory>target/dist</outputDirectory>
           <!-- 压缩js和css文件 -->
           <includes>
             <include>**/*.js</include>
@@ -60,16 +66,35 @@
           </excludes>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>dist-resources</id>
+            <phase>compile</phase>
+            <goals><goal>copy-resources</goal></goals>
+          </execution>
+        </executions>
+        <configuration>
+          <encoding>UTF-8</encoding>
+          <outputDirectory>${project.build.directory}/classes/META-INF/resources/webjars/${project.artifactId}/${project.version}</outputDirectory>
+          <resources>
+            <resource>
+              <directory>target/dist</directory>
+            </resource>
+          </resources>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+<!--        <configuration>-->
+<!--          <excludes>-->
+<!--            <exclude>dist/**</exclude>-->
+<!--          </excludes>-->
+<!--        </configuration>-->
+      </plugin>
     </plugins>
-    <resources>
-      <resource>
-        <directory>src/main/resources/src</directory>
-        <targetPath>META-INF/resources/webjars/${project.artifactId}/${project.version}</targetPath>
-      </resource>
-      <resource>
-        <directory>src/main/resources/dist</directory>
-        <targetPath>META-INF/resources/webjars/${project.artifactId}/${project.version}</targetPath>
-      </resource>
-    </resources>
   </build>
 </project>
