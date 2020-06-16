@@ -1,13 +1,14 @@
 $(function () {
   signinBtn.click(function () {
     $.get(signinUrl + Math.random(), function (_html) {
-      $.layer.show({
+      $.layer.showForm({
         title: initSystemTitle.signinTitle,
         content: _html,
-        btn: [globalBtn.okBtn, globalBtn.cancelBtn],
+        formId: '#signinForm',
+        postType: 'json',
         btn1: function (index, layero) {
           opSignin(index, layero);
-          return false;
+          return;
         }
       });
     });

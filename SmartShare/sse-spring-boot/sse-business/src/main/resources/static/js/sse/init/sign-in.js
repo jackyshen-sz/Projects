@@ -29,6 +29,7 @@ $(function () {
 });
 
 function opSignin(index, layero) {
+  console.log("opSignin...")
   loadIndex = layer.load(1);
   var validator = signinForm.data('bootstrapValidator');
   if (validator) {
@@ -49,5 +50,5 @@ function opSignin(index, layero) {
 
       }
     }
-  })
+  });
 }
