@@ -12,6 +12,7 @@ $(function() {
 $.layer = {
   show : function (showOpt) {
     var opt = $.extend({
+      type: 1,
       area: '600px',
       offset: '30px',
     }, showOpt);
@@ -27,6 +28,7 @@ $.layer = {
       showOpt.btnCls = ['blue'];
       if (!showOpt.btn1) {
         showOpt.btn1 = function (index, layero) {
+          loadIndex = layer.load(1);
           $.layer.postForm(showOpt, index, layero);
         }
       }
@@ -34,6 +36,7 @@ $.layer = {
     return this.show(showOpt);
   },
   postForm: function (showOpt, index, layero) {
+    console.log("postForm...");
     var postform = $(showOpt.formId);
     var validator = postform.data('bootstrapValidator');
     if (validator) {
@@ -52,12 +55,17 @@ $.layer = {
         url: postform.attr('action'),
         type: postform.attr('method'),
         cache : false,
-        data : $(this).serializeArray(),
+        data : postform.serializeArray(),
         dataType : "json",
         success: function (data) {
+          layer.close(loadIndex);
           if (data.status === 'failed') {
-
+            layer.msg(data.message);
+            layer.alert(data.message);
           }
+        },
+        error: function (jqXHR, statusText, error) {
+          layer.close(loadIndex);
         }
       });
     }

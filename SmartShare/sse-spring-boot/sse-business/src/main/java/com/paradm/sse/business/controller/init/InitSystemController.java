@@ -47,13 +47,13 @@ public class InitSystemController extends InitController {
 
   @PostMapping("sign-in")
   public @ResponseBody
-  WebAsyncTask<Map<String, ? extends Object>> signin (Model model, @ModelAttribute InitSystemModel initSystemModel, @RequestParam(defaultValue = "") String captcha) {
+  WebAsyncTask<Map<String, ? extends Object>> signin (Model model, @ModelAttribute InitSystemModel initSystemModel) {
     Map<String, Object> result = new HashMap<>();
     Callable<Map<String, ? extends Object>> asyncTask = null;
     String status = "";
     String message = "";
     try {
-
+      this.checkCaptcha(initSystemModel);
       status = WebStatus.SUCCESSFUL.getValue();
       result.put(ModelConstant.STATUS, status);
       result.put(ModelConstant.MESSAGE, message);
@@ -77,28 +77,5 @@ public class InitSystemController extends InitController {
     WebAsyncTask<Map<String, ? extends Object>> webAsyncTask = new WebAsyncTask<>(1000l, asyncTask);
     webAsyncTask.onTimeout(() -> result);
     return webAsyncTask;
-  }
-
-  @PostMapping("check")
-  public @ResponseBody
-  Map<String, ? extends Object> check(Model model, @ModelAttribute InitSystemModel initSystemModel) {
-    Map<String, Object> result = new HashMap<>();
-    String status = "";
-    String message = "";
-    try {
-      initSystemService.check(initSystemModel);
-      status = WebStatus.SUCCESSFUL.getValue();
-    } catch (ApplicationException e) {
-      log.error(e.getMessage(), e);
-      status = WebStatus.FAILED.getValue();
-      message = MessageResourcesFactory.getMessage(e.getMessage(), e.getMsgArg());
-    } catch (Exception e) {
-      log.error(e.getMessage(), e);
-      status = WebStatus.FAILED.getValue();
-      message = MessageResourcesFactory.getMessage(CommonError.COMMON_UNKNOWN_ERROR.getKey());
-    }
-    result.put(ModelConstant.STATUS, status);
-    result.put(ModelConstant.MESSAGE, message);
-    return result;
   }
 }

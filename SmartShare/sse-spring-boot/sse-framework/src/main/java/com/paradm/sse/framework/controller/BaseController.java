@@ -1,8 +1,12 @@
 package com.paradm.sse.framework.controller;
 
+import com.google.code.kaptcha.Constants;
 import com.paradm.sse.common.constant.GlobalConstant;
 import com.paradm.sse.common.constant.TilesViewConstant;
+import com.paradm.sse.common.constant.error.CommonError;
+import com.paradm.sse.common.exception.ApplicationException;
 import com.paradm.sse.common.utils.Utility;
+import com.paradm.sse.domain.framework.model.BaseModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -56,5 +60,12 @@ public class BaseController {
     log.error("controller throw exception...");
     log.error(ex.getMessage(), ex);
     return TilesViewConstant.ERROR;
+  }
+
+  public void checkCaptcha(BaseModel baseModel) {
+    if (Utility.isEmpty(baseModel.getCaptcha())
+        || !baseModel.getCaptcha().equalsIgnoreCase((String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY))) {
+      throw new ApplicationException(CommonError.KAPTCHA_WRONG_MESSAGE.getKey());
+    }
   }
 }

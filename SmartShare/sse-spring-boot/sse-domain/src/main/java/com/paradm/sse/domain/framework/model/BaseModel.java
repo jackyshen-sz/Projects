@@ -32,6 +32,8 @@ public abstract class BaseModel implements Serializable {
 
   private String companyId = null;
 
+  private String captcha = null;
+
   @Override
   public Object clone() {
     Object deepCopy = null;

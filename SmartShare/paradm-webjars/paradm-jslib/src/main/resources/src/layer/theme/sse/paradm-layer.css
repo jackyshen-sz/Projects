@@ -1,6 +1,19 @@
 body .layui-layer-page .layui-layer-content {
   padding: 20px;
 }
+body .ss-layer-msg {
+  min-width: 100px;
+  background-color: #000;
+  filter: alpha(opacity=60);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+}
+
+.ss-layer-msg .layui-layer-content {
+  padding: 12px 25px;
+  text-align: center;
+}
 
 body .ss-layer .layui-layer-title {
   font-family: Arial, "微軟正黑體", "微軟雅黑體";

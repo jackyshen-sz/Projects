@@ -6,10 +6,6 @@ $(function () {
         content: _html,
         formId: '#signinForm',
         postType: 'json',
-        btn1: function (index, layero) {
-          opSignin(index, layero);
-          return;
-        }
       });
     });
   });
