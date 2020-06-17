@@ -1,3 +1,7 @@
+body .layui-layer-page .layui-layer-content {
+  padding: 20px;
+}
+
 body .ss-layer .layui-layer-title {
   font-family: Arial, "微軟正黑體", "微軟雅黑體";
   font-size: 13px;
