@@ -9,32 +9,7 @@ $(function() {
   });
 });
 
-$.layer = {
-  show : function (showOpt) {
-    var opt = $.extend({
-      type: 1,
-      area: '600px',
-      offset: '30px',
-    }, showOpt);
-    return layer.open(opt);
-  },
-  showForm: function (showOpt) {
-    if (showOpt.readonly) {
-      showOpt.btn = globalBtn.cancelBtn;
-    } else {
-      if (!showOpt.btn) {
-        showOpt.btn = [globalBtn.okBtn, globalBtn.cancelBtn];
-      }
-      showOpt.btnCls = ['blue'];
-      if (!showOpt.btn1) {
-        showOpt.btn1 = function (index, layero) {
-          loadIndex = layer.load(1);
-          $.layer.postForm(showOpt, index, layero);
-        }
-      }
-    }
-    return this.show(showOpt);
-  },
+$.form = {
   postForm: function (showOpt, index, layero) {
     console.log("postForm...");
     var postform = $(showOpt.formId);
@@ -60,14 +35,67 @@ $.layer = {
         success: function (data) {
           layer.close(loadIndex);
           if (data.status === 'failed') {
-            layer.msg(data.message);
-            layer.alert(data.message);
+            $.layer.showFail(data.message);
+          } else {
+            $.layer.showSuccess(data.message);
+            if (!showOpt.onPostSuccess) {
+              layer.close(index);
+            } else {
+              showOpt.onPostSuccess(index);
+            }
           }
         },
         error: function (jqXHR, statusText, error) {
           layer.close(loadIndex);
+          $.layer.showFail(globalMessage.contactAdmin);
         }
       });
     }
+  }
+};
+
+$.layer = {
+  show : function (showOpt) {
+    var opt = $.extend({
+      type: 1,
+      area: '600px',
+      offset: '30px',
+    }, showOpt);
+    return layer.open(opt);
+  },
+  showForm: function (showOpt) {
+    if (showOpt.readonly) {
+      showOpt.btn = globalBtn.cancelBtn;
+    } else {
+      if (!showOpt.btn) {
+        showOpt.btn = [globalBtn.okBtn, globalBtn.cancelBtn];
+      }
+      showOpt.btnCls = ['blue'];
+      if (!showOpt.btn1) {
+        showOpt.btn1 = function (index, layero) {
+          loadIndex = layer.load(1);
+          $.form.postForm(showOpt, index, layero);
+        }
+      }
+    }
+    return this.show(showOpt);
+  },
+  showMsg: function (content, showOpt) {
+    var opt = $.extend({
+      offset: '100px',
+    }, showOpt);
+    layer.msg(content, opt);
+  },
+  showSuccess: function (content) {
+    var showOpt = {
+      skin: 'ss-layer-msg success'
+    };
+    return this.showMsg(content, showOpt);
+  },
+  showFail: function (content) {
+    var showOpt = {
+      skin: 'ss-layer-msg fail',
+    };
+    return this.showMsg(content, showOpt);
   }
 };

@@ -1,13 +1,29 @@
 body .layui-layer-page .layui-layer-content {
   padding: 20px;
 }
+
 body .ss-layer-msg {
+  font-family: Arial, "微軟正黑體", "微軟雅黑體";
+  font-size: 13px;
+  font-weight: normal;
   min-width: 100px;
   background-color: #000;
   filter: alpha(opacity=60);
   background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
   border: none;
+}
+
+body .fail {
+  background: #f2dede none repeat scroll 0 0;
+  border: 1px solid #f2c7c7;
+  color: #b3504e;
+}
+
+body .success {
+  background: #d2eefc none repeat scroll 0 0;
+  border: 1px solid #99dafb;
+  color: #158bc8;
 }
 
 .ss-layer-msg .layui-layer-content {

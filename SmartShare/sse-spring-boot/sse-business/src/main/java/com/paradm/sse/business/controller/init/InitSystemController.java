@@ -56,7 +56,7 @@ public class InitSystemController extends InitController {
       this.checkCaptcha(initSystemModel);
       status = WebStatus.SUCCESSFUL.getValue();
       result.put(ModelConstant.STATUS, status);
-      result.put(ModelConstant.MESSAGE, message);
+      result.put(ModelConstant.MESSAGE, WebStatus.SUCCESSFUL.getValue());
       asyncTask = () -> {
         // create rabbitmq
         return result;
