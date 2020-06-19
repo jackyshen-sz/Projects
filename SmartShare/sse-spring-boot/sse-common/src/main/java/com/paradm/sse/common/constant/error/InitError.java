@@ -7,7 +7,8 @@ import com.paradm.sse.common.constant.Constant;
  * @create data 2020/6/9
  */
 public enum InitError implements Constant {
-  PARAMETER_ERROR("");
+  PARAMETER_ERROR("errors.parameter_error"),
+  COMPANY_NOT_EXIST("errors.company_not_exist"),
   ;
 
   String key = "";

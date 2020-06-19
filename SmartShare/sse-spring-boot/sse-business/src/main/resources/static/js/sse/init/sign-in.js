@@ -15,14 +15,15 @@ $(function () {
             message: signinMessage.emailIsRequired
           },
           emailAddress: {
-            message: signinMessage.emailIsValid
+            message: signinMessage.emailIsInvalid
           }
         }
       },
       captcha: {
+        message: globalMessage.kaptchIsInvalid,
         validators: {
           notEmpty: {
-            message: signinMessage.emailIsRequired
+            message: globalMessage.kaptchIsInvalid
           },
         }
       }

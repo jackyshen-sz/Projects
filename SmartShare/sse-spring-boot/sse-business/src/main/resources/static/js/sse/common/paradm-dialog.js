@@ -12,8 +12,8 @@ $(function() {
 $.form = {
   postForm: function (showOpt, index, layero) {
     console.log("postForm...");
-    var postform = $(showOpt.formId);
-    var validator = postform.data('bootstrapValidator');
+    var postForm = $(showOpt.formId);
+    var validator = postForm.data('bootstrapValidator');
     if (validator) {
       validator.validate();
       if (!validator.isValid()) {
@@ -24,24 +24,28 @@ $.form = {
     if (showOpt.postType === 'multipart') {
 
     } else if (showOpt.postType === 'form') {
-      postform.submit();
+      postForm.submit();
     } else {
       $.ajax({
-        url: postform.attr('action'),
-        type: postform.attr('method'),
+        url: postForm.attr('action'),
+        type: postForm.attr('method'),
         cache : false,
-        data : postform.serializeArray(),
+        data : postForm.serializeArray(),
         dataType : "json",
         success: function (data) {
           layer.close(loadIndex);
           if (data.status === 'failed') {
-            $.layer.showFail(data.message);
+            if ('N' === data.kaptchaValid) {
+              postForm.bootstrapValidator("updateStatus", "captcha", "INVALID");
+            } else {
+              $.layer.showFail(data.message);
+            }
           } else {
             $.layer.showSuccess(data.message);
             if (!showOpt.onPostSuccess) {
               layer.close(index);
             } else {
-              showOpt.onPostSuccess(index);
+              showOpt.onPostSuccess(index, data);
             }
           }
         },
@@ -97,5 +101,13 @@ $.layer = {
       skin: 'ss-layer-msg fail',
     };
     return this.showMsg(content, showOpt);
+  },
+  showAlert: function (content, yes) {
+    var opt = {
+      offset: '30px',
+      btn: globalBtn.okBtn,
+      btnCls: 'blue'
+    };
+    layer.alert(content, opt, yes);
   }
 };

@@ -12,4 +12,6 @@ public interface ModelConstant {
 
   String STATUS = "status";
   String MESSAGE = "message";
+
+  String KAPTCHA_VALIDATION = "kaptchaValid";
 }

@@ -5,9 +5,12 @@ import com.paradm.sse.common.constant.TilesViewConstant;
 import com.paradm.sse.common.constant.error.CommonError;
 import com.paradm.sse.common.constant.global.Symbol;
 import com.paradm.sse.common.constant.global.WebStatus;
+import com.paradm.sse.common.constant.message.InitMessage;
+import com.paradm.sse.common.enums.YesNoFlag;
 import com.paradm.sse.common.exception.ApplicationException;
 import com.paradm.sse.common.factory.MessageResourcesFactory;
 import com.paradm.sse.domain.init.model.InitSystemModel;
+import com.paradm.sse.domain.user.model.UserRecordModel;
 import com.paradm.sse.services.init.IInitSystemService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,34 +50,33 @@ public class InitSystemController extends InitController {
 
   @PostMapping("sign-in")
   public @ResponseBody
-  WebAsyncTask<Map<String, ? extends Object>> signin (Model model, @ModelAttribute InitSystemModel initSystemModel) {
+  WebAsyncTask<Map<String, ? extends Object>> signIn (Model model, @ModelAttribute InitSystemModel initSystemModel) {
     Map<String, Object> result = new HashMap<>();
     Callable<Map<String, ? extends Object>> asyncTask = null;
-    String status = "";
-    String message = "";
     try {
       this.checkCaptcha(initSystemModel);
-      status = WebStatus.SUCCESSFUL.getValue();
-      result.put(ModelConstant.STATUS, status);
-      result.put(ModelConstant.MESSAGE, WebStatus.SUCCESSFUL.getValue());
+      UserRecordModel userRecordModel = initSystemService.signIn(initSystemModel);
+      result.put(ModelConstant.STATUS, WebStatus.SUCCESSFUL.getValue());
+      result.put(ModelConstant.MESSAGE, MessageResourcesFactory.getMessage(InitMessage.SIGN_IN_SUCCESS.getKey(), userRecordModel.getFullName()));
       asyncTask = () -> {
         // create rabbitmq
         return result;
       };
     } catch (ApplicationException e) {
       log.error(e.getMessage(), e);
-      status = WebStatus.FAILED.getValue();
-      result.put(ModelConstant.STATUS, status);
+      result.put(ModelConstant.STATUS, WebStatus.FAILED.getValue());
+      if (CommonError.KAPTCHA_WRONG_MESSAGE.getKey().equals(e.getMessage())) {
+        result.put(ModelConstant.KAPTCHA_VALIDATION, YesNoFlag.NO.toString());
+      }
       result.put(ModelConstant.MESSAGE, MessageResourcesFactory.getMessage(e.getMessage(), e.getMsgArg()));
       asyncTask = () -> result;
     } catch (Exception e) {
       log.error(e.getMessage(), e);
-      status = WebStatus.FAILED.getValue();
-      result.put(ModelConstant.STATUS, status);
+      result.put(ModelConstant.STATUS, WebStatus.FAILED.getValue());
       result.put(ModelConstant.MESSAGE, MessageResourcesFactory.getMessage(CommonError.COMMON_UNKNOWN_ERROR.getKey()));
       asyncTask = () -> result;
     }
-    WebAsyncTask<Map<String, ? extends Object>> webAsyncTask = new WebAsyncTask<>(1000l, asyncTask);
+    WebAsyncTask<Map<String, ? extends Object>> webAsyncTask = new WebAsyncTask<>(1000L, asyncTask);
     webAsyncTask.onTimeout(() -> result);
     return webAsyncTask;
   }

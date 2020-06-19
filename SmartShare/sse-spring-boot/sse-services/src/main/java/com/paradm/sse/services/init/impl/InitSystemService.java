@@ -1,6 +1,7 @@
 package com.paradm.sse.services.init.impl;
 
 import com.paradm.sse.common.constant.ModelConstant;
+import com.paradm.sse.common.constant.error.CommonError;
 import com.paradm.sse.common.constant.error.InitError;
 import com.paradm.sse.common.constant.paramter.ParameterCode;
 import com.paradm.sse.common.exception.ApplicationException;
@@ -16,6 +17,7 @@ import com.paradm.sse.services.init.IInitSystemService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import java.util.ArrayList;
@@ -88,7 +90,33 @@ public class InitSystemService extends InitService implements IInitSystemService
     }
   }
 
-//  private void setEmailParameter(Integer companyId, List<SysParameterModel> parameterModelList) {
+  @Override
+  @Transactional
+  public UserRecordModel signIn(InitSystemModel initSystemModel) {
+    UserRecordModel userModel = initSystemModel.getUserModel();
+    try {
+      // 1. Input company details info
+      ParadmCompanyModel paradmCompanyModel = initSystemModel.getParadmCompanyModel();
+      if (Utility.isEmpty(paradmCompanyModel) || Utility.isEmpty(paradmCompanyModel.getId())) {
+        String args = Utility.isEmpty(paradmCompanyModel) ? "" : paradmCompanyModel.getCompanyName();
+        throw new ApplicationException(InitError.COMPANY_NOT_EXIST.getKey(), args);
+      }
+      // 2. Check if the system already exists users
+      List<UserRecordModel> userModelList = null;
+      if (!Utility.isEmpty(userModelList)) {
+        throw new ApplicationException("");
+      }
+    } catch (ApplicationException e) {
+      log.error(e.getMessage(), e);
+      throw e;
+    } catch (Exception e) {
+      log.error(e.getMessage(), e);
+      throw new ApplicationException(CommonError.COMMON_UNKNOWN_ERROR.getKey());
+    }
+    return userModel;
+  }
+
+  //  private void setEmailParameter(Integer companyId, List<SysParameterModel> parameterModelList) {
 //    SysParameterModel parameterModel = new SysParameterModel();
 //    parameterModel.setParameterCode(SystemParameterConstant.SMTP_AUTH);
 //    parameterModel.setParameterValue(SystemParameterFactory.getSystemParameter(SystemParameterConstant.SMTP_AUTH));

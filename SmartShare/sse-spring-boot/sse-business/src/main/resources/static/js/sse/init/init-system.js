@@ -6,10 +6,10 @@ $(function () {
         content: _html,
         formId: '#signinForm',
         postType: 'json',
-        onPostSuccess: function (index) {
-          layer.alert('test', function (index) {
+        onPostSuccess: function (index, data) {
+          $.layer.showAlert(data.message, function (index, layero) {
             window.location.href = contextPath;
-          })
+          });
         }
       });
     });
