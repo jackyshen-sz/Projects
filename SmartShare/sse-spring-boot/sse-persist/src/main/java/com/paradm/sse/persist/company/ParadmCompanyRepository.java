@@ -12,7 +12,7 @@ import java.util.List;
  * @create data 2020/5/29
  */
 @Repository
-public interface ParadmCompanyRepository extends JpaRepository<ParadmCompany, Integer> {
+public interface ParadmCompanyRepository extends JpaRepository<ParadmCompany, Integer>, IParadmCompanyDao {
 
   List<ParadmCompany> findByRecordStatus(RecordStatus recordStatus);
 }

@@ -12,4 +12,6 @@ import java.util.List;
 public interface IParadmCompanyService extends IBaseService {
 
   List<ParadmCompany> getAllCompany();
+
+
 }

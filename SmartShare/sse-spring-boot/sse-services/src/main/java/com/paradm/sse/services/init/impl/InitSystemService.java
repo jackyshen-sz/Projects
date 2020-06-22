@@ -12,8 +12,10 @@ import com.paradm.sse.domain.dms.model.SmartshareLocMasterModel;
 import com.paradm.sse.domain.init.model.InitSystemModel;
 import com.paradm.sse.domain.system.model.SysParameterModel;
 import com.paradm.sse.domain.user.model.UserRecordModel;
+import com.paradm.sse.services.company.IParadmCompanyService;
 import com.paradm.sse.services.dms.ISmartshareLocMasterService;
 import com.paradm.sse.services.init.IInitSystemService;
+import com.paradm.sse.services.user.IUserRecordService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,10 @@ public class InitSystemService extends InitService implements IInitSystemService
 
   @Autowired
   private ISmartshareLocMasterService locMasterService;
+  @Autowired
+  private IUserRecordService userRecordService;
+  @Autowired
+  private IParadmCompanyService paradmCompanyService;
 
   @Override
   public void initSystemForm(Model model, String baseUrl) {
@@ -102,10 +108,13 @@ public class InitSystemService extends InitService implements IInitSystemService
         throw new ApplicationException(InitError.COMPANY_NOT_EXIST.getKey(), args);
       }
       // 2. Check if the system already exists users
-      List<UserRecordModel> userModelList = null;
+      List<UserRecordModel> userModelList = userRecordService.getAllUsers();
       if (!Utility.isEmpty(userModelList)) {
-        throw new ApplicationException("");
+        throw new ApplicationException(InitError.SIGN_IN_IS_COMPLETED.getKey());
       }
+      Integer companyId = Utility.parseInteger(paradmCompanyModel.getId());
+      // 3. update company info
+
     } catch (ApplicationException e) {
       log.error(e.getMessage(), e);
       throw e;

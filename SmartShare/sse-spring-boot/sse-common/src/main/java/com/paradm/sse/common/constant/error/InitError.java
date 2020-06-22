@@ -9,6 +9,7 @@ import com.paradm.sse.common.constant.Constant;
 public enum InitError implements Constant {
   PARAMETER_ERROR("errors.parameter_error"),
   COMPANY_NOT_EXIST("errors.company_not_exist"),
+  SIGN_IN_IS_COMPLETED("errors.sign_in_is_completed"),
   ;
 
   String key = "";
