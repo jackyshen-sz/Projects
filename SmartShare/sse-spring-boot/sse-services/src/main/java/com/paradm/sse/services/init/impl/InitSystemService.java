@@ -9,12 +9,14 @@ import com.paradm.sse.common.utils.Utility;
 import com.paradm.sse.domain.company.entity.ParadmCompany;
 import com.paradm.sse.domain.company.model.ParadmCompanyModel;
 import com.paradm.sse.domain.dms.model.SmartshareLocMasterModel;
+import com.paradm.sse.domain.framework.model.SessionContainer;
 import com.paradm.sse.domain.init.model.InitSystemModel;
 import com.paradm.sse.domain.system.model.SysParameterModel;
 import com.paradm.sse.domain.user.model.UserRecordModel;
 import com.paradm.sse.services.company.IParadmCompanyService;
 import com.paradm.sse.services.dms.ISmartshareLocMasterService;
 import com.paradm.sse.services.init.IInitSystemService;
+import com.paradm.sse.services.system.ISysParameterService;
 import com.paradm.sse.services.user.IUserRecordService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,8 @@ public class InitSystemService extends InitService implements IInitSystemService
   private IUserRecordService userRecordService;
   @Autowired
   private IParadmCompanyService paradmCompanyService;
+  @Autowired
+  private ISysParameterService sysParameterService;
 
   @Override
   public void initSystemForm(Model model, String baseUrl) {
@@ -98,7 +102,7 @@ public class InitSystemService extends InitService implements IInitSystemService
 
   @Override
   @Transactional
-  public UserRecordModel signIn(InitSystemModel initSystemModel) {
+  public UserRecordModel signIn(InitSystemModel initSystemModel, SessionContainer sessionContainer) {
     UserRecordModel userModel = initSystemModel.getUserModel();
     try {
       // 1. Input company details info
@@ -114,7 +118,12 @@ public class InitSystemService extends InitService implements IInitSystemService
       }
       Integer companyId = Utility.parseInteger(paradmCompanyModel.getId());
       // 3. update company info
+      paradmCompanyService.updateSigninCompany(paradmCompanyModel, sessionContainer);
+      // 4. update parameter setting
+      List<SysParameterModel> parameterModelList = initSystemModel.getParameterModelList();
+      if (!Utility.isEmpty(parameterModelList)) {
 
+      }
     } catch (ApplicationException e) {
       log.error(e.getMessage(), e);
       throw e;

@@ -18,6 +18,10 @@ import java.util.Date;
 @Slf4j
 public class Utility {
 
+  public static boolean isNull(Object val) {
+    return (null == val);
+  }
+
   public static boolean isEmpty(Object val) {
     return (null == val);
   }

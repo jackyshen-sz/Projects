@@ -3,6 +3,12 @@
   <div class="layer-dialog-body">
     <form id="signinForm" method="post" th:action="@{/init/system/sign-in}" th:object="${formModel}" novalidate>
       <input type="hidden" name="paradmCompanyModel.id" th:field="*{paradmCompanyModel.id}" />
+      <input type="hidden" name="paradmCompanyModel.recordStatus" th:field="*{paradmCompanyModel.recordStatus}" />
+      <input type="hidden" name="paradmCompanyModel.updateCount" th:field="*{paradmCompanyModel.updateCount}" />
+      <input type="hidden" name="paradmCompanyModel.creatorId" th:field="*{paradmCompanyModel.creatorId}" />
+      <input type="hidden" name="paradmCompanyModel.createDate" th:field="*{paradmCompanyModel.createDate}" />
+      <input type="hidden" name="paradmCompanyModel.updaterId" th:field="*{paradmCompanyModel.updaterId}" />
+      <input type="hidden" name="paradmCompanyModel.updateDate" th:field="*{paradmCompanyModel.updateDate}" />
       [[#{init.message.sign_in_user}]]
       <br><br>
       <div class="form-group companyName">

@@ -7,6 +7,7 @@ import com.paradm.sse.common.constant.error.CommonError;
 import com.paradm.sse.common.exception.ApplicationException;
 import com.paradm.sse.common.utils.Utility;
 import com.paradm.sse.domain.framework.model.BaseModel;
+import com.paradm.sse.domain.framework.model.SessionContainer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -62,10 +63,20 @@ public class BaseController {
     return TilesViewConstant.ERROR;
   }
 
-  public void checkCaptcha(BaseModel baseModel) {
+  protected SessionContainer getSessionContainer() {
+    if (Utility.isEmpty(request) || Utility.isEmpty(request.getSession())) {
+      log.debug("request is null...");
+      if (!Utility.isEmpty(RequestContextHolder.getRequestAttributes())) {
+        request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+      }
+    }
+    return (SessionContainer) request.getSession().getAttribute(GlobalConstant.SESSION_CONTAINER_KEY);
+  }
+
+  protected void checkCaptcha(BaseModel baseModel) {
     if (Utility.isEmpty(baseModel.getCaptcha())
         || !baseModel.getCaptcha().equalsIgnoreCase((String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY))) {
-      throw new ApplicationException(CommonError.KAPTCHA_WRONG_MESSAGE.getKey());
+      throw new ApplicationException(CommonError.KAPTCHA_WRONG_ERROR.getKey());
     }
   }
 }

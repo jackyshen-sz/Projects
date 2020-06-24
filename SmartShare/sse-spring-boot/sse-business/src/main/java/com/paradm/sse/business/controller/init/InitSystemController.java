@@ -55,7 +55,7 @@ public class InitSystemController extends InitController {
     Callable<Map<String, ? extends Object>> asyncTask = null;
     try {
       this.checkCaptcha(initSystemModel);
-      UserRecordModel userRecordModel = initSystemService.signIn(initSystemModel);
+      UserRecordModel userRecordModel = initSystemService.signIn(initSystemModel, this.getSessionContainer());
       result.put(ModelConstant.STATUS, WebStatus.SUCCESSFUL.getValue());
       result.put(ModelConstant.MESSAGE, MessageResourcesFactory.getMessage(InitMessage.SIGN_IN_SUCCESS.getKey(), userRecordModel.getFullName()));
       asyncTask = () -> {
@@ -65,7 +65,7 @@ public class InitSystemController extends InitController {
     } catch (ApplicationException e) {
       log.error(e.getMessage(), e);
       result.put(ModelConstant.STATUS, WebStatus.FAILED.getValue());
-      if (CommonError.KAPTCHA_WRONG_MESSAGE.getKey().equals(e.getMessage())) {
+      if (CommonError.KAPTCHA_WRONG_ERROR.getKey().equals(e.getMessage())) {
         result.put(ModelConstant.KAPTCHA_VALIDATION, YesNoFlag.NO.toString());
       }
       result.put(ModelConstant.MESSAGE, MessageResourcesFactory.getMessage(e.getMessage(), e.getMsgArg()));

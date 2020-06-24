@@ -28,7 +28,7 @@ public enum CompanyActiveFlag {
   }
 
   public static CompanyActiveFlag fromAcronym(String acronym) {
-    CompanyActiveFlag result = CompanyActiveFlag.NONE_PURCHASED;
+    CompanyActiveFlag result = CompanyActiveFlag.PURCHASED;
     if (!Utility.isEmpty(acronym)) {
       for (CompanyActiveFlag companyActiveFlag : CompanyActiveFlag.values()) {
         if (acronym.equals(companyActiveFlag.toString())) {

@@ -12,7 +12,7 @@ import java.util.List;
  * @create data 2020/5/22
  */
 @Repository
-public interface SysParameterRepository extends JpaRepository<SysParameter, Integer> {
+public interface SysParameterRepository extends JpaRepository<SysParameter, Integer>, ISysParameterDao {
 
   List<SysParameter> findByRecordStatus(RecordStatus recordStatus);
 

@@ -19,4 +19,6 @@ public interface GlobalConstant extends Constant {
    */
   String APPLICATION_CONTAINER_KEY = "applicationContainer";
 
+  String SESSION_CONTAINER_KEY = "sessionContainer";
+
 }
