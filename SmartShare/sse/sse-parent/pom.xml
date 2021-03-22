@@ -18,6 +18,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <smartshare.version>1.0.0.sse-SNAPSHOT</smartshare.version>
     <spring-boot.version>2.4.4</spring-boot.version>
+    <hutool.version>5.5.8</hutool.version>
     <kaptcha.starter.version>1.0.0-SNAPSHOT</kaptcha.starter.version>
     <druid.starter.version>1.1.22</druid.starter.version>
 
