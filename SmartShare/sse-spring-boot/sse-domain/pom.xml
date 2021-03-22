@@ -6,7 +6,7 @@
   <parent>
     <artifactId>sse-parent</artifactId>
     <groupId>com.paradm</groupId>
-    <version>1.0.0.sse-SNAPSHOT</version>
+    <version>1.0.0.sse-spring-boot-SNAPSHOT</version>
     <relativePath>../sse-parent/pom.xml</relativePath>
   </parent>
   <artifactId>sse-domain</artifactId>

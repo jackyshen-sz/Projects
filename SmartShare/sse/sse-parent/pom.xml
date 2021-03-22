@@ -6,7 +6,7 @@
   <parent>
     <artifactId>smartshare</artifactId>
     <groupId>com.paradm</groupId>
-    <version>1.0.0.sse-spring-boot-SNAPSHOT</version>
+    <version>1.0.0.sse-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
@@ -16,19 +16,11 @@
   <properties>
     <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <smartshare.version>1.0.0.sse-spring-boot-SNAPSHOT</smartshare.version>
-    <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
+    <smartshare.version>1.0.0.sse-SNAPSHOT</smartshare.version>
+    <spring-boot.version>2.4.4</spring-boot.version>
     <kaptcha.starter.version>1.0.0-SNAPSHOT</kaptcha.starter.version>
     <druid.starter.version>1.1.22</druid.starter.version>
 
-    <!-- webjars -->
-    <jquery.version>3.5.1</jquery.version>
-    <popper.version>1.16.0</popper.version>
-    <bootstrap.version>4.4.1</bootstrap.version>
-    <dialog.version>1.35.4</dialog.version>
-    <layer.version>3.1.1</layer.version>
-    <bootstrap-validator.version>0.5.3</bootstrap-validator.version>
-    <validator.version>0.11.9</validator.version>
     <!-- maven plugin version -->
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <maven-source-plugin.version>3.1.0</maven-source-plugin.version>
@@ -91,53 +83,6 @@
         <groupId>com.alibaba</groupId>
         <artifactId>druid-spring-boot-starter</artifactId>
         <version>${druid.starter.version}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>jquery</artifactId>
-        <version>${jquery.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>popper.js</artifactId>
-        <version>${popper.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>bootstrap</artifactId>
-        <version>${bootstrap.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.webjars.bower</groupId>
-        <artifactId>bootstrap3-dialog</artifactId>
-        <version>${dialog.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.webjars.bower</groupId>
-        <artifactId>layer</artifactId>
-        <version>${layer.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>bootstrapvalidator</artifactId>
-        <version>${bootstrap-validator.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.webjars.bower</groupId>
-        <artifactId>bootstrap-validator</artifactId>
-        <version>${validator.version}</version>
-        <exclusions>
-          <exclusion>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>jquery</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>com.paradm</groupId>
-        <artifactId>paradm-jslib</artifactId>
-        <version>1.0.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
