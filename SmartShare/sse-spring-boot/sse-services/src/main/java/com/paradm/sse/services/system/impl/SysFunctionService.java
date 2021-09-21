@@ -1,9 +1,9 @@
 package com.paradm.sse.services.system.impl;
 
+import cn.hutool.core.collection.IterUtil;
 import com.paradm.sse.common.constant.error.CommonError;
 import com.paradm.sse.common.enums.FunctionStatus;
 import com.paradm.sse.common.exception.ApplicationException;
-import com.paradm.sse.common.utils.Utility;
 import com.paradm.sse.domain.system.entity.SysFunction;
 import com.paradm.sse.domain.system.model.SysFunctionModel;
 import com.paradm.sse.persist.system.SysFunctionRepository;
@@ -32,7 +32,7 @@ public class SysFunctionService extends BaseService implements ISysFunctionServi
     List<SysFunctionModel> result = null;
     try {
       List<SysFunction> tempResult = sysFunctionRepository.findByStatusOrderByDisplaySeqAsc(FunctionStatus.ACTIVE);
-      if (!Utility.isEmpty(tempResult)) {
+      if (IterUtil.isNotEmpty(tempResult)) {
         result = tempResult.stream().map(sysFunction -> {
           SysFunctionModel sysFunctionModel = new SysFunctionModel();
           sysFunctionModel.setModelData(sysFunction);

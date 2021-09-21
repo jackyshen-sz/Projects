@@ -1,6 +1,7 @@
 package com.paradm.sse.common.crypt;
 
-import com.paradm.sse.common.utils.Utility;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import org.springframework.security.crypto.codec.Hex;
 import org.springframework.security.crypto.codec.Utf8;
 import org.springframework.security.crypto.keygen.BytesKeyGenerator;
@@ -13,6 +14,9 @@ import java.security.NoSuchAlgorithmException;
 import static org.springframework.security.crypto.util.EncodingUtils.concatenate;
 import static org.springframework.security.crypto.util.EncodingUtils.subArray;
 
+/**
+ * @author Jackyshen
+ */
 public final class ParadmPasswordEncoder implements PasswordEncoder {
 
   private static final int DEFAULT_ITERATIONS = 1024;
@@ -64,7 +68,7 @@ public final class ParadmPasswordEncoder implements PasswordEncoder {
   @Override
   public String encode(CharSequence rawPassword) {
     byte[] salt = new byte[] {};
-    if (!Utility.isEmpty(saltGenerator)) {
+    if (!ObjectUtil.isEmpty(saltGenerator)) {
       salt = saltGenerator.generateKey();
     }
     return encode(rawPassword, salt);
@@ -72,12 +76,12 @@ public final class ParadmPasswordEncoder implements PasswordEncoder {
 
   @Override
   public boolean matches(CharSequence rawPassword, String encodedPassword) {
-    if (Utility.isEmpty(encodedPassword)) {
+    if (StrUtil.isEmpty(encodedPassword)) {
       return false;
     }
     byte[] digested = decode(encodedPassword);
     int keyLength = 0;
-    if (!Utility.isEmpty(saltGenerator)) {
+    if (!ObjectUtil.isEmpty(saltGenerator)) {
       keyLength = saltGenerator.getKeyLength();
     }
     byte[] salt = subArray(digested, 0, keyLength);
@@ -112,7 +116,7 @@ public final class ParadmPasswordEncoder implements PasswordEncoder {
     return result == 0;
   }
 
-  final class Digester {
+  static final class Digester {
 
     private final MessageDigest messageDigest;
     private final int iterations;

@@ -7,6 +7,9 @@ import com.paradm.sse.common.constant.GlobalConstant;
  * @create data 2020/6/9
  */
 public enum LoginMethod implements GlobalConstant {
+  /**
+   *
+   */
   WEB, COOKIE, MFD, FTP, SYNC, MOBILE, OUTLOOK, PARA_SCAN,
   ;
 

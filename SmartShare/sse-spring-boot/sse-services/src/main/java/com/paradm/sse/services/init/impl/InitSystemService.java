@@ -1,6 +1,7 @@
 package com.paradm.sse.services.init.impl;
 
-import com.paradm.sse.common.constant.ModelConstant;
+import cn.hutool.core.collection.IterUtil;
+import cn.hutool.core.util.ObjectUtil;
 import com.paradm.sse.common.constant.error.CommonError;
 import com.paradm.sse.common.constant.error.InitError;
 import com.paradm.sse.common.constant.paramter.ParameterCode;
@@ -51,7 +52,7 @@ public class InitSystemService extends InitService implements IInitSystemService
     InitSystemModel formModel = new InitSystemModel();
     try {
       List<ParadmCompany> companyList = paradmCompanyService.getAllCompany();
-      if (!Utility.isEmpty(companyList)) {
+      if (IterUtil.isNotEmpty(companyList)) {
         ParadmCompany paradmCompany = companyList.get(0);
         // company model
         ParadmCompanyModel paradmCompanyModel = new ParadmCompanyModel();
@@ -71,7 +72,7 @@ public class InitSystemService extends InitService implements IInitSystemService
     } catch (Exception e) {
       log.error(e.getMessage(), e);
     }
-    model.addAttribute(ModelConstant.FORM_MODEL, formModel);
+//    model.addAttribute(ModelConstant.FORM_MODEL, formModel);
   }
 
   @Override
@@ -81,10 +82,13 @@ public class InitSystemService extends InitService implements IInitSystemService
       UserRecordModel userModel = initSystemModel.getUserModel();
       List<SysParameterModel> parameterModelList = initSystemModel.getParameterModelList();
 //      this.setEmailParameter(Utility.parseInteger(paradmCompanyModel.getId()), parameterModelList);
-      if (Utility.isEmpty(paradmCompanyModel) || Utility.isEmpty(paradmCompanyModel.getId()) || Utility.isEmpty(parameterModelList) || Utility.isEmpty(userModel)) {
+      if (ObjectUtil.isEmpty(paradmCompanyModel)
+          || ObjectUtil.isEmpty(paradmCompanyModel.getId())
+          || ObjectUtil.isEmpty(parameterModelList)
+          || ObjectUtil.isEmpty(userModel)) {
         throw new ApplicationException(InitError.PARAMETER_ERROR.getKey());
       }
-      if (!Utility.isEmpty(parameterModelList)) {
+      if (ObjectUtil.isNotEmpty(parameterModelList)) {
         Map<String, SysParameterModel> parameterModelMap = new HashMap<>();
         parameterModelList.forEach(parameterModel -> {
           parameterModelMap.put(parameterModel.getParameterCode(), parameterModel);
@@ -107,13 +111,13 @@ public class InitSystemService extends InitService implements IInitSystemService
     try {
       // 1. Input company details info
       ParadmCompanyModel paradmCompanyModel = initSystemModel.getParadmCompanyModel();
-      if (Utility.isEmpty(paradmCompanyModel) || Utility.isEmpty(paradmCompanyModel.getId())) {
-        String args = Utility.isEmpty(paradmCompanyModel) ? "" : paradmCompanyModel.getCompanyName();
+      if (ObjectUtil.isEmpty(paradmCompanyModel) || ObjectUtil.isEmpty(paradmCompanyModel.getId())) {
+        String args = ObjectUtil.isEmpty(paradmCompanyModel) ? "" : paradmCompanyModel.getCompanyName();
         throw new ApplicationException(InitError.COMPANY_NOT_EXIST.getKey(), args);
       }
       // 2. Check if the system already exists users
       List<UserRecordModel> userModelList = userRecordService.getAllUsers();
-      if (!Utility.isEmpty(userModelList)) {
+      if (ObjectUtil.isNotEmpty(userModelList)) {
         throw new ApplicationException(InitError.SIGN_IN_IS_COMPLETED.getKey());
       }
       Integer companyId = Utility.parseInteger(paradmCompanyModel.getId());
@@ -121,7 +125,7 @@ public class InitSystemService extends InitService implements IInitSystemService
       paradmCompanyService.updateSigninCompany(paradmCompanyModel, sessionContainer);
       // 4. update parameter setting
       List<SysParameterModel> parameterModelList = initSystemModel.getParameterModelList();
-      if (!Utility.isEmpty(parameterModelList)) {
+      if (ObjectUtil.isNotEmpty(parameterModelList)) {
 
       }
     } catch (ApplicationException e) {

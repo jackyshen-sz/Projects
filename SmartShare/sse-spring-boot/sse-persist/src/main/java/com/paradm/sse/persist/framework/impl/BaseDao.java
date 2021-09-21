@@ -1,8 +1,8 @@
 package com.paradm.sse.persist.framework.impl;
 
-import com.paradm.sse.common.constant.error.CommonError;
+import cn.hutool.core.util.ObjectUtil;
+import com.paradm.sse.common.api.ApiCode;
 import com.paradm.sse.common.exception.ApplicationException;
-import com.paradm.sse.common.utils.Utility;
 import com.paradm.sse.domain.framework.entity.BaseEntity;
 import com.paradm.sse.domain.framework.model.SessionContainer;
 import com.paradm.sse.persist.framework.IBaseDao;
@@ -11,8 +11,11 @@ import lombok.extern.slf4j.Slf4j;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TemporalType;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaUpdate;
+import javax.persistence.criteria.Root;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -30,46 +33,51 @@ public abstract class BaseDao<T> implements IBaseDao<T> {
     try {
       CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
       CriteriaUpdate<T> criteriaUpdate = this.createCriteriaUpdate(criteriaBuilder, entity, sessionContainer);
-      if (Utility.isEmpty(criteriaUpdate)) {
-        throw new ApplicationException(CommonError.CRITERIA_UPDATE_OVERRIDE_ERROR.getKey());
-      }
       Query query = em.createQuery(criteriaUpdate);
       int count = query.executeUpdate();
       if (count == 0) {
-        throw new ApplicationException(CommonError.DB_CONCURRENT_ERROR.getKey());
+        throw new ApplicationException(ApiCode.DB_CONCURRENT_ERROR);
       }
     } catch (ApplicationException e) {
       log.error(e.getMessage(), e);
       throw e;
     } catch (Exception e) {
       log.error(e.getMessage(), e);
-      throw new ApplicationException(CommonError.DB_UPDATE_ERROR.getKey());
+      throw new ApplicationException(ApiCode.DB_UPDATE_ERROR);
     }
   }
-
-  public abstract CriteriaUpdate<T> createCriteriaUpdate(CriteriaBuilder cb, T entity, SessionContainer sessionContainer);
 
   @Override
-  public void updateBySql(boolean isNative, String sql, Map<Integer, Object> params) {
+  public void updateBySql(String sql, Map<String, Object> params, boolean isNative) {
     try {
-      Query query = this.createQuery(isNative, sql);
-      if (!Utility.isEmpty(params)) {
-        params.keySet().forEach(position -> query.setParameter(position, params.get(position)));
-      }
+      Query query = this.createQuery(sql, isNative);
+      this.setQueryParams(params, query);
       int count = query.executeUpdate();
       if (count == 0) {
-        throw new ApplicationException(CommonError.DB_CONCURRENT_ERROR.getKey());
+        throw new ApplicationException(ApiCode.DB_CONCURRENT_ERROR);
       }
     } catch (ApplicationException e) {
       log.error(e.getMessage(), e);
       throw e;
     } catch (Exception e) {
       log.error(e.getMessage(), e);
-      throw new ApplicationException(CommonError.DB_UPDATE_ERROR.getKey());
+      throw new ApplicationException(ApiCode.DB_UPDATE_ERROR);
     }
   }
 
-  private Query createQuery(boolean isNative, String sql) {
+  protected void setQueryParams(Map<String, Object> params, Query query) {
+    if (ObjectUtil.isNotEmpty(params)) {
+      params.forEach((key, value) -> {
+        if (value instanceof Date) {
+          query.setParameter(key, (Date) value, TemporalType.TIMESTAMP);
+        } else {
+          query.setParameter(key, value);
+        }
+      });
+    }
+  }
+
+  private Query createQuery(String sql, boolean isNative) {
     Query query = null;
     if (isNative) {
       query = em.createNativeQuery(sql);
@@ -81,9 +89,21 @@ public abstract class BaseDao<T> implements IBaseDao<T> {
 
   protected Integer getUpdaterId(BaseEntity entity, SessionContainer sessionContainer) {
     Integer updaterId = entity.getUpdaterId();
-    if (!Utility.isEmpty(sessionContainer) && !Utility.isEmpty(sessionContainer.getUserRecordId())) {
+    if (!ObjectUtil.isEmpty(sessionContainer) && !ObjectUtil.isEmpty(sessionContainer.getUserRecordId())) {
       updaterId = sessionContainer.getUserRecordId();
     }
     return updaterId;
+  }
+
+  public abstract CriteriaUpdate<T> createCriteriaUpdate(CriteriaBuilder cb, T entity, SessionContainer sessionContainer);
+
+  protected void setCommonCriteriaUpdate(CriteriaUpdate<? extends BaseEntity> criteriaUpdate, Root<? extends BaseEntity> entityRoot, BaseEntity entity, SessionContainer sessionContainer) {
+    Integer updateCount = ObjectUtil.isEmpty(entity.getUpdateCount()) ? 0 : entity.getUpdateCount();
+    criteriaUpdate.set(entityRoot.get("updateCount"), (updateCount + 1));
+    criteriaUpdate.set(entityRoot.get("updaterId"), this.getUpdaterId(entity, sessionContainer));
+    criteriaUpdate.set(entityRoot.get("updateDate"), new Date(System.currentTimeMillis()));
+    if (ObjectUtil.isNotNull(entity.getRecordStatus())) {
+      criteriaUpdate.set(entityRoot.get("recordStatus"), entity.getRecordStatus());
+    }
   }
 }

@@ -1,6 +1,7 @@
 package com.paradm.sse.framework.utils;
 
-import com.paradm.sse.common.utils.Utility;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,7 @@ public class WebUtility {
 
   public static boolean isAjaxRequest(HttpServletRequest request) {
     String header = request.getHeader("x-requested-with");
-    if (!Utility.isEmpty(header) && "XMLHttpRequest".equalsIgnoreCase(header)) {
+    if (!StrUtil.isEmpty(header) && "XMLHttpRequest".equalsIgnoreCase(header)) {
       return true;
     }
     return false;
@@ -41,7 +42,7 @@ public class WebUtility {
   public Cookie getCookie(HttpServletRequest request, String path, String cookieName) {
     Cookie[] cookies = request.getCookies();
     Cookie result = null;
-    if (!Utility.isEmpty(cookies)) {
+    if (!ObjectUtil.isEmpty(cookies)) {
       Optional<Cookie> optional = Arrays.stream(cookies).filter(cookie -> cookieName.equalsIgnoreCase(cookie.getName())).findAny();
       if (optional.isPresent()) {
         result = optional.get();
@@ -70,7 +71,7 @@ public class WebUtility {
    * @param expiry (s) set effective time.
    */
   public void setCookie(String path, String cookieName, String value, int expiry, HttpServletResponse res) {
-    if (Utility.isEmpty(value) || expiry < 0) {
+    if (StrUtil.isEmpty(value) || expiry < 0) {
       return;
     }
     Cookie cookie = new Cookie(cookieName, value);

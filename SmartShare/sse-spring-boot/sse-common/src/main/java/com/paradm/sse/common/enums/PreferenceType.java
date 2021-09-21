@@ -1,12 +1,15 @@
 package com.paradm.sse.common.enums;
 
-import com.paradm.sse.common.utils.Utility;
+import cn.hutool.core.util.StrUtil;
 
 /**
  * @author Jacky.shen
  * @create data 2020/5/12
  */
 public enum PreferenceType {
+  /**
+   *
+   */
   STANDARD("standard"), DARK_GREY("darkGrey"), BLACK("black");
 
   private String name;
@@ -15,6 +18,7 @@ public enum PreferenceType {
     this.name = name;
   }
 
+  @Override
   public String toString() {
     return this.name;
   }
@@ -25,7 +29,7 @@ public enum PreferenceType {
 
   public static PreferenceType fromAcronym(String acronym) {
     PreferenceType result = PreferenceType.STANDARD;
-    if (!Utility.isEmpty(acronym)) {
+    if (!StrUtil.isEmpty(acronym)) {
       for (PreferenceType preferenceType : PreferenceType.values()) {
         if (acronym.equals(preferenceType.toString())) {
           result = preferenceType;

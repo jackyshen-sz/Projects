@@ -6,7 +6,6 @@ import com.paradm.sse.domain.framework.entity.IdEntity;
 import com.paradm.sse.domain.framework.model.BaseModel;
 import com.paradm.sse.domain.system.entity.SysParameter;
 import lombok.Data;
-import org.springframework.beans.BeanUtils;
 
 /**
  * @author Jacky.shen
@@ -27,8 +26,7 @@ public class SysParameterModel extends BaseModel {
   @Override
   public void setModelData(IdEntity entity) {
     SysParameter sysParameter = (SysParameter) entity;
-    BeanUtils.copyProperties(sysParameter, this);
-    this.setBaseModelData(this, sysParameter);
+    this.setBaseModelData(sysParameter);
     this.setParameterType(sysParameter.getParameterType().toString());
     this.setStatus(sysParameter.getStatus().toString());
   }
@@ -36,7 +34,6 @@ public class SysParameterModel extends BaseModel {
   @Override
   public SysParameter getEntityData() {
     SysParameter sysParameter = new SysParameter();
-    BeanUtils.copyProperties(this, sysParameter);
     this.setBaseEntity(sysParameter);
     sysParameter.setParameterType(ParameterType.fromAcronym(this.getParameterType()));
     sysParameter.setStatus(ParameterStatus.fromAcronym(this.getStatus()));

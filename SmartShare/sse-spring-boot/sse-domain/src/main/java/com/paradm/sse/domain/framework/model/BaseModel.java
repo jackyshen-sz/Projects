@@ -5,6 +5,7 @@ import com.paradm.sse.common.utils.Utility;
 import com.paradm.sse.domain.framework.entity.BaseEntity;
 import com.paradm.sse.domain.framework.entity.IdEntity;
 import lombok.Data;
+import org.springframework.beans.BeanUtils;
 
 import java.io.*;
 
@@ -56,17 +57,19 @@ public abstract class BaseModel implements Serializable {
     return deepCopy;
   }
 
-  public void setBaseModelData(BaseModel baseModel, BaseEntity entity) {
-    baseModel.setId(Utility.formatInteger(entity.getId()));
-    baseModel.setRecordStatus(entity.getRecordStatus().toString());
-    baseModel.setUpdateCount(Utility.formatInteger(entity.getUpdateCount()));
-    baseModel.setUpdaterId(Utility.formatInteger(entity.getUpdaterId()));
-    baseModel.setUpdateDate(Utility.formatDate(entity.getUpdateDate()));
-    baseModel.setCreatorId(Utility.formatInteger(entity.getCreatorId()));
-    baseModel.setCreateDate(Utility.formatDate(entity.getCreateDate()));
+  public void setBaseModelData(BaseEntity entity) {
+    BeanUtils.copyProperties(entity, this);
+    this.setId(Utility.formatInteger(entity.getId()));
+    this.setRecordStatus(entity.getRecordStatus().toString());
+    this.setUpdateCount(Utility.formatInteger(entity.getUpdateCount()));
+    this.setUpdaterId(Utility.formatInteger(entity.getUpdaterId()));
+    this.setUpdateDate(Utility.formatDate(entity.getUpdateDate()));
+    this.setCreatorId(Utility.formatInteger(entity.getCreatorId()));
+    this.setCreateDate(Utility.formatDate(entity.getCreateDate()));
   }
 
   public void setBaseEntity(BaseEntity entity) {
+    BeanUtils.copyProperties(this, entity);
     entity.setId(Utility.parseInteger(this.getId()));
     entity.setRecordStatus(RecordStatus.fromAcronym(this.getRecordStatus()));
     entity.setUpdateCount(Utility.parseInteger(this.getUpdateCount()));

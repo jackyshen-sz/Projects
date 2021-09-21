@@ -1,9 +1,10 @@
 package com.paradm.sse.services.system.impl;
 
+import cn.hutool.core.collection.IterUtil;
+import cn.hutool.core.map.MapUtil;
 import com.paradm.sse.common.enums.RecordStatus;
 import com.paradm.sse.common.exception.ApplicationException;
 import com.paradm.sse.common.factory.SystemParameterFactory;
-import com.paradm.sse.common.utils.Utility;
 import com.paradm.sse.domain.system.entity.SysParameter;
 import com.paradm.sse.persist.system.SysParameterRepository;
 import com.paradm.sse.services.framework.impl.BaseService;
@@ -32,7 +33,7 @@ public class SysParameterService extends BaseService implements ISysParameterSer
     Map<String, String> result = new Hashtable<>();
     try {
       List<SysParameter> list = sysParameterRepository.findByRecordStatus(RecordStatus.ACTIVE);
-      if (!Utility.isEmpty(list)) {
+      if (IterUtil.isNotEmpty(list)) {
         list.forEach(sysParameter -> result.put(sysParameter.getParameterCode(), sysParameter.getParameterValue()));
       }
     } catch (Exception e) {
@@ -53,7 +54,7 @@ public class SysParameterService extends BaseService implements ISysParameterSer
 
   @Override
   public void initGlobalSysParameter(Map<String, String> sysParaHash) {
-    if (!Utility.isEmpty(sysParaHash)) {
+    if (MapUtil.isNotEmpty(sysParaHash)) {
       SystemParameterFactory.init(sysParaHash);
     }
   }

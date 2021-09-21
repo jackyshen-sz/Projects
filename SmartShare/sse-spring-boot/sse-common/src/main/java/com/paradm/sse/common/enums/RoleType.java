@@ -1,12 +1,15 @@
 package com.paradm.sse.common.enums;
 
-import com.paradm.sse.common.utils.Utility;
+import cn.hutool.core.util.StrUtil;
 
 /**
  * @author Jacky.shen
  * @create data 2020/5/12
  */
 public enum RoleType {
+  /**
+   *
+   */
   ADMIN("A"), USER("U"), EXTERNAL("E");
 
   private String name;
@@ -15,6 +18,7 @@ public enum RoleType {
     this.name = name;
   }
 
+  @Override
   public String toString() {
     return this.name;
   }
@@ -25,7 +29,7 @@ public enum RoleType {
 
   public static RoleType fromAcronym(String acronym) {
     RoleType result = RoleType.ADMIN;
-    if (!Utility.isEmpty(acronym)) {
+    if (!StrUtil.isEmpty(acronym)) {
       for (RoleType roleType : RoleType.values()) {
         if (acronym.equals(roleType.toString())) {
           result = roleType;

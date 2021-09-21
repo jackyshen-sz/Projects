@@ -1,12 +1,15 @@
 package com.paradm.sse.common.enums;
 
-import com.paradm.sse.common.utils.Utility;
+import cn.hutool.core.util.StrUtil;
 
 /**
  * @author Jacky.shen
  * @create data 2020/5/29
  */
 public enum CompanyActiveFlag {
+  /**
+   *
+   */
   NONE_PURCHASED("0"),
   NONE_PURCHASED_EXPIRED("1"),
   PURCHASED("2"),
@@ -19,6 +22,7 @@ public enum CompanyActiveFlag {
     this.name = name;
   }
 
+  @Override
   public String toString() {
     return this.name;
   }
@@ -29,7 +33,7 @@ public enum CompanyActiveFlag {
 
   public static CompanyActiveFlag fromAcronym(String acronym) {
     CompanyActiveFlag result = CompanyActiveFlag.PURCHASED;
-    if (!Utility.isEmpty(acronym)) {
+    if (!StrUtil.isEmpty(acronym)) {
       for (CompanyActiveFlag companyActiveFlag : CompanyActiveFlag.values()) {
         if (acronym.equals(companyActiveFlag.toString())) {
           result = companyActiveFlag;

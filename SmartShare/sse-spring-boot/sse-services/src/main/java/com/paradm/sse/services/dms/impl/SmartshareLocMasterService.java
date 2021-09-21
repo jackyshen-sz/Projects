@@ -1,8 +1,8 @@
 package com.paradm.sse.services.dms.impl;
 
+import cn.hutool.core.collection.IterUtil;
 import com.paradm.sse.common.constant.error.CommonError;
 import com.paradm.sse.common.exception.ApplicationException;
-import com.paradm.sse.common.utils.Utility;
 import com.paradm.sse.domain.dms.entity.SmartshareLocMaster;
 import com.paradm.sse.domain.dms.model.SmartshareLocMasterModel;
 import com.paradm.sse.persist.dms.SmartshareLocMasterRepository;
@@ -30,7 +30,7 @@ public class SmartshareLocMasterService extends BaseService implements ISmartsha
     SmartshareLocMasterModel locMasterModel = null;
     try {
       List<SmartshareLocMaster> locMasterList = locMasterRepository.findAll();
-      if (!Utility.isEmpty(locMasterList)) {
+      if (IterUtil.isNotEmpty(locMasterList)) {
         locMasterModel = new SmartshareLocMasterModel();
         locMasterModel.setModelData(locMasterList.get(0));
         this.setCreateAndUpdateName(locMasterModel);

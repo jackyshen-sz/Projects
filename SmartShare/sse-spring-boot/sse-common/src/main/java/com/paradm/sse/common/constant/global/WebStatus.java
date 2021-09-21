@@ -7,6 +7,9 @@ import com.paradm.sse.common.constant.GlobalConstant;
  * @create data 2020/6/9
  */
 public enum WebStatus implements GlobalConstant {
+  /**
+   *
+   */
   SUCCESSFUL("successful"), FAILED("failed"),
   ;
 
@@ -18,16 +21,11 @@ public enum WebStatus implements GlobalConstant {
 
   @Override
   public String getKey() {
-    return getValue();
+    return toString();
   }
 
   @Override
   public String getValue() {
     return this.value;
-  }
-
-  @Override
-  public String toString() {
-    return getValue();
   }
 }

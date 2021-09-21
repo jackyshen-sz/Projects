@@ -8,6 +8,9 @@ import com.paradm.sse.common.constant.Constant;
  */
 public enum CommonError implements Constant {
 
+  /**
+   *
+   */
   COMMON_UNKNOWN_ERROR("errors.common.unknown_error"),
 
   DB_CONCURRENT_ERROR("errors.framework.concurrent"),

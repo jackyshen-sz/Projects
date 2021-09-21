@@ -21,13 +21,17 @@ public class CustomizeProperties implements Serializable {
   private Security security;
 
   @Data
-  static class Security {
+  static class Security implements Serializable {
+    private static final long serialVersionUID = 1181436267785566464L;
+
     private String permitAll;
     private String csrfIgnoreUrl = "/api/**";
     private String staticIgnoreUrl = "/webjars/**";
     private Browser browser = new Browser();
     @Data
-    static class Browser {
+    static class Browser implements Serializable {
+      private static final long serialVersionUID = 6311816425331964905L;
+
       private String loginPage = "/login";
       private String logoutUrl = "/logout";
     }

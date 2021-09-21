@@ -20,7 +20,7 @@
     <spring-boot.version>2.2.6.RELEASE</spring-boot.version>
     <kaptcha.starter.version>1.0.0-SNAPSHOT</kaptcha.starter.version>
     <druid.starter.version>1.1.22</druid.starter.version>
-
+    <hutool.version>5.5.8</hutool.version>
     <!-- webjars -->
     <jquery.version>3.5.1</jquery.version>
     <popper.version>1.16.0</popper.version>
@@ -91,6 +91,12 @@
         <groupId>com.alibaba</groupId>
         <artifactId>druid-spring-boot-starter</artifactId>
         <version>${druid.starter.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>cn.hutool</groupId>
+        <artifactId>hutool-all</artifactId>
+        <version>${hutool.version}</version>
       </dependency>
 
       <dependency>

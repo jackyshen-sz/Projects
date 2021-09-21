@@ -1,5 +1,6 @@
 package com.paradm.sse.services.framework.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.paradm.sse.common.factory.UserInfoFactory;
 import com.paradm.sse.common.utils.Utility;
 import com.paradm.sse.domain.framework.model.BaseModel;
@@ -24,14 +25,14 @@ public class BaseService implements IBaseService {
   @Override
   public String getUserFullName(Integer userId) {
     String fullName = UserInfoFactory.getUserFullName(userId);
-    if (Utility.isEmpty(fullName)) {
+    if (StrUtil.isEmpty(fullName)) {
       Optional<UserRecord> optional = userRecordRepository.findById(userId);
       String[] userInfo = new String[3];
       if (optional.isPresent()) {
         UserRecord userRecord = optional.get();
         userInfo[0] = userRecord.getFullName();
         userInfo[1] = userRecord.getLoginName().toLowerCase();
-        userInfo[2] = Utility.isEmpty(userRecord.getUserDef1()) ? "" : userRecord.getUserDef1();
+        userInfo[2] = StrUtil.isEmpty(userRecord.getUserDef1()) ? "" : userRecord.getUserDef1();
         fullName = userInfo[0];
         UserInfoFactory.setUserInfo(userId, userInfo);
       }

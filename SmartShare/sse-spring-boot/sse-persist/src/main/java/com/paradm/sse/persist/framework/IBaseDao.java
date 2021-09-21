@@ -10,7 +10,20 @@ import java.util.Map;
  */
 public interface IBaseDao<T> {
 
+  /**
+   * update by criteria
+   *
+   * @param entity
+   * @param sessionContainer
+   */
   void updateByCriteria(T entity, SessionContainer sessionContainer);
 
-  void updateBySql(boolean isNative, String sql, Map<Integer, Object> params);
+  /**
+   * update by sql
+   *
+   * @param isNative
+   * @param sql
+   * @param params
+   */
+  void updateBySql(String sql, Map<String, Object> params, boolean isNative);
 }

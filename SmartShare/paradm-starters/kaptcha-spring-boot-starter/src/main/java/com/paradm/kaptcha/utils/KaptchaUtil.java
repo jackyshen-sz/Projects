@@ -1,7 +1,6 @@
 package com.paradm.kaptcha.utils;
 
 import com.google.code.kaptcha.Constants;
-import com.paradm.kaptcha.configuration.KaptchaProperties;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

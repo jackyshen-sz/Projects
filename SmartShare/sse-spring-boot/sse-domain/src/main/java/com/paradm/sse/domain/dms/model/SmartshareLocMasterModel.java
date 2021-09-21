@@ -5,7 +5,6 @@ import com.paradm.sse.domain.dms.entity.SmartshareLocMaster;
 import com.paradm.sse.domain.framework.entity.IdEntity;
 import com.paradm.sse.domain.framework.model.BaseModel;
 import lombok.Data;
-import org.springframework.beans.BeanUtils;
 
 /**
  * @author Jacky.shen
@@ -24,15 +23,13 @@ public class SmartshareLocMasterModel extends BaseModel {
   @Override
   public void setModelData(IdEntity entity) {
     SmartshareLocMaster smartshareLocMaster = (SmartshareLocMaster) entity;
-    BeanUtils.copyProperties(smartshareLocMaster, this);
-    this.setBaseModelData(this, smartshareLocMaster);
+    this.setBaseModelData(smartshareLocMaster);
     this.setSegmentNo(Utility.formatInteger(smartshareLocMaster.getSegmentNo()));
   }
 
   @Override
   public SmartshareLocMaster getEntityData() {
     SmartshareLocMaster smartshareLocMaster = new SmartshareLocMaster();
-    BeanUtils.copyProperties(this, smartshareLocMaster);
     this.setBaseEntity(smartshareLocMaster);
     smartshareLocMaster.setSegmentNo(Utility.parseInteger(this.getSegmentNo()));
     return smartshareLocMaster;

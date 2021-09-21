@@ -8,6 +8,9 @@ import com.paradm.sse.common.constant.Constant;
  */
 public enum InitMessage implements Constant {
 
+  /**
+   *
+   */
   SIGN_IN_SUCCESS("init.message.sign_in_success"),
   ;
 

@@ -1,6 +1,6 @@
 package com.paradm.sse.services.framework.impl;
 
-import com.paradm.sse.common.utils.Utility;
+import cn.hutool.core.collection.IterUtil;
 import com.paradm.sse.domain.user.model.UserRecordModel;
 import com.paradm.sse.services.framework.IHomeService;
 import com.paradm.sse.services.user.IUserRecordService;
@@ -26,7 +26,7 @@ public class HomeService extends BaseService implements IHomeService {
     boolean initFlag = false;
     try {
       List<UserRecordModel> userModelList = userRecordService.getAllUsers();
-      if (Utility.isEmpty(userModelList)) {
+      if (IterUtil.isEmpty(userModelList)) {
         initFlag = true;
       }
     } catch (Exception e) {

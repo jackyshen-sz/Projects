@@ -1,12 +1,15 @@
 package com.paradm.sse.common.enums;
 
-import com.paradm.sse.common.utils.Utility;
+import cn.hutool.core.util.StrUtil;
 
 /**
  * @author Jacky.shen
  * @create data 2020/5/22
  */
 public enum ParameterType {
+  /**
+   *
+   */
   STRING("S"), INTEGER("I"), BOOLEAN("B"), DATE("D");
 
   private String name;
@@ -15,6 +18,7 @@ public enum ParameterType {
     this.name = name;
   }
 
+  @Override
   public String toString() {
     return this.name;
   }
@@ -25,7 +29,7 @@ public enum ParameterType {
 
   public static ParameterType fromAcronym(String acronym) {
     ParameterType result = ParameterType.STRING;
-    if (!Utility.isEmpty(acronym)) {
+    if (!StrUtil.isEmpty(acronym)) {
       for (ParameterType parameterType : ParameterType.values()) {
         if (acronym.equals(parameterType.toString())) {
           result = parameterType;

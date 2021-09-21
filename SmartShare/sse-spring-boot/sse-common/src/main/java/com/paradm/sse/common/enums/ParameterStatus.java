@@ -1,12 +1,15 @@
 package com.paradm.sse.common.enums;
 
-import com.paradm.sse.common.utils.Utility;
+import cn.hutool.core.util.StrUtil;
 
 /**
  * @author Jacky.shen
  * @create data 2020/5/22
  */
 public enum ParameterStatus {
+  /**
+   *
+   */
   HIDE("H"), SHOW("S");
 
   private String name;
@@ -15,6 +18,7 @@ public enum ParameterStatus {
     this.name = name;
   }
 
+  @Override
   public String toString() {
     return this.name;
   }
@@ -25,7 +29,7 @@ public enum ParameterStatus {
 
   public static ParameterStatus fromAcronym(String acronym) {
     ParameterStatus result = ParameterStatus.HIDE;
-    if (!Utility.isEmpty(acronym)) {
+    if (!StrUtil.isEmpty(acronym)) {
       for (ParameterStatus parameterStatus : ParameterStatus.values()) {
         if (acronym.equals(parameterStatus.toString())) {
           result = parameterStatus;

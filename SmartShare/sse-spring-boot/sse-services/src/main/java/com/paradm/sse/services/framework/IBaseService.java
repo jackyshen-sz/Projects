@@ -6,5 +6,11 @@ package com.paradm.sse.services.framework;
  */
 public interface IBaseService {
 
+  /**
+   * get user full-name by user id
+   *
+   * @param userId
+   * @return
+   */
   String getUserFullName(Integer userId);
 }

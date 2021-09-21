@@ -1,5 +1,6 @@
 package com.paradm.sse.domain.framework.model;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.paradm.sse.common.enums.RoleType;
 import com.paradm.sse.common.utils.Utility;
 import com.paradm.sse.domain.framework.ApplicationContainer;
@@ -38,19 +39,19 @@ public class SessionContainer implements Serializable {
 
   public Integer getUserRecordId() {
     Integer userId = null;
-    if (!Utility.isEmpty(this.getUserRecordModel())) {
+    if (!ObjectUtil.isEmpty(this.getUserRecordModel())) {
       userId = Utility.parseInteger(this.getUserRecordModel().getId());
     }
     return userId;
   }
 
   public String getUserFullName() {
-    return Utility.isEmpty(this.getUserRecordModel()) ? "" : this.getUserRecordModel().getFullName();
+    return ObjectUtil.isEmpty(this.getUserRecordModel()) ? "" : this.getUserRecordModel().getFullName();
   }
 
   public Integer getCompanyId() {
     Integer companyId = null;
-    if (!Utility.isEmpty(this.getUserRecordModel())) {
+    if (!ObjectUtil.isEmpty(this.getUserRecordModel())) {
       companyId = Utility.parseInteger(this.getUserRecordModel().getCompanyId());
     }
     return companyId;
@@ -58,7 +59,7 @@ public class SessionContainer implements Serializable {
 
   public boolean isAdmin() {
     boolean isAdmin = false;
-    if (!Utility.isEmpty(this.getUserRecordModel())) {
+    if (!ObjectUtil.isEmpty(this.getUserRecordModel())) {
       isAdmin = RoleType.ADMIN.toString().equals(this.getUserRecordModel().getUserType());
     }
     return isAdmin;

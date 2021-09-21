@@ -1,12 +1,15 @@
 package com.paradm.sse.common.enums;
 
-import com.paradm.sse.common.utils.Utility;
+import cn.hutool.core.util.StrUtil;
 
 /**
  * @author Jacky.shen
  * @create data 2020/5/12
  */
 public enum NotifyGroupType {
+  /**
+   *
+   */
   NO("N"), ONE_HOUR("O"), REAL_TIME("R");
 
   private String name;
@@ -15,6 +18,7 @@ public enum NotifyGroupType {
     this.name = name;
   }
 
+  @Override
   public String toString() {
     return this.name;
   }
@@ -25,7 +29,7 @@ public enum NotifyGroupType {
 
   public static NotifyGroupType fromAcronym(String acronym) {
     NotifyGroupType result = NotifyGroupType.REAL_TIME;
-    if (!Utility.isEmpty(acronym)) {
+    if (!StrUtil.isEmpty(acronym)) {
       for (NotifyGroupType flag : NotifyGroupType.values()) {
         if (acronym.equals(flag.toString())) {
           result = flag;

@@ -1,12 +1,7 @@
 package com.paradm.sse.framework.controller;
 
-import com.google.code.kaptcha.Constants;
+import cn.hutool.core.util.ObjectUtil;
 import com.paradm.sse.common.constant.GlobalConstant;
-import com.paradm.sse.common.constant.TilesViewConstant;
-import com.paradm.sse.common.constant.error.CommonError;
-import com.paradm.sse.common.exception.ApplicationException;
-import com.paradm.sse.common.utils.Utility;
-import com.paradm.sse.domain.framework.model.BaseModel;
 import com.paradm.sse.domain.framework.model.SessionContainer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
@@ -45,9 +40,9 @@ public class BaseController {
   @ModelAttribute
   public void setReqAndResp(HttpServletRequest request, HttpServletResponse response) {
     log.debug("setReqAndResp...");
-    if (Utility.isEmpty(request) || Utility.isEmpty(response)) {
+    if (ObjectUtil.isEmpty(request) || ObjectUtil.isEmpty(response)) {
       log.debug("get request and response...");
-      if (!Utility.isEmpty(RequestContextHolder.getRequestAttributes())) {
+      if (ObjectUtil.isNotEmpty(RequestContextHolder.getRequestAttributes())) {
         request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
       }
@@ -60,23 +55,23 @@ public class BaseController {
   public String exceptionHandler(Exception ex) {
     log.error("controller throw exception...");
     log.error(ex.getMessage(), ex);
-    return TilesViewConstant.ERROR;
+    return "";//TilesViewConstant.ERROR;
   }
 
   protected SessionContainer getSessionContainer() {
-    if (Utility.isEmpty(request) || Utility.isEmpty(request.getSession())) {
+    if (ObjectUtil.isEmpty(request) || ObjectUtil.isEmpty(request.getSession())) {
       log.debug("request is null...");
-      if (!Utility.isEmpty(RequestContextHolder.getRequestAttributes())) {
+      if (ObjectUtil.isNotEmpty(RequestContextHolder.getRequestAttributes())) {
         request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
       }
     }
     return (SessionContainer) request.getSession().getAttribute(GlobalConstant.SESSION_CONTAINER_KEY);
   }
 
-  protected void checkCaptcha(BaseModel baseModel) {
-    if (Utility.isEmpty(baseModel.getCaptcha())
-        || !baseModel.getCaptcha().equalsIgnoreCase((String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY))) {
-      throw new ApplicationException(CommonError.KAPTCHA_WRONG_ERROR.getKey());
-    }
-  }
+  //  protected void checkCaptcha(BaseModel baseModel) {
+  //    if (ObjectUtil.isEmpty(baseModel.getCaptcha())
+  //        || !baseModel.getCaptcha().equalsIgnoreCase((String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY))) {
+  //      throw new ApplicationException(CommonError.KAPTCHA_WRONG_ERROR.getKey());
+  //    }
+  //  }
 }

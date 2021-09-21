@@ -1,12 +1,15 @@
 package com.paradm.sse.common.enums;
 
-import com.paradm.sse.common.utils.Utility;
+import cn.hutool.core.util.StrUtil;
 
 /**
  * @author Jacky.shen
  * @create data 2020/5/22
  */
 public enum MenuType {
+  /**
+   *
+   */
   STRING("S"), HIDE("H");
 
   private String name;
@@ -15,6 +18,7 @@ public enum MenuType {
     this.name = name;
   }
 
+  @Override
   public String toString() {
     return this.name;
   }
@@ -25,7 +29,7 @@ public enum MenuType {
 
   public static MenuType fromAcronym(String acronym) {
     MenuType result = MenuType.STRING;
-    if (!Utility.isEmpty(acronym)) {
+    if (!StrUtil.isEmpty(acronym)) {
       for (MenuType menuType : MenuType.values()) {
         if (acronym.equals(menuType.toString())) {
           result = menuType;

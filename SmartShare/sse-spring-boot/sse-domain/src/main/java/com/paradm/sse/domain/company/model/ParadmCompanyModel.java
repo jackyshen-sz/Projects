@@ -8,7 +8,6 @@ import com.paradm.sse.domain.company.entity.ParadmCompany;
 import com.paradm.sse.domain.framework.entity.IdEntity;
 import com.paradm.sse.domain.framework.model.BaseModel;
 import lombok.Data;
-import org.springframework.beans.BeanUtils;
 
 /**
  * @author Jacky.shen
@@ -86,8 +85,7 @@ public class ParadmCompanyModel extends BaseModel {
   @Override
   public void setModelData(IdEntity entity) {
     ParadmCompany paradmCompany = (ParadmCompany) entity;
-    BeanUtils.copyProperties(paradmCompany, this);
-    this.setBaseModelData(this, paradmCompany);
+    this.setBaseModelData(paradmCompany);
     this.setCicId(Utility.formatInteger(paradmCompany.getCicId()));
     this.setCountryId(Utility.formatInteger(paradmCompany.getCountryId()));
     this.setDataSourceDbType(Utility.formatInteger(paradmCompany.getDataSourceDbType()));
@@ -119,7 +117,6 @@ public class ParadmCompanyModel extends BaseModel {
   @Override
   public ParadmCompany getEntityData() {
     ParadmCompany paradmCompany = new ParadmCompany();
-    BeanUtils.copyProperties(this, paradmCompany);
     this.setBaseEntity(paradmCompany);
     paradmCompany.setCicId(Utility.parseInteger(this.getCicId()));
     paradmCompany.setCountryId(Utility.parseInteger(this.getCountryId()));

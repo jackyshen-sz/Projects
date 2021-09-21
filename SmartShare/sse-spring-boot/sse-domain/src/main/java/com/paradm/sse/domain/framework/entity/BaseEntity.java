@@ -2,6 +2,7 @@ package com.paradm.sse.domain.framework.entity;
 
 import com.paradm.sse.common.enums.RecordStatus;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -18,7 +19,9 @@ import java.util.Date;
  */
 @Data
 @MappedSuperclass
+@EqualsAndHashCode(callSuper = true)
 public class BaseEntity extends IdEntity implements Serializable {
+
   private static final long serialVersionUID = -3913886534263129651L;
 
   @Column(name = "RECORD_STATUS", nullable = false)

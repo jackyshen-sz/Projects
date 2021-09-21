@@ -1,12 +1,12 @@
 package com.paradm.sse.domain.user.model;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.paradm.sse.common.enums.*;
 import com.paradm.sse.common.utils.Utility;
 import com.paradm.sse.domain.framework.entity.IdEntity;
 import com.paradm.sse.domain.framework.model.BaseModel;
 import com.paradm.sse.domain.user.entity.UserRecord;
 import lombok.Data;
-import org.springframework.beans.BeanUtils;
 
 /**
  * @author Jacky.shen
@@ -58,8 +58,7 @@ public class UserRecordModel extends BaseModel {
   @Override
   public void setModelData(IdEntity entity) {
     UserRecord userRecord = (UserRecord) entity;
-    BeanUtils.copyProperties(userRecord, this);
-    this.setBaseModelData(this, userRecord);
+    this.setBaseModelData(userRecord);
     this.setCompanyId(Utility.formatInteger(userRecord.getCompanyId()));
     this.setFailedAttempt(Utility.formatInteger(userRecord.getFailedAttempt()));
     this.setConnectorFailedAttempt(Utility.formatInteger(userRecord.getConnectorFailedAttempt()));
@@ -75,15 +74,14 @@ public class UserRecordModel extends BaseModel {
     this.setLastLoginDate(Utility.formatDate(userRecord.getLastLoginDate()));
     this.setTwoFactorAuthEnable(userRecord.getTwoFactorAuthEnable().toString());
     this.setStorageQuota(Utility.formatInteger(userRecord.getStorageQuota()));
-    this.setNotifyFlag(Utility.isEmpty(userRecord.getNotifyFlag()) ? YesNoFlag.YES.toString() : userRecord.getNotifyFlag().toString());
-    this.setNotifyGroupByStatus(Utility.isEmpty(userRecord.getNotifyGroupByStatus()) ? NotifyGroupType.REAL_TIME.toString() : userRecord.getNotifyGroupByStatus().toString());
-    this.setAmdpSyncFlag(Utility.isEmpty(userRecord.getAmdpSyncFlag()) ? YesNoFlag.NO.toString() : userRecord.getAmdpSyncFlag().toString());
+    this.setNotifyFlag(ObjectUtil.isEmpty(userRecord.getNotifyFlag()) ? YesNoFlag.YES.toString() : userRecord.getNotifyFlag().toString());
+    this.setNotifyGroupByStatus(ObjectUtil.isEmpty(userRecord.getNotifyGroupByStatus()) ? NotifyGroupType.REAL_TIME.toString() : userRecord.getNotifyGroupByStatus().toString());
+    this.setAmdpSyncFlag(ObjectUtil.isEmpty(userRecord.getAmdpSyncFlag()) ? YesNoFlag.NO.toString() : userRecord.getAmdpSyncFlag().toString());
   }
 
   @Override
   public IdEntity getEntityData() {
     UserRecord userRecord = new UserRecord();
-    BeanUtils.copyProperties(this, userRecord);
     this.setBaseEntity(userRecord);
     userRecord.setCompanyId(Utility.parseInteger(this.getCompanyId()));
     userRecord.setFailedAttempt(Utility.parseInteger(this.getFailedAttempt()));

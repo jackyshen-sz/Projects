@@ -4,7 +4,7 @@ package com.paradm.sse.common.constant;
  * @author Jacky.shen
  * @create data 2020/5/14
  */
-public interface SecurityConstant {
+public interface SecurityConstant extends Constant {
 
   String USERNAME_KEY = "loginName";
   String PASSWORD_KEY = "loginPwd";

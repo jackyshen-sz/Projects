@@ -1,12 +1,15 @@
 package com.paradm.sse.common.enums;
 
-import com.paradm.sse.common.utils.Utility;
+import cn.hutool.core.util.StrUtil;
 
 /**
  * @author Jacky.shen
  * @create data 2020/5/12
  */
 public enum RecordStatus {
+  /**
+   *
+   */
   ACTIVE("A"), INACTIVE("I"), PENDING("P"), DELETE("D"), UNFINISHED("U");
 
   private String name;
@@ -15,6 +18,7 @@ public enum RecordStatus {
     this.name = name;
   }
 
+  @Override
   public String toString() {
     return this.name;
   }
@@ -25,7 +29,7 @@ public enum RecordStatus {
 
   public static RecordStatus fromAcronym(String acronym) {
     RecordStatus result = RecordStatus.ACTIVE;
-    if (!Utility.isEmpty(acronym)) {
+    if (!StrUtil.isEmpty(acronym)) {
       for (RecordStatus recordStatus : RecordStatus.values()) {
         if (acronym.equals(recordStatus.toString())) {
           result = recordStatus;

@@ -1,5 +1,8 @@
 package com.paradm.sse.common.factory;
 
+import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.util.BooleanUtil;
+import cn.hutool.core.util.StrUtil;
 import com.paradm.sse.common.constant.global.Symbol;
 import com.paradm.sse.common.utils.Utility;
 
@@ -30,7 +33,7 @@ public class SystemParameterFactory {
    * @return The parameter value. Returns null if the input parameter is not a key to the system parameter.
    */
   public static String getSystemParameter(String key) {
-    if (Utility.isEmpty(hashSysParam)) {
+    if (MapUtil.isEmpty(hashSysParam)) {
       return "";
     }
     return (hashSysParam.get(key));
@@ -43,7 +46,7 @@ public class SystemParameterFactory {
    * @return The parameter value in integer. Returns Integer.MIN_VALUE if the input parameter is not a key to the system parameter.
    */
   public static Integer getSystemParameterInteger(String key) {
-    if (Utility.isEmpty(hashSysParam)) {
+    if (MapUtil.isEmpty(hashSysParam)) {
       return Integer.MIN_VALUE;
     }
     return (Utility.parseInteger(hashSysParam.get(key)));
@@ -56,10 +59,10 @@ public class SystemParameterFactory {
    * @return true if this value is non-zero (or true if already a BooleanValue); false otherwise.
    */
   public static boolean getSystemParameterBoolean(String key) {
-    if (Utility.isEmpty(hashSysParam)) {
+    if (MapUtil.isEmpty(hashSysParam)) {
       return false;
     }
-    return (Utility.parseBoolean(hashSysParam.get(key)));
+    return (BooleanUtil.toBoolean(hashSysParam.get(key)));
   }
 
   /**
@@ -70,11 +73,11 @@ public class SystemParameterFactory {
    */
   public static List<String> getSystemParameterList(String key) {
     List<String> result = new ArrayList<>();
-    if (Utility.isEmpty(hashSysParam)) {
+    if (MapUtil.isEmpty(hashSysParam)) {
       return result;
     }
     String valueStr = hashSysParam.get(key);
-    if (Utility.isEmpty(valueStr)) {
+    if (StrUtil.isEmpty(valueStr)) {
       return result;
     }
     StringTokenizer st = new StringTokenizer(valueStr, Symbol.COMMA.getValue());
@@ -96,14 +99,14 @@ public class SystemParameterFactory {
    */
   public static <T extends Enum<T>> T getSystemParameterEnum(String key, Class<T> enumType) {
     String enumStr = getSystemParameter(key);
-    if (Utility.isEmpty(enumStr)) {
+    if (StrUtil.isEmpty(enumStr)) {
       return null;
     }
     return Enum.valueOf(enumType, enumStr);
   }
 
   public static void setSystemParameter(String key, String value) {
-    if (!Utility.isEmpty(key) && !Utility.isEmpty(value) && !Utility.isEmpty(hashSysParam)) {
+    if (!StrUtil.isEmpty(key) && !StrUtil.isEmpty(value) && !MapUtil.isEmpty(hashSysParam)) {
       hashSysParam.put(key, value);
     }
   }

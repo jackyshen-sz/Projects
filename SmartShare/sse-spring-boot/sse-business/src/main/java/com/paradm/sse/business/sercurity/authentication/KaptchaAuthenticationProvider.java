@@ -1,6 +1,6 @@
 package com.paradm.sse.business.sercurity.authentication;
 
-import com.paradm.sse.common.utils.Utility;
+import cn.hutool.core.util.StrUtil;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,7 +22,7 @@ public class KaptchaAuthenticationProvider implements AuthenticationProvider {
     if (isValidate) {
       String captcha = details.getCaptcha();
       String sessionCaptcha = details.getSessionCaptcha();
-      if (Utility.isEmpty(captcha) || !captcha.equals(sessionCaptcha)) {
+      if (StrUtil.isEmpty(captcha) || !captcha.equals(sessionCaptcha)) {
         throw new InternalAuthenticationServiceException("The captcha is invalid.");
       }
     }

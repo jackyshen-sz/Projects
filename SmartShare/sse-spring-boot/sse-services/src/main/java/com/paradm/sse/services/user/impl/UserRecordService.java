@@ -1,10 +1,10 @@
 package com.paradm.sse.services.user.impl;
 
+import cn.hutool.core.collection.IterUtil;
 import com.paradm.sse.common.constant.error.CommonError;
 import com.paradm.sse.common.enums.RecordStatus;
 import com.paradm.sse.common.exception.ApplicationException;
 import com.paradm.sse.common.factory.UserInfoFactory;
-import com.paradm.sse.common.utils.Utility;
 import com.paradm.sse.domain.user.entity.UserRecord;
 import com.paradm.sse.domain.user.model.UserRecordModel;
 import com.paradm.sse.persist.user.UserRecordRepository;
@@ -34,7 +34,7 @@ public class UserRecordService extends BaseService implements IUserRecordService
   public void initGlobalUserInfo() {
     try {
       List<UserRecord> userList = userRecordRepository.findByRecordStatus(RecordStatus.ACTIVE);
-      if (!Utility.isEmpty(userList)) {
+      if (IterUtil.isNotEmpty(userList)) {
         Map<Integer, String[]> userInfoHash = new Hashtable<>();
         userList.forEach(userRecord -> userInfoHash.put(userRecord.getId(), new String[] {userRecord.getFullName(), userRecord.getLoginName(), userRecord.getUserDef1()}));
         UserInfoFactory.init(userInfoHash);
@@ -49,7 +49,7 @@ public class UserRecordService extends BaseService implements IUserRecordService
     List<UserRecordModel> result = null;
     try {
       List<UserRecord> userRecordList = userRecordRepository.findByRecordStatus(RecordStatus.ACTIVE);
-      if (!Utility.isEmpty(userRecordList)) {
+      if (IterUtil.isNotEmpty(userRecordList)) {
         result = userRecordList.stream().map(UserRecordModel::new).collect(Collectors.toList());
       }
     } catch (ApplicationException e) {
