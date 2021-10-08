@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author Jacky.shen
- * @create data 2020/4/23
+ * @create date 2020/4/23
  */
 @SpringBootApplication
 @ComponentScan("com.paradm")

@@ -1,6 +1,7 @@
 package com.paradm.sse.business.configuration;
 
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.text.CharSequenceUtil;
+import com.paradm.sse.business.sercurity.authentication.KaptchaAuthenticationDetailsSource;
 import com.paradm.sse.business.sercurity.authentication.KaptchaAuthenticationProvider;
 import com.paradm.sse.common.constant.SecurityConstant;
 import com.paradm.sse.common.constant.global.Symbol;
@@ -37,8 +38,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
   private UserDetailsService userService;
   @Autowired
   private KaptchaAuthenticationProvider kaptchaAuthenticationProvider;
-//  @Autowired
-//  private KaptchaAuthenticationDetailsSource kaptchaAuthenticationDetailsSource;
+  @Autowired
+  private KaptchaAuthenticationDetailsSource kaptchaAuthenticationDetailsSource;
   @Autowired
   private DataSource dataSource;
 
@@ -55,14 +56,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         .cors()
           .configurationSource(configurationSource()).and()
         .csrf()
-          .ignoringAntMatchers(StrUtil.split(cusProp.getSecurity().getCsrfIgnoreUrl(), Symbol.COMMA.getValue())).and()
+          .ignoringAntMatchers(CharSequenceUtil.split(cusProp.getSecurity().getCsrfIgnoreUrl(), Symbol.COMMA.getValue())).and()
         .authorizeRequests()
-          .antMatchers(StrUtil.split(cusProp.getSecurity().getPermitAll(), Symbol.COMMA.getValue())).permitAll()
+          .antMatchers(CharSequenceUtil.split(cusProp.getSecurity().getPermitAll(), Symbol.COMMA.getValue())).permitAll()
           .anyRequest().authenticated().and()
         .formLogin()
           .loginPage(cusProp.getSecurity().getBrowser().getLoginPage())
           .usernameParameter(SecurityConstant.USERNAME_KEY).passwordParameter(SecurityConstant.PASSWORD_KEY)
-//          .authenticationDetailsSource(kaptchaAuthenticationDetailsSource)
+          .authenticationDetailsSource(kaptchaAuthenticationDetailsSource)
           .permitAll().and()
         .sessionManagement()
           .sessionFixation().migrateSession()
@@ -79,7 +80,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Override
   public void configure(WebSecurity web) throws Exception {
-    web.ignoring().antMatchers(StrUtil.split(cusProp.getSecurity().getStaticIgnoreUrl(), Symbol.COMMA.getValue()));
+    web.ignoring().antMatchers(CharSequenceUtil.split(cusProp.getSecurity().getStaticIgnoreUrl(), Symbol.COMMA.getValue()));
   }
 
   @Bean

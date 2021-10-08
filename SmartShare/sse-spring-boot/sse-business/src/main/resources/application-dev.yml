@@ -1,5 +1,5 @@
 server:
-  port: 8086
+  port: 8080
 
 spring:
   devtools:
@@ -12,7 +12,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     druid:
-      url: jdbc:sqlserver://mssql.paradm.com:1433;databaseName=OnPremise-Jacky
+      url: jdbc:sqlserver://mssql.paradm.com:1433;databaseName=SSE-Dev
       username: sa
       password: Bj4dhva3HctuR4D2jzhSRVsHt7Rf1V9pHUufqnpb5++NgS3Tx1j1fv7uT4e+efKJn3v3D9oVLq70BzXnNxwXQg==
       filters: config,stat,wall

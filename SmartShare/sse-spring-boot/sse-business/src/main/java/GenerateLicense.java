@@ -1,18 +1,19 @@
 import com.paradm.sse.common.crypt.StandardCrypt;
 import org.apache.commons.codec.digest.MessageDigestAlgorithms;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.Properties;
 
+/**
+ * @author Jacky.shen
+ */
 public class GenerateLicense {
+
   static PrintStream out = null;
-  static String company_name = "";
-  static String expire_date = "";
-  static String maintenance_start_date = "";
-  static String maintenance_end_date = "";
+  static String companyName = "";
+  static String expireDate = "";
+  static String maintenanceStartDate = "";
+  static String maintenanceEndDate = "";
   static String hostIP = "";
   static String version = "";
   static String conCurrentUser = "";
@@ -31,32 +32,34 @@ public class GenerateLicense {
       System.out.println("license.properties not exist...");
     }
     String outputFile = inputFile.getParent() + "/eip-license.xml";
-    props.load(new FileInputStream(inputFile));
-    company_name = props.getProperty("COMPANY_NAME");
-    expire_date = props.getProperty("EXPIRY_DATE");
-    maintenance_start_date = props.getProperty("MAINTENANCE_START_DATE");
-    maintenance_end_date = props.getProperty("MAINTENANCE_END_DATE");
-    hostIP = props.getProperty("HOST_IP");
-    version = props.getProperty("VERSION");
-    conCurrentUser = props.getProperty("CONCURRENT_USER");
-    systemUser = props.getProperty("SYSTEM_USER");
-    parascanUser = props.getProperty("PARASCAN_USER");
-    clientUser = props.getProperty("CLIENT_USER");
-    uploadFileNum = props.getProperty("UPLOAD_FILE_NUM");
-    storageSpace = props.getProperty("STORAGE_SPACE");
-    licenseKey = generateLicenseKey();
-    openSrcFile(outputFile);
-    generateXML();
-    closeSrcFile();
+    try (InputStream is = new FileInputStream(inputFile)) {
+      props.load(is);
+      companyName = props.getProperty("COMPANY_NAME");
+      expireDate = props.getProperty("EXPIRY_DATE");
+      maintenanceStartDate = props.getProperty("MAINTENANCE_START_DATE");
+      maintenanceEndDate = props.getProperty("MAINTENANCE_END_DATE");
+      hostIP = props.getProperty("HOST_IP");
+      version = props.getProperty("VERSION");
+      conCurrentUser = props.getProperty("CONCURRENT_USER");
+      systemUser = props.getProperty("SYSTEM_USER");
+      parascanUser = props.getProperty("PARASCAN_USER");
+      clientUser = props.getProperty("CLIENT_USER");
+      uploadFileNum = props.getProperty("UPLOAD_FILE_NUM");
+      storageSpace = props.getProperty("STORAGE_SPACE");
+      licenseKey = generateLicenseKey();
+      openSrcFile(outputFile);
+      generateXML();
+      closeSrcFile();
+    }
     System.out.println("License generated success...");
     System.out.println("License File Location: " + outputFile);
   }
 
-  public static String generateLicenseKey() throws Exception {
+  public static String generateLicenseKey() {
     String s = "";
-    s += company_name;
+    s += companyName;
     s += hostIP;
-    s += expire_date;
+    s += expireDate;
     s += version;
     s += systemUser;
     s += conCurrentUser;
@@ -67,7 +70,7 @@ public class GenerateLicense {
     return StandardCrypt.hashEncrypt(MessageDigestAlgorithms.MD5, s);
   }
 
-  public static void openSrcFile(String openFile) throws Exception {
+  public static void openSrcFile(String openFile) {
     try {
       out = new PrintStream(new FileOutputStream(openFile, false), true);
     } catch (Exception e) {
@@ -76,13 +79,13 @@ public class GenerateLicense {
   }
 
   public static void generateXML() {
-    String tmpCompany = company_name.replaceAll("&", "&amp;");
+    String tmpCompany = companyName.replace("&", "&amp;");
     out.println("<DCIVISION>");
     out.println("  <INFORMATION> ");
     out.println("    <LICENSE_KEY>" + licenseKey + "</LICENSE_KEY>");
-    out.println("    <EXPIRY_DATE>" + expire_date + "</EXPIRY_DATE>");
-    out.println("    <MAINTENANCE_START_DATE>" + maintenance_start_date + "</MAINTENANCE_START_DATE>");
-    out.println("    <MAINTENANCE_END_DATE>" + maintenance_end_date + "</MAINTENANCE_END_DATE>");
+    out.println("    <EXPIRY_DATE>" + expireDate + "</EXPIRY_DATE>");
+    out.println("    <MAINTENANCE_START_DATE>" + maintenanceStartDate + "</MAINTENANCE_START_DATE>");
+    out.println("    <MAINTENANCE_END_DATE>" + maintenanceEndDate + "</MAINTENANCE_END_DATE>");
     out.println("    <COMPANY_NAME>" + tmpCompany + "</COMPANY_NAME>");
     out.println("    <HOST_IP>" + hostIP + "</HOST_IP>");
     out.println("    <VERSION>" + version + "</VERSION>");
@@ -96,10 +99,9 @@ public class GenerateLicense {
     out.println("</DCIVISION>");
   }
 
-  public static void closeSrcFile() throws Exception {
+  public static void closeSrcFile() {
     try {
       out.close();
-    } catch (Exception ignore) {
     } finally {
       out = null;
     }

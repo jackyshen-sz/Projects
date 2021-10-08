@@ -1,5 +1,6 @@
 package com.paradm.sse.common.utils;
 
+import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -19,6 +20,10 @@ import java.util.Date;
  */
 @Slf4j
 public class Utility {
+
+  private Utility() {
+    throw new IllegalStateException("Utility class");
+  }
 
   public static boolean parseBoolean(YesNoFlag flag) {
     return BooleanUtil.toBoolean(flag.toString());
@@ -73,7 +78,7 @@ public class Utility {
   }
 
   public static Date parseDate(String inStr, String format) {
-    if (StrUtil.isEmpty(inStr)) {
+    if (CharSequenceUtil.isEmpty(inStr)) {
       return (null);
     }
     try {

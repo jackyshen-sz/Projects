@@ -22,14 +22,14 @@
 
 .SS_footer_text {
   color: #7d7d7d;
-  font-family: Arial, "微軟正黑體", "微軟雅黑體";
+  font-family: Arial, "微軟正黑體", "微軟雅黑體", serif;
   font-size: 11px;
   font-weight: normal;
   text-align: center;
 }
 
 .ss-footer-word {
-  font-family: Arial, "微軟正黑體", "微軟雅黑體";
+  font-family: Arial, "微軟正黑體", "微軟雅黑體", serif;
   font-weight: normal;
   font-size: 11px;
   color: #808285;
@@ -61,7 +61,7 @@
 
 .sign-in_btn {
   cursor: pointer;
-  font-family: Arial, "微軟正黑體", "微軟雅黑體";
+  font-family: Arial, "微軟正黑體", "微軟雅黑體", serif;
   font-weight: normal;
   font-size: 13px;
   color: #747474;

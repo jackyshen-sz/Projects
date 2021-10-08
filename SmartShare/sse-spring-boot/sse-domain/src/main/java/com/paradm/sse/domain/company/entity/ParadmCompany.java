@@ -61,59 +61,8 @@ public class ParadmCompany extends BaseEntity {
   @Column(name = "COUNTRY_ID")
   private Integer countryId;
 
-  @Column(name = "DS_DB_NAME")
-  private String dataSourceDbName;
-
-  @Column(name = "DS_DB_TYPE")
-  private Integer dataSourceDbType;
-
-  @Column(name = "DS_DRIVER_CLASS")
-  private String dataSourceDriverClass;
-
-  @Column(name = "DS_AUTO_COMMIT")
-  private String dsAutoCommit;
-
-  @Column(name = "DS_READ_ONLY")
-  private String dsReadOnly;
-
-  @Column(name = "DS_MAX_ACTIVE")
-  private Integer dsMaxActive;
-
-  @Column(name = "DS_MAX_IDLE")
-  private Integer dsMaxIdle;
-
-  @Column(name = "DS_MAX_WAIT")
-  private Integer dsMaxWait;
-
-  @Column(name = "DS_POOL_PS")
-  private String dsPoolPS;
-
-  @Column(name = "DS_MAX_OPEN_PS")
-  private Integer dsMaxOpenPS;
-
-  @Column(name = "DS_TRANSACTION_ISOLATION")
-  private Integer dsTransactionIsolation;
-
-  @Column(name = "DS_LOG_ABANDONED")
-  private String dsLogAbandoned;
-
-  @Column(name = "DS_REMOVE_ABANDONED")
-  private String dsRemoveAbandoned;
-
-  @Column(name = "DS_WHILE_IDLE")
-  private String dsWhileIdle;
-
-  @Column(name = "DS_JNDI_NAME")
-  private String dataSourceJndiName;
-
-  @Column(name = "DS_PWD")
-  private String dataSourcePwd;
-
-  @Column(name = "DS_URL")
-  private String dataSourceUrl;
-
-  @Column(name = "DS_USERNAME")
-  private String dataSourceUsername;
+  @Column(name = "DB_CONFIG_ID")
+  private Integer dbConfigId;
 
   @Column(name = "EMAIL")
   private String email;

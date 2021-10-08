@@ -1,7 +1,12 @@
 package com.paradm.sse.framework.controller;
 
 import cn.hutool.core.util.ObjectUtil;
+import com.google.code.kaptcha.Constants;
 import com.paradm.sse.common.constant.GlobalConstant;
+import com.paradm.sse.common.constant.TilesViewConstant;
+import com.paradm.sse.common.constant.error.CommonError;
+import com.paradm.sse.common.exception.ApplicationException;
+import com.paradm.sse.domain.framework.model.BaseModel;
 import com.paradm.sse.domain.framework.model.SessionContainer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
@@ -55,7 +60,7 @@ public class BaseController {
   public String exceptionHandler(Exception ex) {
     log.error("controller throw exception...");
     log.error(ex.getMessage(), ex);
-    return "";//TilesViewConstant.ERROR;
+    return TilesViewConstant.ERROR;
   }
 
   protected SessionContainer getSessionContainer() {
@@ -68,10 +73,10 @@ public class BaseController {
     return (SessionContainer) request.getSession().getAttribute(GlobalConstant.SESSION_CONTAINER_KEY);
   }
 
-  //  protected void checkCaptcha(BaseModel baseModel) {
-  //    if (ObjectUtil.isEmpty(baseModel.getCaptcha())
-  //        || !baseModel.getCaptcha().equalsIgnoreCase((String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY))) {
-  //      throw new ApplicationException(CommonError.KAPTCHA_WRONG_ERROR.getKey());
-  //    }
-  //  }
+    protected void checkCaptcha(BaseModel baseModel) {
+      if (ObjectUtil.isEmpty(baseModel.getCaptcha())
+          || !baseModel.getCaptcha().equalsIgnoreCase((String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY))) {
+        throw new ApplicationException(CommonError.KAPTCHA_WRONG_ERROR.getKey());
+      }
+    }
 }
