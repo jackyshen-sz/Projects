@@ -1,6 +1,6 @@
 package com.paradm.sse.common.enums;
 
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.text.CharSequenceUtil;
 
 /**
  * @author Jacky.shen
@@ -29,7 +29,7 @@ public enum PreferenceType {
 
   public static PreferenceType fromAcronym(String acronym) {
     PreferenceType result = PreferenceType.STANDARD;
-    if (!StrUtil.isEmpty(acronym)) {
+    if (CharSequenceUtil.isNotEmpty(acronym)) {
       for (PreferenceType preferenceType : PreferenceType.values()) {
         if (acronym.equals(preferenceType.toString())) {
           result = preferenceType;

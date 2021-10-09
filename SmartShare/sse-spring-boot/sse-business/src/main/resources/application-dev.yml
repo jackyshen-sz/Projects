@@ -39,7 +39,7 @@ spring:
       ddl-auto: none
     properties:
       hibernate.format_sql: true
-  customize:
+  sse:
     security:
       csrf-ignore-url: /api/**,/druid/**
       static-ignore-url: /theme/**,/js/**,/webjars/**
@@ -47,3 +47,5 @@ spring:
       browser:
         login-page: /login
         logout-url: /logout
+    system:
+      encrypt: SHA-256

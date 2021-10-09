@@ -1,6 +1,6 @@
 package com.paradm.sse.common.enums;
 
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.text.CharSequenceUtil;
 
 /**
  * @author Jacky.shen
@@ -29,7 +29,7 @@ public enum YesNoFlag {
 
   public static YesNoFlag fromAcronym(String acronym) {
     YesNoFlag result = YesNoFlag.YES;
-    if (!StrUtil.isEmpty(acronym)) {
+    if (CharSequenceUtil.isNotEmpty(acronym)) {
       for (YesNoFlag flag : YesNoFlag.values()) {
         if (acronym.equals(flag.toString())) {
           result = flag;

@@ -1,6 +1,6 @@
 package com.paradm.sse.common.enums;
 
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.text.CharSequenceUtil;
 
 /**
  * @author Jacky.shen
@@ -29,7 +29,7 @@ public enum RecordStatus {
 
   public static RecordStatus fromAcronym(String acronym) {
     RecordStatus result = RecordStatus.ACTIVE;
-    if (!StrUtil.isEmpty(acronym)) {
+    if (CharSequenceUtil.isNotEmpty(acronym)) {
       for (RecordStatus recordStatus : RecordStatus.values()) {
         if (acronym.equals(recordStatus.toString())) {
           result = recordStatus;

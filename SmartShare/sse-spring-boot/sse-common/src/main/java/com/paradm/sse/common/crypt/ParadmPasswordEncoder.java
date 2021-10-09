@@ -1,5 +1,6 @@
 package com.paradm.sse.common.crypt;
 
+import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import org.springframework.security.crypto.codec.Hex;
@@ -68,7 +69,7 @@ public final class ParadmPasswordEncoder implements PasswordEncoder {
   @Override
   public String encode(CharSequence rawPassword) {
     byte[] salt = new byte[] {};
-    if (!ObjectUtil.isEmpty(saltGenerator)) {
+    if (ObjectUtil.isNotEmpty(saltGenerator)) {
       salt = saltGenerator.generateKey();
     }
     return encode(rawPassword, salt);
@@ -76,12 +77,12 @@ public final class ParadmPasswordEncoder implements PasswordEncoder {
 
   @Override
   public boolean matches(CharSequence rawPassword, String encodedPassword) {
-    if (StrUtil.isEmpty(encodedPassword)) {
+    if (CharSequenceUtil.isEmpty(encodedPassword)) {
       return false;
     }
     byte[] digested = decode(encodedPassword);
     int keyLength = 0;
-    if (!ObjectUtil.isEmpty(saltGenerator)) {
+    if (ObjectUtil.isNotEmpty(saltGenerator)) {
       keyLength = saltGenerator.getKeyLength();
     }
     byte[] salt = subArray(digested, 0, keyLength);

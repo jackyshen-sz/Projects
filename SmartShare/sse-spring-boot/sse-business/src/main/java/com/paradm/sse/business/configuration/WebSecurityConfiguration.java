@@ -5,6 +5,8 @@ import com.paradm.sse.business.sercurity.authentication.KaptchaAuthenticationDet
 import com.paradm.sse.business.sercurity.authentication.KaptchaAuthenticationProvider;
 import com.paradm.sse.common.constant.SecurityConstant;
 import com.paradm.sse.common.constant.global.Symbol;
+import com.paradm.sse.common.crypt.ParadmPasswordEncoder;
+import com.paradm.sse.framework.filter.LoginFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -14,7 +16,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -45,7 +47,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
+    auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
     auth.authenticationProvider(kaptchaAuthenticationProvider);
     auth.eraseCredentials(false);
   }
@@ -67,7 +69,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
           .permitAll().and()
         .sessionManagement()
           .sessionFixation().migrateSession()
-          .invalidSessionUrl("/")
+          .invalidSessionUrl(Symbol.SLASH.getValue())
           .maximumSessions(1).expiredUrl(cusProp.getSecurity().getBrowser().getLogoutUrl()).and().and()
         .logout()
           .deleteCookies(SecurityConstant.DELETE_COOKIES)
@@ -75,7 +77,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         .rememberMe()
           .rememberMeParameter(SecurityConstant.REMEMBER_ME_KEY)
           .tokenValiditySeconds(30 * 24 * 60 * 60)
-          .tokenRepository(tokenRepository());
+          .tokenRepository(tokenRepository()).and()
+        .addFilterBefore(loginFilter(), ChannelProcessingFilter.class)
+    ;
   }
 
   @Override
@@ -101,5 +105,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     JdbcTokenRepositoryImpl jtr = new JdbcTokenRepositoryImpl();
     jtr.setDataSource(dataSource);
     return jtr;
+  }
+
+  @Bean
+  public LoginFilter loginFilter() {
+    return new LoginFilter();
+  }
+
+  @Bean
+  public ParadmPasswordEncoder passwordEncoder() {
+    return new ParadmPasswordEncoder(cusProp.getSystem().getEncrypt(), false, 1);
   }
 }

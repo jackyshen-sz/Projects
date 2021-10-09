@@ -10,9 +10,10 @@ public enum Symbol implements GlobalConstant {
   /**
    *
    */
-  MINUS("-"), UNDERLINE("_"), SLASH("/"), BACKSLASH("\\"), COMMA(","), POINT("."),
-  SEMICOLON(";"), COLON(":"), BLANK(" "), OPEN_ANGLE("<"), CLOSE_ANGLE(">"),
-  AND("&"), EQUAL("="), ADD("+"),QUESTION_MARK("?"),LEFT_BRACKET("["),RIGHT_BRACKET("]"),
+  DASHED("-"), UNDERLINE("_"), SLASH("/"), BACKSLASH("\\"), COMMA(","), DOT("."),
+  SEMICOLON(";"), COLON(":"), TAB("  "), SPACE(" "), OPEN_ANGLE("<"), CLOSE_ANGLE(">"),
+  AMP("&"), EQUAL("="), ADD("+"), QUESTION_MARK("?"), BRACKET_START("["), BRACKET_END("]"),
+  DELIM_START("{"), DELIM_END("}"), DOUBLE_QUOTES("\""), SINGLE_QUOTE("'"), AT("@"),
   ;
 
   String value;

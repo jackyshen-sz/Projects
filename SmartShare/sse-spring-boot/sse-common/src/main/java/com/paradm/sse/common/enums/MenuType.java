@@ -1,6 +1,6 @@
 package com.paradm.sse.common.enums;
 
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.text.CharSequenceUtil;
 
 /**
  * @author Jacky.shen
@@ -29,7 +29,7 @@ public enum MenuType {
 
   public static MenuType fromAcronym(String acronym) {
     MenuType result = MenuType.STRING;
-    if (!StrUtil.isEmpty(acronym)) {
+    if (CharSequenceUtil.isNotEmpty(acronym)) {
       for (MenuType menuType : MenuType.values()) {
         if (acronym.equals(menuType.toString())) {
           result = menuType;

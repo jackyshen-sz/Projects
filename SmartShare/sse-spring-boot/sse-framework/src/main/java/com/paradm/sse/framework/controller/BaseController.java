@@ -12,11 +12,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 /**
  * @author Jacky.shen
@@ -45,15 +47,15 @@ public class BaseController {
   @ModelAttribute
   public void setReqAndResp(HttpServletRequest request, HttpServletResponse response) {
     log.debug("setReqAndResp...");
-    if (ObjectUtil.isEmpty(request) || ObjectUtil.isEmpty(response)) {
-      log.debug("get request and response...");
-      if (ObjectUtil.isNotEmpty(RequestContextHolder.getRequestAttributes())) {
-        request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
-      }
-    }
     this.request = request;
     this.response = response;
+    if (ObjectUtil.isEmpty(request) || ObjectUtil.isEmpty(response)) {
+      log.debug("get request and response...");
+      Optional.ofNullable(RequestContextHolder.getRequestAttributes()).ifPresent(e -> {
+        this.request = ((ServletRequestAttributes) e).getRequest();
+        this.response = ((ServletRequestAttributes) e).getResponse();
+      });
+    }
   }
 
   @ExceptionHandler
@@ -66,17 +68,14 @@ public class BaseController {
   protected SessionContainer getSessionContainer() {
     if (ObjectUtil.isEmpty(request) || ObjectUtil.isEmpty(request.getSession())) {
       log.debug("request is null...");
-      if (ObjectUtil.isNotEmpty(RequestContextHolder.getRequestAttributes())) {
-        request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-      }
+      Optional.ofNullable(RequestContextHolder.getRequestAttributes()).ifPresent(e -> request = ((ServletRequestAttributes) e).getRequest());
     }
     return (SessionContainer) request.getSession().getAttribute(GlobalConstant.SESSION_CONTAINER_KEY);
   }
 
-    protected void checkCaptcha(BaseModel baseModel) {
-      if (ObjectUtil.isEmpty(baseModel.getCaptcha())
-          || !baseModel.getCaptcha().equalsIgnoreCase((String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY))) {
-        throw new ApplicationException(CommonError.KAPTCHA_WRONG_ERROR.getKey());
-      }
+  protected void checkCaptcha(BaseModel baseModel) {
+    if (ObjectUtil.isEmpty(baseModel.getCaptcha()) || !baseModel.getCaptcha().equalsIgnoreCase((String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY))) {
+      throw new ApplicationException(CommonError.KAPTCHA_WRONG_ERROR.getKey());
     }
+  }
 }

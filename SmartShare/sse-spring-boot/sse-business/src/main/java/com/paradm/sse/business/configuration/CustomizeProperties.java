@@ -16,9 +16,16 @@ import java.io.Serializable;
 public class CustomizeProperties implements Serializable {
   private static final long serialVersionUID = -3192815276555574873L;
 
-  public static final String CUSTOMIZE_PREFIX = "spring.customize";
+  public static final String CUSTOMIZE_PREFIX = "spring.sse";
 
   private Security security;
+  private System system;
+
+  @Data
+  static class System implements Serializable {
+
+    private String encrypt;
+  }
 
   @Data
   static class Security implements Serializable {

@@ -20,6 +20,10 @@ public class SessionContainer implements Serializable {
 
   private UserRecordModel userRecordModel = null;
 
+  private String twoFactorAuthEnable = null;
+
+  private boolean isTwoFactorAuth = false;
+
   /**
    * Getting the application container of this session.
    *
@@ -35,6 +39,22 @@ public class SessionContainer implements Serializable {
 
   public void setUserRecordModel(UserRecordModel userRecordModel) {
     this.userRecordModel = userRecordModel;
+  }
+
+  public String getTwoFactorAuthEnable() {
+    return twoFactorAuthEnable;
+  }
+
+  public void setTwoFactorAuthEnable(String twoFactorAuthEnable) {
+    this.twoFactorAuthEnable = twoFactorAuthEnable;
+  }
+
+  public boolean isTwoFactorAuth() {
+    return isTwoFactorAuth;
+  }
+
+  public void setTwoFactorAuth(boolean twoFactorAuth) {
+    isTwoFactorAuth = twoFactorAuth;
   }
 
   public Integer getUserRecordId() {

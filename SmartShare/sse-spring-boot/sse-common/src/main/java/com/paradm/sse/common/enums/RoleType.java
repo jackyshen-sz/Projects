@@ -1,6 +1,6 @@
 package com.paradm.sse.common.enums;
 
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.text.CharSequenceUtil;
 
 /**
  * @author Jacky.shen
@@ -29,7 +29,7 @@ public enum RoleType {
 
   public static RoleType fromAcronym(String acronym) {
     RoleType result = RoleType.ADMIN;
-    if (!StrUtil.isEmpty(acronym)) {
+    if (CharSequenceUtil.isNotEmpty(acronym)) {
       for (RoleType roleType : RoleType.values()) {
         if (acronym.equals(roleType.toString())) {
           result = roleType;

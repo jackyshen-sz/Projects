@@ -103,7 +103,7 @@ public class ParadmCompany extends BaseEntity {
   @Column(name = "SPECIAL_ALERT_ID")
   private Integer specialAlertId;
 
-  @Column(name = "[STATE]")
+  @Column(name = "STATE")
   private String state;
 
   @Column(name = "STATUS_ID")

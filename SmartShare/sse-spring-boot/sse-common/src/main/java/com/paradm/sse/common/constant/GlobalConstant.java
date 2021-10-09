@@ -20,5 +20,14 @@ public interface GlobalConstant extends Constant {
   String APPLICATION_CONTAINER_KEY = "applicationContainer";
 
   String SESSION_CONTAINER_KEY = "sessionContainer";
+  String SESSION_LAST_TIME = "SESSION_LAST_TIME";
+  String SESSION_EXPIRE_REDIRECT_URL = "SessionExpireRedirectUrl";
+
+  /** Value which represent TRUE. */
+  String TRUE = "true";
+  /** Value which represent FALSE. */
+  String FALSE = "false";
+
+  String CONNECTOR_HEADER_VALUE = "FX-EWB-Compatible/4.0";
 
 }

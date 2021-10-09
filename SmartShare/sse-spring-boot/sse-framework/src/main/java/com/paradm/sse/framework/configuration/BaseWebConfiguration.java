@@ -27,7 +27,7 @@ public class BaseWebConfiguration {
   protected ServletContext servletContext;
 
   public void init() {
-    log.info("Starting SmartShare Business Version: {}", GlobalConstant.APPLICATION_NAME + Symbol.MINUS.getValue() + GlobalConstant.VERSION);
+    log.info("Starting SmartShare Business Version: {}", GlobalConstant.APPLICATION_NAME + Symbol.DASHED.getValue() + GlobalConstant.VERSION);
   }
 
   protected void initLicense() {

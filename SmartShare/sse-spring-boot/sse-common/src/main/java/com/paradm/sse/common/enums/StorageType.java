@@ -1,6 +1,6 @@
 package com.paradm.sse.common.enums;
 
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.text.CharSequenceUtil;
 
 /**
  * @author Jacky.shen
@@ -25,7 +25,7 @@ public enum StorageType {
 
   public static StorageType fromAcronym(String acronym) {
     StorageType result = StorageType.STANDARD;
-    if (!StrUtil.isEmpty(acronym)) {
+    if (CharSequenceUtil.isNotEmpty(acronym)) {
       for (StorageType storageType : StorageType.values()) {
         if (acronym.equals(storageType.toString())) {
           result = storageType;

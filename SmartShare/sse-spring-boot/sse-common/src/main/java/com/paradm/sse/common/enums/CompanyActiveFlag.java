@@ -1,6 +1,6 @@
 package com.paradm.sse.common.enums;
 
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.text.CharSequenceUtil;
 
 /**
  * @author Jacky.shen
@@ -33,7 +33,7 @@ public enum CompanyActiveFlag {
 
   public static CompanyActiveFlag fromAcronym(String acronym) {
     CompanyActiveFlag result = CompanyActiveFlag.PURCHASED;
-    if (!StrUtil.isEmpty(acronym)) {
+    if (CharSequenceUtil.isNotEmpty(acronym)) {
       for (CompanyActiveFlag companyActiveFlag : CompanyActiveFlag.values()) {
         if (acronym.equals(companyActiveFlag.toString())) {
           result = companyActiveFlag;

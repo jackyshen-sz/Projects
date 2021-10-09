@@ -20,10 +20,10 @@ public class LicenceInfo implements Serializable {
   private String ip = "";
   private String comName = "";
   private String version;
-  private String system_user;
-  private String concurrent_user;
-  private String parascan_user;
-  private String client_user;
+  private String systemUser;
+  private String concurrentUser;
+  private String parascanUser;
+  private String clientUser;
   private String uploadFileNum;
   private String storageSpace;
 }

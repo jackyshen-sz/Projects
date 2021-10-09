@@ -1,6 +1,6 @@
 package com.paradm.sse.common.enums;
 
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.text.CharSequenceUtil;
 
 /**
  * @author Jacky.shen
@@ -29,7 +29,7 @@ public enum NotifyGroupType {
 
   public static NotifyGroupType fromAcronym(String acronym) {
     NotifyGroupType result = NotifyGroupType.REAL_TIME;
-    if (!StrUtil.isEmpty(acronym)) {
+    if (CharSequenceUtil.isNotEmpty(acronym)) {
       for (NotifyGroupType flag : NotifyGroupType.values()) {
         if (acronym.equals(flag.toString())) {
           result = flag;
