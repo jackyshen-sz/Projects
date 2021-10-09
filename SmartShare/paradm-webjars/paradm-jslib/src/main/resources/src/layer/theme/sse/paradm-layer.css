@@ -3,7 +3,7 @@ body .layui-layer-page .layui-layer-content {
 }
 
 body .ss-layer-msg {
-  font-family: Arial, "微軟正黑體", "微軟雅黑體";
+  font-family: Arial, "微軟正黑體", "微軟雅黑體", serif;
   font-size: 13px;
   font-weight: normal;
   min-width: 100px;
@@ -32,7 +32,7 @@ body .success {
 }
 
 body .ss-layer .layui-layer-title {
-  font-family: Arial, "微軟正黑體", "微軟雅黑體";
+  font-family: Arial, "微軟正黑體", "微軟雅黑體", serif;
   font-size: 13px;
   border-bottom: 1px solid #eee;
   background-color: #158bc8;
@@ -40,14 +40,14 @@ body .ss-layer .layui-layer-title {
 }
 
 body .ss-layer .layer-dialog-body {
-  font-family: Arial, "微軟正黑體", "微軟雅黑體";
+  font-family: Arial, "微軟正黑體", "微軟雅黑體", serif;
   font-size: 13px;
   padding: 5px 25px;
   line-height: 1.42857143;
 }
 
 body .ss-layer .layui-layer-btn {
-  font-family: Arial,"微軟正黑體", "微軟雅黑體";
+  font-family: Arial, "微軟正黑體", "微軟雅黑體", serif;
   font-weight: normal;
   font-size: 13px;
   border-top: 1px solid #E9E7E7;
@@ -59,7 +59,7 @@ body .ss-layer .layui-layer-btn {
 }
 
 body .ss-layer .btn {
-  font-family: Arial,"微軟正黑體", "微軟雅黑體";
+  font-family: Arial, "微軟正黑體", "微軟雅黑體", serif;
   font-weight: normal;
   font-size: 13px;
   height: 26px;
