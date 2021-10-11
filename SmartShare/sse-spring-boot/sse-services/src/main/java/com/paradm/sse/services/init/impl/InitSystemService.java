@@ -2,6 +2,7 @@ package com.paradm.sse.services.init.impl;
 
 import cn.hutool.core.collection.IterUtil;
 import cn.hutool.core.util.ObjectUtil;
+import com.paradm.sse.common.constant.ModelConstant;
 import com.paradm.sse.common.constant.error.CommonError;
 import com.paradm.sse.common.constant.error.InitError;
 import com.paradm.sse.common.constant.paramter.ParameterCode;
@@ -72,7 +73,7 @@ public class InitSystemService extends InitService implements IInitSystemService
     } catch (Exception e) {
       log.error(e.getMessage(), e);
     }
-//    model.addAttribute(ModelConstant.FORM_MODEL, formModel);
+    model.addAttribute(ModelConstant.FORM_MODEL, formModel);
   }
 
   @Override

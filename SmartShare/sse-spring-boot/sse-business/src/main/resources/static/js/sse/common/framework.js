@@ -90,7 +90,7 @@ function formatFileSize(fileSize) {
   return fileSizeMsg;
 }
 
-function initkaptcha(selector) {
+function initKaptcha(selector) {
   var kaptchaUrl = contextPath + 'kaptcha/image?data=';
   $(selector).attr('src', kaptchaUrl + Math.floor(Math.random() * 100)).click(function(evt) {//generate captcha
     $(this).hide().prop('src', kaptchaUrl + Math.floor(Math.random() * 100)).fadeIn();

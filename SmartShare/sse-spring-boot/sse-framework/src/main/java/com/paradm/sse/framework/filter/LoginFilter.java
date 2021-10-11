@@ -13,7 +13,6 @@ import com.paradm.sse.framework.utils.WebUtility;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -173,11 +172,11 @@ public class LoginFilter extends GenericFilterBean {
     Matcher m = p.matcher(userAgent);
     if (m.find() && m.group(2) != null) {
       // m.group(2) = PCode:TC100728; JFI:3.5.0; IPAddr:127.0.0.1; DConf:49
-      String[] attributeAry = StringUtils.split(m.group(2).trim(), Symbol.SEMICOLON.getValue());
+      String[] attributeAry = CharSequenceUtil.split(m.group(2).trim(), Symbol.SEMICOLON.getValue());
       Optional.ofNullable(attributeAry).ifPresent(attrs -> {
         for (String attr : attrs) {
           if (CharSequenceUtil.isNotEmpty(attr) && attr.contains(Symbol.COLON.getValue())) {
-            String[] attribute = StringUtils.split(attr, Symbol.COLON.getValue());
+            String[] attribute = CharSequenceUtil.split(attr, Symbol.COLON.getValue());
             Optional.ofNullable(attribute).ifPresent(a -> {
               String key = a[0].trim();
               String value = a[1].trim();

@@ -90,8 +90,8 @@ public class WebUtility {
         Date expiryDate = null;
         try {
           expiryDate = sdf.parse(SiteValidator.INSTANCE.getExpDate());
-        } catch (Exception ignore1) {
-          log.error("Invalid Expiry Date Format", ignore1);
+        } catch (Exception e) {
+          log.error("Invalid Expiry Date Format", e);
           processRedirect(request, response, contextPath + "/index?checkLicense=2");
           return false;
         }
@@ -105,8 +105,8 @@ public class WebUtility {
           // appContainer.setVersion(siteValidator.getLicenceInfo().getVersion());
         }
       }
-    } catch (Exception ignore) {
-      log.error(ignore.getMessage(), ignore);
+    } catch (Exception e) {
+      log.error(e.getMessage(), e);
       return false;
     }
     return true;

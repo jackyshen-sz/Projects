@@ -1,5 +1,5 @@
 $(function () {
-  initkaptcha('#kaptchaImage');
+  initKaptcha('#kaptchaImage');
   signinForm.bootstrapValidator({
     fields: {
       'paradmCompanyModel.companyName': {

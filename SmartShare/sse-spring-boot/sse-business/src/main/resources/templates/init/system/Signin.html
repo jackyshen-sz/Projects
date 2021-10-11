@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <div class="layer-dialog-body">
+    <!--/*@thymesVar id="formModel" type="com.paradm.sse.domain.init.model.InitSystemModel"*/-->
     <form id="signinForm" method="post" th:action="@{/init/system/sign-in}" th:object="${formModel}" novalidate>
       <input type="hidden" name="paradmCompanyModel.id" th:field="*{paradmCompanyModel.id}" />
       <input type="hidden" name="paradmCompanyModel.recordStatus" th:field="*{paradmCompanyModel.recordStatus}" />
@@ -33,7 +34,7 @@
           <input type="text" class="form-control captcha_box" name="captcha" th:placeholder='#{common.label.captcha_value}' />
           <div class="input-group-append">
             <span class="input-group-text" style="font-size: 13px;">
-              <i class="fa fa-search"><img id="kaptchaImage" th:title='#{common.label.click_here}' align="middle" /></i>
+              <i class="fa fa-search"><img id="kaptchaImage" th:title='#{common.label.click_here}' alt="" src=""/></i>
             </span>
 				  </div>
         </div>

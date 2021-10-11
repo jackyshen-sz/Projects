@@ -1,12 +1,12 @@
 package com.paradm.sse.common.license;
 
+import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.ArrayUtil;
 import com.paradm.sse.common.constant.global.Symbol;
 import com.paradm.sse.common.crypt.StandardCrypt;
 import com.paradm.sse.common.xml.XMLUtility;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.MessageDigestAlgorithms;
-import org.springframework.util.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -151,10 +151,10 @@ public enum SiteValidator {
     String[] hostArry = null;
     boolean flag = true;
 
-    keyArry = StringUtils.split(licenceInfo.getIp(), Symbol.DOT.getValue());
-    hostArry = StringUtils.split(hostAddr, Symbol.DOT.getValue());
+    keyArry = CharSequenceUtil.split(licenceInfo.getIp(), Symbol.DOT.getValue());
+    hostArry = CharSequenceUtil.split(hostAddr, Symbol.DOT.getValue());
 
-    if (ArrayUtil.isNotEmpty(keyArry)) {
+    if (ArrayUtil.isNotEmpty(keyArry) && ArrayUtil.isNotEmpty(hostArry)) {
       for (int i = 0; i < 4; i++) {
         if (!(keyArry[i].equals(hostArry[i]) || "*".equals(keyArry[i]))) {
           flag = false;

@@ -1,0 +1,33 @@
+{
+  "properties": [
+    {
+      "name": "spring.sse.security.csrf-ignore-url",
+      "type": "java.lang.String",
+      "description": "Description for spring.sse.security.csrf-ignore-url."
+    },
+    {
+      "name": "spring.sse.security.static-ignore-url",
+      "type": "java.lang.String",
+      "description": "Description for spring.sse.security.static-ignore-url."
+    },
+    {
+      "name": "spring.sse.security.permit-all",
+      "type": "java.lang.String",
+      "description": "Description for spring.sse.security.permit-all."
+    },
+    {
+      "name": "spring.sse.security.browser.login-page",
+      "type": "java.lang.String",
+      "description": "Description for spring.sse.security.browser.login-page."
+    },
+    {
+      "name": "spring.sse.security.browser.logout-url",
+      "type": "java.lang.String",
+      "description": "Description for spring.sse.security.browser.logout-url."
+    },
+    {
+      "name": "spring.sse.system.encrypt",
+      "type": "java.lang.String",
+      "description": "Description for spring.sse.system.encrypt."
+    }
+  ] }

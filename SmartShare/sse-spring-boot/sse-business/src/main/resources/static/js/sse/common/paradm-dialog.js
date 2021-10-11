@@ -1,7 +1,7 @@
 var loadIndex;
 $(function() {
   layer.config({
-    extend: 'sse/paradm-layer.css',
+    extend: 'sse/paradm-layer.min.css',
     skin: 'ss-layer',
     move: false,
     resize: false,
