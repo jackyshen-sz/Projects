@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.paradm.captcha.autoconfigure.CaptchaAutoConfiguration
+com.paradm.kaptcha.configuration.KaptchaAutoConfiguration
