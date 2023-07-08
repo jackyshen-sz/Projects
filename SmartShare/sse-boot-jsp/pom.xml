@@ -12,7 +12,7 @@
 
   <groupId>com.paradm</groupId>
   <artifactId>smartshare</artifactId>
-  <version>1.0.0.sse-spring-boot-SNAPSHOT</version>
+  <version>1.0.0.sse-boot-jsp-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>

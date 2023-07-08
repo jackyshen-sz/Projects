@@ -1,0 +1,141 @@
+.navbar-default {
+  border-bottom: 3px solid #158BC8;
+}
+
+#footer {
+  z-index: 1001;
+  background-color: #cccccc;
+  position: fixed;
+  bottom: 0;
+  height: 30px;
+  width: 100%;
+  padding: 0;
+  text-align: center;
+}
+
+#footer .footer-container {
+  padding: 4px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.SS_footer_text {
+  color: #7d7d7d;
+  font-family: Arial, "微軟正黑體", "微軟雅黑體", serif;
+  font-size: 11px;
+  font-weight: normal;
+  text-align: center;
+}
+
+.ss-footer-word {
+  font-family: Arial, "微軟正黑體", "微軟雅黑體", serif;
+  font-weight: normal;
+  font-size: 11px;
+  color: #808285;
+}
+
+@media (max-width: 768px) {
+  .hidden-footer {
+    display: none;
+  }
+}
+
+.footer-message a:link {
+  color: #747474;
+  text-decoration: underline;
+}
+
+.footer-message a:visited {
+  color: #747474;
+  text-decoration: underline;
+}
+
+.footer-message a:hover {
+  color: #23527c;
+}
+
+.footer-message a:active {
+  color: white;
+}
+
+.sign-in_btn {
+  cursor: pointer;
+  font-family: Arial, "微軟正黑體", "微軟雅黑體", serif;
+  font-weight: normal;
+  font-size: 13px;
+  color: #747474;
+  text-align: center;
+  float: right;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+.name_box {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #555;
+  display: block;
+  font-size: 14px;
+  height: 34px;
+  line-height: 1.42857;
+  padding: 6px 40px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0) url(../img/login/name_icon.svg) no-repeat 13px 6px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.email_box {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 40px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background: #fff url(../img/login/envelope.svg) no-repeat 13px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.parameter_box {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  color: #555;
+  display: block;
+  font-size: 14px;
+  height: 34px;
+  line-height: 1.42857;
+  padding: 6px 40px;
+  transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+  width: 100%;
+}
+
+.captcha_box {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 40px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background: #fff url(../img/login/locked.svg) no-repeat 15px 7px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0px 0px 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  margin-bottom: 0 !important;
+}
