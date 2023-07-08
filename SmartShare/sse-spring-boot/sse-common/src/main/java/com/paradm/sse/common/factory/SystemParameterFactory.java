@@ -94,7 +94,7 @@ public class SystemParameterFactory {
    * Get the system parameter as a <code>Enum</code>.
    *
    * @param key The parameter code.
-   * @param enumType
+   * @param enumType type
    * @return The parameter value in a <code>Enum</code>.
    */
   public static <T extends Enum<T>> T getSystemParameterEnum(String key, Class<T> enumType) {

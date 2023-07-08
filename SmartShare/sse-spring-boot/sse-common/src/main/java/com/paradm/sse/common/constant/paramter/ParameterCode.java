@@ -16,7 +16,7 @@ public enum ParameterCode implements Constant {
   SYSTEM_HELP_CENTER("system.help_center_url"),
   ;
 
-  String key;
+  final String key;
 
   ParameterCode(String key) {
     this.key = key;

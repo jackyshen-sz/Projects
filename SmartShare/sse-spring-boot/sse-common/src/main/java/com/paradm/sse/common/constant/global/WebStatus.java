@@ -13,7 +13,7 @@ public enum WebStatus implements GlobalConstant {
   SUCCESSFUL("successful"), FAILED("failed"),
   ;
 
-  String value;
+  final String value;
 
   WebStatus(String value) {
     this.value = value;

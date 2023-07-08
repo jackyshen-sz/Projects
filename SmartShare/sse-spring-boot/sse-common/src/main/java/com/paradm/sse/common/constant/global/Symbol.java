@@ -16,7 +16,7 @@ public enum Symbol implements GlobalConstant {
   DELIM_START("{"), DELIM_END("}"), DOUBLE_QUOTES("\""), SINGLE_QUOTE("'"), AT("@"),
   ;
 
-  String value;
+  final String value;
 
   Symbol(String value) {
     this.value = value;

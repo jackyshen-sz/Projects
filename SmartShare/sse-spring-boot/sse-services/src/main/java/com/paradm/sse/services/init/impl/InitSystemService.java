@@ -15,7 +15,6 @@ import com.paradm.sse.domain.framework.model.SessionContainer;
 import com.paradm.sse.domain.init.model.InitSystemModel;
 import com.paradm.sse.domain.system.model.SysParameterModel;
 import com.paradm.sse.domain.user.model.UserRecordModel;
-import com.paradm.sse.services.company.IParadmCompanyService;
 import com.paradm.sse.services.dms.ISmartshareLocMasterService;
 import com.paradm.sse.services.init.IInitSystemService;
 import com.paradm.sse.services.system.ISysParameterService;
@@ -43,8 +42,6 @@ public class InitSystemService extends InitService implements IInitSystemService
   private ISmartshareLocMasterService locMasterService;
   @Autowired
   private IUserRecordService userRecordService;
-  @Autowired
-  private IParadmCompanyService paradmCompanyService;
   @Autowired
   private ISysParameterService sysParameterService;
 
